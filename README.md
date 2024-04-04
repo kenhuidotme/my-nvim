@@ -16,6 +16,8 @@ rm -rf ~/.local/share/nvim
 
 ## Common
 
+| Key | Description |
+| --- | --- |
 | <leader>n | Toggle line number |
 | <leader>rn | Toggle relative number |
 | <leader>/ | Toggle comment |
@@ -23,8 +25,9 @@ rm -rf ~/.local/share/nvim
 
 ## Buffer
 
-| < | Buffer prev |
+| Key | Description |
 | --- | --- |
+| < | Buffer prev |
 | > | Buffer next |
 | _ | Buffer move left |
 | + | Buffer move right |
@@ -33,8 +36,9 @@ rm -rf ~/.local/share/nvim
 
 ## Window
 
-| C-x | Window split |
+| Key | Description |
 | --- | --- |
+| C-x | Window split |
 | C-y | Window vertical split |
 | C-k | Window jump up |
 | C-j | Window jump down |
@@ -48,22 +52,25 @@ rm -rf ~/.local/share/nvim
 
 ## Tab
 
-| C-] | Tab next |
+| Key | Description |
 | --- | --- |
+| C-] | Tab next |
 | C-[ | Tab prev |
 | Tab | Tab new |
 | S-Tab | Tab close |
 
 ## Terminal
 
-| C-t | Terminal new |
+| Key | Description |
 | --- | --- |
+| C-t | Terminal new |
 | C-q | Terminal escape |
 
 ## NvimTree
 
-| C-e | Nvim tree toggle |
+| Key | Description |
 | --- | --- |
+| C-e | Nvim tree toggle |
 | C-f | Nvim tree Focus |
 | C-x | Nvim tree open: horizontal split |
 | C-y | Nvim tree open: vertical split |
@@ -86,8 +93,9 @@ rm -rf ~/.local/share/nvim
 
 ## Lsp
 
-| K | LSP hover |
+| Key | Description |
 | --- | --- |
+| K | LSP hover |
 | gD | LSP declaration |
 | gT | LSP type definition |
 | gd | LSP definition |
@@ -107,8 +115,9 @@ rm -rf ~/.local/share/nvim
 
 ## Telescope
 
-| <leader>ff | Telescope find files |
+| Key | Description |
 | --- | --- |
+| <leader>ff | Telescope find files |
 | <leader>fa | Telescope find all |
 | <leader>fo | Telescope find old files |
 | <leader>fb | Telescope find buffers |
@@ -118,8 +127,9 @@ rm -rf ~/.local/share/nvim
 
 ## Git
 
-| <leader>cm | Git commits |
+| Key | Description |
 | --- | --- |
+| <leader>cm | Git commits |
 | <leader>gs | Git status |
 | <leader>hn | Git next hunk |
 | <leader>hp | Git prev hunk |
