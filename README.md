@@ -17,7 +17,6 @@ rm -rf ~/.local/share/nvim
 ## Common
 
 | <leader>n | Toggle line number |
-| --- | --- |
 | <leader>rn | Toggle relative number |
 | <leader>/ | Toggle comment |
 | <leader>th | Select themes |
