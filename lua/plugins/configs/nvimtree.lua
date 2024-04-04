@@ -37,13 +37,11 @@ local options = {
     dotfiles = false,
   },
   disable_netrw = true,
-  -- sync_root_with_cwd = true,
   view = {
     side = "left",
     preserve_window_proportions = true,
   },
   renderer = {
-    -- root_folder_label = false,
     icons = {
       glyphs = {
         default = "󰈚",

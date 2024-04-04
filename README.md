@@ -66,30 +66,30 @@ rm -rf ~/.local/share/nvim
 | C-t | Terminal new |
 | C-q | Terminal escape |
 
-## NvimTree
+## Nvim-tree
 
 | Key | Description |
 | --- | --- |
-| C-e | Nvim tree toggle |
-| C-f | Nvim tree Focus |
-| C-x | Nvim tree open: horizontal split |
-| C-y | Nvim tree open: vertical split |
-| C-i | Nvim tree help |
-| = | Nvim tree CD: change root to selected directory |
-| - | Nvim tree CD: change root to parent |
-| P | Nvim tree goto: parent directory |
-| < | Nvim tree goto: previous sibling |
-| > | Nvim tree goto: next sibling |
-| i | Nvim tree info |
-| H | Nvim tree toggle filter: dotfiles |
-| c | Nvim tree copy |
-| d | Nvim tree delete |
-| o | Nvim tree open |
-| p | Nvim tree paste |
-| r | Nvim tree rename |
-| x | Nvim tree cut |
-| f | Nvim tree live filter: start |
-| F | Nvim tree live filter: clear |
+| C-e | Nvim-tree toggle |
+| C-f | Nvim-tree Focus |
+| C-x | Nvim-tree open: horizontal split |
+| C-y | Nvim-tree open: vertical split |
+| C-i | Nvim-tree help |
+| = | Nvim-tree CD: change root to selected directory |
+| - | Nvim-tree CD: change root to parent |
+| P | Nvim-tree goto: parent directory |
+| < | Nvim-tree goto: previous sibling |
+| > | Nvim-tree goto: next sibling |
+| i | Nvim-tree info |
+| H | Nvim-tree toggle filter: dotfiles |
+| c | Nvim-tree copy |
+| d | Nvim-tree delete |
+| o | Nvim-tree open |
+| p | Nvim-tree paste |
+| r | Nvim-tree rename |
+| x | Nvim-tree cut |
+| f | Nvim-tree live filter: start |
+| F | Nvim-tree live filter: clear |
 
 ## Lsp
 
