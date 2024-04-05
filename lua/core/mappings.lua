@@ -156,11 +156,18 @@ M.comment = {
 M.lspconfig = {
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   n = {
-    ["K"] = {
+    ["gh"] = {
       function()
         vim.lsp.buf.hover()
       end,
       "LSP hover",
+    },
+
+    ["gd"] = {
+      function()
+        vim.lsp.buf.definition()
+      end,
+      "LSP definition",
     },
 
     ["gD"] = {
@@ -170,18 +177,11 @@ M.lspconfig = {
       "LSP declaration",
     },
 
-    ["gT"] = {
+    ["gt"] = {
       function()
         vim.lsp.buf.type_definition()
       end,
       "LSP type definition",
-    },
-
-    ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
     },
 
     ["gi"] = {

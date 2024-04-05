@@ -33,10 +33,10 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| <leader>n | Toggle line number |
-| <leader>rn | Toggle relative number |
-| <leader>/ | Toggle comment |
-| <leader>th | Select themes |
+| `<leader>`n | Toggle line number |
+| `<leader>`rn | Toggle relative number |
+| `<leader>`/ | Toggle comment |
+| `<leader>`th | Select themes |
 
 ## Buffer
 
@@ -53,7 +53,7 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| C-x | Window split |
+| C-x | Window horizontal split |
 | C-y | Window vertical split |
 | C-k | Window jump up |
 | C-j | Window jump down |
@@ -96,7 +96,7 @@ rm -Force ~\AppData\Local\nvim-data
 | < | Nvim-tree goto: previous sibling |
 | > | Nvim-tree goto: next sibling |
 | i | Nvim-tree info |
-| H | Nvim-tree toggle filter: dotfiles |
+| H | Nvim-tree toggle filter: dot files |
 | c | Nvim-tree copy |
 | d | Nvim-tree delete |
 | o | Nvim-tree open |
@@ -110,45 +110,45 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| K | LSP hover |
-| gD | LSP declaration |
-| gT | LSP type definition |
+| gh | LSP hover |
 | gd | LSP definition |
+| gD | LSP declaration |
+| gt | LSP type definition |
 | gi | LSP implementation |
 | gr | LSP references |
-| <leader>ls | LSP signature |
-| <leader>ra | LSP rename |
-| <leader>fm | LSP formatting |
-| <leader>ca | LSP code action |
-| <leader>df | LSP diagnostic floating |
-| <leader>dp | LSP diagnostic prev |
-| <leader>dn | LSP diagnostic next |
-| <leader>dl | LSP diagnostic list |
-| <leader>wl | LSP workspace list |
-| <leader>wa | LSP workspace add |
-| <leader>wr | LSP workspace remove |
+| `<leader>`ls | LSP signature |
+| `<leader>`ra | LSP rename |
+| `<leader>`fm | LSP formatting |
+| `<leader>`ca | LSP code action |
+| `<leader>`df | LSP diagnostic floating |
+| `<leader>`dp | LSP diagnostic prev |
+| `<leader>`dn | LSP diagnostic next |
+| `<leader>`dl | LSP diagnostic list |
+| `<leader>`wl | LSP workspace list |
+| `<leader>`wa | LSP workspace add |
+| `<leader>`wr | LSP workspace remove |
 
 ## Telescope
 
 | Key | Description |
 | --- | --- |
-| <leader>ff | Telescope find files |
-| <leader>fa | Telescope find all |
-| <leader>fo | Telescope find old files |
-| <leader>fb | Telescope find buffers |
-| <leader>fh | Telescope find Help page |
-| <leader>fw | Telescope live grep |
-| <leader>fz | Telescope fuzzy find in current buffer |
+| `<leader>`ff | Telescope find files |
+| `<leader>`fa | Telescope find all |
+| `<leader>`fo | Telescope find old files |
+| `<leader>`fb | Telescope find buffers |
+| `<leader>`fh | Telescope find Help page |
+| `<leader>`fw | Telescope live grep |
+| `<leader>`fz | Telescope fuzzy find in current buffer |
 
 ## Git
 
 | Key | Description |
 | --- | --- |
-| <leader>cm | Git commits |
-| <leader>gs | Git status |
-| <leader>hn | Git next hunk |
-| <leader>hp | Git prev hunk |
-| <leader>hr | Git hunk reset |
-| <leader>hs | Git hunk preview |
-| <leader>hb | Git hunk blame |
-| <leader>hd | Git hunk deleted |
+| `<leader>`gc | Git commits |
+| `<leader>`gs | Git status |
+| `<leader>`hn | Git next hunk |
+| `<leader>`hp | Git prev hunk |
+| `<leader>`hr | Git hunk reset |
+| `<leader>`hs | Git hunk preview |
+| `<leader>`hb | Git hunk blame |
+| `<leader>`hd | Git hunk deleted |
