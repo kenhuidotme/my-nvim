@@ -1,15 +1,30 @@
 Neovim configuration for myself, base on [NvChad](https://github.com/NvChad/NvChad).
 
+# Pre-requisites
+
+* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.5).
+* [Nerd Font](https://www.nerdfonts.com/) as your terminal font.
+
 # Install
 
-```jsx
+```shell
 git clone https://github.com/kenhuidotme/MyNvim ~/.config/nvim --depth 1 && nvim
 ```
 
-# Reset
+# Uninstall
 
-```jsx
+```shell
+# Linux / Macos (unix)
+rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
+
+# Windows CMD
+rd -r ~\AppData\Local\nvim
+rd -r ~\AppData\Local\nvim-data
+
+# Window PowerShell
+rm -Force ~\AppData\Local\nvim
+rm -Force ~\AppData\Local\nvim-data
 ```
 
 # Mappings
