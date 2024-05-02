@@ -181,12 +181,16 @@ end
 
 local M = {}
 
+-- M.build = function()
+--   local result = buffer_list() .. tab_list()
+--   return
+--     vim.g.nvimtree_side == "left"
+--     and cover_nvimtree() .. result
+--     or result .. cover_nvimtree()
+-- end
+
 M.build = function()
-  local result = buffer_list() .. tab_list()
-  return
-    vim.g.nvimtree_side == "left"
-    and cover_nvimtree() .. result
-    or result .. cover_nvimtree()
+  return buffer_list() .. tab_list()
 end
 
 return M

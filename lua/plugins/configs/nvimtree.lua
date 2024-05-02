@@ -10,7 +10,7 @@ local function my_on_attach(bufnr)
   vim.keymap.del("n", "q", { buffer = bufnr })
 
   vim.keymap.del("n", "g?", { buffer = bufnr })
-  vim.keymap.set("n", "<C-i>", api.tree.toggle_help, opts("Help"))
+  vim.keymap.set("n", "gh", api.tree.toggle_help, opts("Help"))
 
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
   vim.keymap.set("n", "i", api.node.show_info_popup, opts("Info"))
@@ -39,7 +39,12 @@ local options = {
   disable_netrw = true,
   view = {
     side = "left",
-    preserve_window_proportions = true,
+    float = {
+      enable = true,
+      open_win_config = {
+        width = 35,
+      },
+    },
   },
   renderer = {
     icons = {
@@ -48,10 +53,10 @@ local options = {
       },
     },
   },
-  hijack_directories = {
-    enable = true,
-    auto_open = true,
-  },
+  -- hijack_directories = {
+  --   enable = true,
+  --   auto_open = true,
+  -- },
 }
 
 return options

@@ -32,6 +32,23 @@ local post_bootstrap = function()
   end)
 end
 
+local bootstrap = function()
+  local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazy_path) then
+    -- clone lazy.nvim
+    echo("  Installing lazy.nvim & plugins ...")
+    local repo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", repo, lazy_path })
+
+    vim.opt.rtp:prepend(lazy_path)
+    require("plugins")
+    post_bootstrap()
+  else
+    vim.opt.rtp:prepend(lazy_path)
+    require("plugins")
+  end
+end
+
 local open_nvim_tree = function(data)
   local winid = vim.fn.bufwinid(data.buf)
 
@@ -51,26 +68,8 @@ local open_nvim_tree = function(data)
     vim.api.nvim_set_current_win(winid)
   end
 end
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
--- bootstrap lazy.nvim
-local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazy_path) then
-  -- compile base46 integrations
-  echo("  Compiling base46 theme to bytecode ...")
-  require("base46").compile()
-
-  -- clone lazy.nvim
-  echo("  Installing lazy.nvim & plugins ...")
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", repo, lazy_path })
-
-  vim.opt.rtp:prepend(lazy_path)
-  require("plugins")
-  post_bootstrap()
-else
-  vim.opt.rtp:prepend(lazy_path)
-  require("plugins")
-  vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-end
-
+require("base46").compile()
+bootstrap()
 require("ui")

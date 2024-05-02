@@ -29,11 +29,14 @@ M.common = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
 
+    -- restore jump forward
+    ["<C-i>"] = { "<C-i>", "Jump forward" },
+
     -- new buffer
     ["<S-b>"] = { "<cmd> enew <cr>", "Buffer new" },
 
     -- new terminal
-    ["<C-t>"] = { "<cmd> execute 'terminal' | startinsert <cr>", "Terminal new" },
+    ["<S-t>"] = { "<cmd> execute 'terminal' | startinsert <cr>", "Terminal new" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window jump left" },
@@ -52,20 +55,18 @@ M.common = {
     ["<C-y>"] = { "<cmd> vsp <cr>", "Window vertical split" },
 
     -- new tab
-    ["<Tab>"] = { "<cmd> tabnew <cr>", "Tab new" },
+    ["<C-t>"] = { "<cmd> tabnew <cr>", "Tab new" },
 
     -- switch between tabs
-    ["<C-]>"] = { "<cmd> tabn <cr>", "Tab next" },
-    ["<C-[>"] = { "<cmd> tabp <cr>", "Tab prev" },
+    ["}"] = { "<cmd> tabn <cr>", "Tab next" },
+    ["{"] = { "<cmd> tabp <cr>", "Tab prev" },
   },
 
   t = {
-    ["<C-q>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true), "Terminal escape" },
+    ["<C-d>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true), "Terminal escape" },
   },
 
   v = {
-    ["<C-c>"] = { '"+y', "Copy selected text to clipboard" },
-
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
   },
@@ -118,14 +119,14 @@ M.tabline = {
       "Buffer close",
     },
 
-    ["<C-c>"] = {
+    ["<C-q>"] = {
       function()
         require("ui.tabline").close_win()
       end,
       "Window close",
     },
 
-    ["<S-Tab>"] = {
+    ["<C-c>"] = {
       function()
         require("ui.tabline").close_tab()
       end,
@@ -198,11 +199,39 @@ M.lspconfig = {
       "LSP references",
     },
 
-    ["<leader>ls"] = {
+    ["gs"] = {
       function()
         vim.lsp.buf.signature_help()
       end,
       "LSP signature",
+    },
+
+    ["<leader>dn"] = {
+      function()
+        vim.diagnostic.goto_next()
+      end,
+      "LSP diagnostic next",
+    },
+
+    ["<leader>dp"] = {
+      function()
+        vim.diagnostic.goto_prev()
+      end,
+      "LSP diagnostic prev",
+    },
+
+    ["<leader>df"] = {
+      function()
+        vim.diagnostic.open_float({ border = "rounded" })
+      end,
+      "LSP diagnostic floating",
+    },
+
+    ["<leader>dl"] = {
+      function()
+        vim.diagnostic.setloclist()
+      end,
+      "LSP diagnostic list",
     },
 
     ["<leader>ra"] = {
@@ -224,34 +253,6 @@ M.lspconfig = {
         vim.lsp.buf.code_action()
       end,
       "LSP code action",
-    },
-
-    ["<leader>df"] = {
-      function()
-        vim.diagnostic.open_float({ border = "rounded" })
-      end,
-      "LSP diagnostic floating",
-    },
-
-    ["<leader>dp"] = {
-      function()
-        vim.diagnostic.goto_prev()
-      end,
-      "LSP diagnostic prev",
-    },
-
-    ["<leader>dn"] = {
-      function()
-        vim.diagnostic.goto_next()
-      end,
-      "LSP diagnostic next",
-    },
-
-    ["<leader>dl"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "LSP diagnostic list",
     },
 
     ["<leader>wl"] = {
@@ -299,7 +300,7 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <cr>", "Fuzzy find in current buffer" },
 
     -- git
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
     ["<leader>gs"] = { "<cmd> Telescope git_status <cr>", "Git status" },
 
     -- theme switcher

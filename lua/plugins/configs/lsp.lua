@@ -3,7 +3,7 @@ local lsp_symbol = function(name, icon)
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
-local lsp_config = function ()
+local lsp_config = function()
   lsp_symbol("Error", "󰅙")
   lsp_symbol("Info", "󰋼")
   lsp_symbol("Hint", "󰌵")
@@ -76,7 +76,7 @@ capabilities.textDocument.completion.completionItem = {
 local M = {}
 
 
-M.setup = function ()
+M.setup = function()
   lsp_config()
 
   local lspconfig = require("lspconfig")
@@ -104,11 +104,6 @@ M.setup = function ()
     },
   })
 
-  -- Typescript
-  lspconfig.tsserver.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
 end
 
 return M
