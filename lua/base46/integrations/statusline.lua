@@ -44,11 +44,6 @@ local highlights = {
     fg = base30.white,
   },
 
-  StFileSep = {
-    bg = base30.statusline_bg,
-    fg = base30.lightbg,
-  },
-
   StCwdIcon = {
     fg = base30.one_bg,
     bg = base30.red,
@@ -56,16 +51,6 @@ local highlights = {
 
   StCwdText = {
     fg = base30.white,
-    bg = base30.lightbg,
-  },
-
-  StCwdSep = {
-    fg = base30.red,
-    bg = base30.statusline_bg,
-  },
-
-  StPosSep = {
-    fg = base30.green,
     bg = base30.lightbg,
   },
 
@@ -84,7 +69,6 @@ highlights = vim.tbl_deep_extend("force", highlights, lsp_highlights)
 
 local add_mode_highlights = function(mode, col)
   highlights["St" .. mode .. "Mode"] = { fg = base30.black, bg = base30[col], bold = true }
-  highlights["St" .. mode .. "ModeSep"] = { fg = base30[col], bg = base30.lightbg}
 end
 
 -- add mode highlights

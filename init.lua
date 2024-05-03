@@ -49,25 +49,25 @@ local bootstrap = function()
   end
 end
 
-local open_nvim_tree = function(data)
-  local winid = vim.fn.bufwinid(data.buf)
-
-  -- buffer is a directory
-  local directory = vim.fn.isdirectory(data.file) == 1
-
-  -- change to the directory
-  if directory then
-    vim.cmd.cd(data.file)
-  end
-
-  -- open the tree
-  require("nvim-tree.api").tree.open()
-
-  -- restore focus
-  if winid >= 0 then
-    vim.api.nvim_set_current_win(winid)
-  end
-end
+-- local open_nvim_tree = function(data)
+--   local winid = vim.fn.bufwinid(data.buf)
+--
+--   -- buffer is a directory
+--   local directory = vim.fn.isdirectory(data.file) == 1
+--
+--   -- change to the directory
+--   if directory then
+--     vim.cmd.cd(data.file)
+--   end
+--
+--   -- open the tree
+--   require("nvim-tree.api").tree.open()
+--
+--   -- restore focus
+--   if winid >= 0 then
+--     vim.api.nvim_set_current_win(winid)
+--   end
+-- end
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 require("base46").compile()

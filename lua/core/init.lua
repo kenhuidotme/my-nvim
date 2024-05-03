@@ -8,6 +8,7 @@ vim.g.base46_cache = vim.fn.stdpath("data") .. "/MyNvim/base46/"
 -- global statusline
 vim.opt.laststatus = 3
 
+vim.opt.showcmd = false
 vim.opt.showmode = false
 vim.opt.clipboard = ""
 vim.opt.cursorline = true

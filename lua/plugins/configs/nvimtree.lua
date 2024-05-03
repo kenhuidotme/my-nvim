@@ -39,11 +39,12 @@ local options = {
   disable_netrw = true,
   view = {
     side = "left",
+    preserve_window_proportions = true,
+    width = {
+      max = -1,
+    },
     float = {
       enable = true,
-      open_win_config = {
-        width = 35,
-      },
     },
   },
   renderer = {
@@ -53,10 +54,6 @@ local options = {
       },
     },
   },
-  -- hijack_directories = {
-  --   enable = true,
-  --   auto_open = true,
-  -- },
 }
 
 return options
