@@ -10,8 +10,8 @@ vim.opt.laststatus = 3
 
 vim.opt.showcmd = false
 vim.opt.showmode = false
-vim.opt.clipboard = ""
 vim.opt.cursorline = true
+vim.opt.clipboard = ""
 
 -- Indenting
 vim.opt.expandtab = true
@@ -35,9 +35,11 @@ vim.opt.shortmess:append "sI"
 vim.opt.signcolumn = "yes"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.termguicolors = true
 vim.opt.timeoutlen = 400
 vim.opt.undofile = true
+
+vim.opt.termguicolors = true
+vim.opt.guicursor = ""
 
 -- interval for writing swap file to disk, also used by gitsigns
 vim.opt.updatetime = 250
@@ -59,10 +61,10 @@ end
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH =
-  vim.env.PATH
-  .. (is_windows and ";" or ":")
-  .. vim.fn.stdpath("data")
-  .. "/mason/bin"
+    vim.env.PATH
+    .. (is_windows and ";" or ":")
+    .. vim.fn.stdpath("data")
+    .. "/mason/bin"
 
 -- dont list quickfix buffers
 vim.api.nvim_create_autocmd("FileType", {

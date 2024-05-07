@@ -10,8 +10,13 @@ local lsp_config = function()
   lsp_symbol("Warn", "")
 
   vim.diagnostic.config({
+    float = {
+      border = "single",
+    },
     virtual_text = {
+      spacing = 2,
       prefix = "",
+      severity = { min = vim.diagnostic.severity.WARN },
     },
     signs = true,
     underline = true,
@@ -26,14 +31,13 @@ local lsp_config = function()
   vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(vim.lsp.handlers.signature_help, {
       border = "single",
-      focusable = false,
       relative = "cursor",
+      focusable = false,
     })
 
   -- Borders for LspInfo winodw
   local win = require("lspconfig.ui.windows")
   local _default_opts = win.default_opts
-
   win.default_opts = function(options)
     local opts = _default_opts(options)
     opts.border = "single"

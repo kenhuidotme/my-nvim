@@ -35,7 +35,7 @@ local plugins = {
 
   {
     "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
+    event = { 'BufReadPost', 'BufNewFile' },
     ft = { "gitcommit", "diff" },
     init = function()
       local group_name = "GitSignsLazyLoad"
@@ -81,7 +81,7 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    event = "User FilePost",
+    event = { 'BufReadPost', 'BufNewFile' },
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
     end,

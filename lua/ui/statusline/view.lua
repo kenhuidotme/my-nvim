@@ -173,8 +173,8 @@ local lsp_status = function()
       then
         return
           vim.o.columns > 100
-          and "%#StLspStatus#" .. "   " .. client.name .. " "
-          or "   LSP  "
+          and "%#StLspStatus#" .. "  " .. client.name .. " "
+          or "  LSP "
       end
     end
   end

@@ -100,17 +100,6 @@ local style_buffer = function(buf)
   end
 end
 
-local get_nvimtree_width = function()
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  for _, win in ipairs(wins) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_buf_get_option(buf, "filetype") == "NvimTree" then
-      return vim.api.nvim_win_get_width(win) + 1
-    end
-  end
-  return 0
-end
-
 local get_tabs_width = function()
   local tabs = vim.api.nvim_list_tabpages()
   return
@@ -120,7 +109,7 @@ local get_tabs_width = function()
 end
 
 local buffer_list = function()
-  local available_space = vim.o.columns - get_nvimtree_width() - get_tabs_width()
+  local available_space = vim.o.columns - get_tabs_width()
 
   local buf_current = vim.api.nvim_get_current_buf()
   local has_current = false
@@ -171,23 +160,7 @@ local tab_list = function()
   return result
 end
 
-local cover_nvimtree = function()
-  local space =
-    vim.g.nvimtree_side == "left"
-    and string.rep(" ", get_nvimtree_width())
-    or ""
-  return "%#NvimTreeNormal#" .. space
-end
-
 local M = {}
-
--- M.build = function()
---   local result = buffer_list() .. tab_list()
---   return
---     vim.g.nvimtree_side == "left"
---     and cover_nvimtree() .. result
---     or result .. cover_nvimtree()
--- end
 
 M.build = function()
   return buffer_list() .. tab_list()

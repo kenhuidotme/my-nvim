@@ -45,6 +45,9 @@ local options = {
     },
     float = {
       enable = true,
+      open_win_config = {
+        border = "single",
+      },
     },
   },
   renderer = {
