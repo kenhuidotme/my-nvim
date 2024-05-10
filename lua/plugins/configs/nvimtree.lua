@@ -42,7 +42,7 @@ local options = {
     float = {
       enable = true,
       open_win_config = {
-        width = 35,
+        width = 32,
       },
     },
   },
@@ -53,10 +53,6 @@ local options = {
       },
     },
   },
-  -- hijack_directories = {
-  --   enable = true,
-  --   auto_open = true,
-  -- },
 }
 
 return options
