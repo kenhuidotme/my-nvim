@@ -3,8 +3,8 @@ local M = {}
 M.common = {
   i = {
     -- go to beginning and end
-    ["<C-b>"] = { "<esc>^i", "Beginning of line" },
-    ["<C-e>"] = { "<end>", "End of line" },
+    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
+    ["<C-e>"] = { "<End>", "End of line" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "Move left" },
@@ -14,11 +14,11 @@ M.common = {
   },
 
   n = {
-    ["<Esc>"] = { "<cmd> noh <cr>", "Clear highlights" },
+    ["<Esc>"] = { "<cmd>noh<CR>", "Clear highlights" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <cr>", "Toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <cr>", "Toggle relative number" },
+    ["<leader>n"] = { "<cmd>set nu!<CR>", "Toggle line number" },
+    ["<leader>rn"] = { "<cmd>set rnu!<CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -33,10 +33,10 @@ M.common = {
     ["<C-i>"] = { "<C-i>", "Jump forward" },
 
     -- new buffer
-    ["<S-b>"] = { "<cmd> enew <cr>", "Buffer new" },
+    ["<S-b>"] = { "<cmd>enew<CR>", "Buffer new" },
 
     -- new terminal
-    ["<S-t>"] = { "<cmd> execute 'terminal' | startinsert <cr>", "Terminal new" },
+    ["<S-t>"] = { "<cmd>execute 'terminal' | startinsert<CR>", "Terminal new" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window jump left" },
@@ -45,21 +45,21 @@ M.common = {
     ["<C-k>"] = { "<C-w>k", "Window jump up" },
 
     -- window resize
-    ["<C-Up>"] = { "<cmd> resize -1 <cr>", "Window height -1" },
-    ["<C-Down>"] = { "<cmd> resize +1 <cr>", "Window height +1" },
-    ["<C-Left>"] = { "<cmd> vertical resize -1 <cr>", "Window width +1" },
-    ["<C-Right>"] = { "<cmd> vertical resize +1 <cr>", "Window width -1" },
+    ["<C-Up>"] = { "<cmd>resize -1<CR>", "Window height -1" },
+    ["<C-Down>"] = { "<cmd>resize +1<CR>", "Window height +1" },
+    ["<C-Left>"] = { "<cmd>vertical resize -1<CR>", "Window width +1" },
+    ["<C-Right>"] = { "<cmd>vertical resize +1<CR>", "Window width -1" },
 
     -- window split
-    ["<C-x>"] = { "<cmd> sp <cr>", "Window split" },
-    ["<C-y>"] = { "<cmd> vsp <cr>", "Window vertical split" },
+    ["<C-x>"] = { "<cmd>sp<CR>", "Window split" },
+    ["<C-y>"] = { "<cmd>vsp<CR>", "Window vertical split" },
 
     -- new tab
-    ["<C-t>"] = { "<cmd> tabnew <cr>", "Tab new" },
+    ["<C-t>"] = { "<cmd>tabnew<CR>", "Tab new" },
 
     -- switch between tabs
-    ["}"] = { "<cmd> tabn <cr>", "Tab next" },
-    ["{"] = { "<cmd> tabp <cr>", "Tab prev" },
+    ["}"] = { "<cmd>tabn<CR>", "Tab next" },
+    ["{"] = { "<cmd>tabp<CR>", "Tab prev" },
   },
 
   t = {
@@ -77,7 +77,7 @@ M.common = {
 
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-    ["p"] = { 'p:let @+=@0<cr>:let @"=@0<cr>', "Dont copy replaced text", options = { silent = true } },
+    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", options = { silent = true } },
   },
 }
 
@@ -206,6 +206,13 @@ M.lspconfig = {
       "LSP signature",
     },
 
+    ["<leader>df"] = {
+      function()
+        vim.diagnostic.open_float()
+      end,
+      "LSP diagnostic floating",
+    },
+
     ["<leader>dn"] = {
       function()
         vim.diagnostic.goto_next()
@@ -218,13 +225,6 @@ M.lspconfig = {
         vim.diagnostic.goto_prev()
       end,
       "LSP diagnostic prev",
-    },
-
-    ["<leader>df"] = {
-      function()
-        vim.diagnostic.open_float({ border = "rounded" })
-      end,
-      "LSP diagnostic floating",
     },
 
     ["<leader>dl"] = {

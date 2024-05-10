@@ -1,7 +1,5 @@
 local M = {}
 
-local sep = "█"
-
 local modes = {
   ["n"] = { "NORMAL", "StNormalMode" },
   ["no"] = { "NORMAL (no)", "StNormalMode" },
@@ -48,10 +46,7 @@ local modes = {
 
 local mode = function()
   local m = vim.api.nvim_get_mode().mode
-  local current_mode = "%#" .. modes[m][2] .. "#" .. "  " .. modes[m][1]
-  local mode_sep1 = "%#" .. modes[m][2] .. "Sep" .. "#" .. sep
-
-  return current_mode .. mode_sep1
+  return "%#" .. modes[m][2] .. "#" .. "  " .. modes[m][1] .. " "
 end
 
 local new_icon_hl = function(group_fg, group_bg)
@@ -84,7 +79,7 @@ local file_info = function()
     filename = " " .. filename
   end
 
-  return fileicon .. "%#StFileInfo#" .. filename .. "%#StFileSep#" .. sep
+  return fileicon .. "%#StFileInfo#" .. filename .. " "
 end
 
 local git = function()
@@ -178,8 +173,8 @@ local lsp_status = function()
       then
         return
           vim.o.columns > 100
-          and "%#StLspStatus#" .. "   " .. client.name .. "  "
-          or "   LSP  "
+          and "%#StLspStatus#" .. "  " .. client.name .. " "
+          or "  LSP "
       end
     end
   end
@@ -187,30 +182,29 @@ local lsp_status = function()
 end
 
 local cwd = function()
-  local dir_icon = "%#StCwdIcon#" .. "󰉋 "
   local dir_name =
     "%#StCwdText#"
     .. " "
     .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     .. " "
+
   return
     vim.o.columns > 85
-    and "%#StCwdSep#" .. sep .. dir_icon .. dir_name
+    and "%#StCwdIcon#" .. " 󰉋 " .. dir_name
     or ""
 end
 
 local cursor_position = function()
-  local left_sep = "%#StPosSep#" .. sep .. "%#StPosIcon#" .. " "
-
   local current_line = vim.fn.line "."
   local total_line = vim.fn.line "$"
+
   local text = math.modf((current_line / total_line) * 100) .. tostring "%%"
   text = string.format("%4s", text)
 
   text = current_line == 1 and "Top" or text
   text = current_line == total_line and "Bot" or text
 
-  return left_sep .. "%#StPosText#" .. " " .. text .. " "
+  return "%#StPosIcon#" .. "  " .. "%#StPosText#" .. " " .. text .. " "
 end
 
 M.build = function()

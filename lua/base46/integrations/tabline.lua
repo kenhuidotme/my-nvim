@@ -26,7 +26,7 @@ return {
   },
 
   TlBufOnClose = {
-    fg = base30.red,
+    fg = base30.white,
     bg = base30.black,
   },
 
