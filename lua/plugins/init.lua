@@ -68,6 +68,9 @@ local plugins = {
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
     end,
+    opts = {
+      inlay_hints = { enabled = true },
+    },
     config = function()
       dofile(vim.g.base46_cache .. "lsp")
       require("plugins.configs.lsp").setup()
