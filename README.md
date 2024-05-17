@@ -144,8 +144,8 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| `<leader>`hc | Git commits |
-| `<leader>`hs | Git status |
+| `<leader>`st | Git status |
+| `<leader>`cm | Git commits |
 | `<leader>`hn | Git next hunk |
 | `<leader>`hp | Git prev hunk |
 | `<leader>`hr | Git hunk reset |

@@ -300,8 +300,8 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <cr>", "Fuzzy find in current buffer" },
 
     -- git
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
     ["<leader>st"] = { "<cmd> Telescope git_status <cr>", "Git status" },
+    ["<leader>cm"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <cr>", "Select themes" },
