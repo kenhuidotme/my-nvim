@@ -69,17 +69,17 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| C-] | Tab next |
-| C-[ | Tab prev |
-| Tab | Tab new |
-| S-Tab | Tab close |
+| C-t | Tab new |
+| C-c | Tab close |
+| } | Tab next |
+| { | Tab prev |
 
 ## Terminal
 
 | Key | Description |
 | --- | --- |
-| C-t | Terminal new |
-| C-q | Terminal escape |
+| C-s | Terminal new |
+| C-d | Terminal escape |
 
 ## Nvim-tree
 
@@ -89,7 +89,7 @@ rm -Force ~\AppData\Local\nvim-data
 | C-f | Nvim-tree Focus |
 | C-x | Nvim-tree open: horizontal split |
 | C-y | Nvim-tree open: vertical split |
-| C-i | Nvim-tree help |
+| g? | Nvim-tree help |
 | = | Nvim-tree CD: change root to selected directory |
 | - | Nvim-tree CD: change root to parent |
 | P | Nvim-tree goto: parent directory |
@@ -116,14 +116,14 @@ rm -Force ~\AppData\Local\nvim-data
 | gt | LSP type definition |
 | gi | LSP implementation |
 | gr | LSP references |
-| `<leader>`ls | LSP signature |
+| gs | LSP signature |
+| gf | LSP diagnostic floating |
+| gn | LSP diagnostic next |
+| gp | LSP diagnostic prev |
+| gl | LSP diagnostic list |
 | `<leader>`ra | LSP rename |
 | `<leader>`fm | LSP formatting |
 | `<leader>`ca | LSP code action |
-| `<leader>`df | LSP diagnostic floating |
-| `<leader>`dp | LSP diagnostic prev |
-| `<leader>`dn | LSP diagnostic next |
-| `<leader>`dl | LSP diagnostic list |
 | `<leader>`wl | LSP workspace list |
 | `<leader>`wa | LSP workspace add |
 | `<leader>`wr | LSP workspace remove |
@@ -144,11 +144,11 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| `<leader>`gc | Git commits |
-| `<leader>`gs | Git status |
+| `<leader>`hc | Git commits |
+| `<leader>`hs | Git status |
 | `<leader>`hn | Git next hunk |
 | `<leader>`hp | Git prev hunk |
 | `<leader>`hr | Git hunk reset |
-| `<leader>`hs | Git hunk preview |
+| `<leader>`hv | Git hunk preview |
 | `<leader>`hb | Git hunk blame |
 | `<leader>`hd | Git hunk deleted |

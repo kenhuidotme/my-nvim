@@ -9,9 +9,6 @@ local function my_on_attach(bufnr)
 
   vim.keymap.del("n", "q", { buffer = bufnr })
 
-  vim.keymap.del("n", "g?", { buffer = bufnr })
-  vim.keymap.set("n", "gh", api.tree.toggle_help, opts("Help"))
-
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
   vim.keymap.set("n", "i", api.node.show_info_popup, opts("Info"))
 

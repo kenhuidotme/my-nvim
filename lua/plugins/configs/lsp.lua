@@ -3,7 +3,7 @@ local lsp_symbol = function(name, icon)
   vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
-local lsp_config = function()
+local lsp_client_setup = function()
   lsp_symbol("Error", "󰅙")
   lsp_symbol("Info", "󰋼")
   lsp_symbol("Hint", "󰌵")
@@ -16,7 +16,7 @@ local lsp_config = function()
     virtual_text = {
       spacing = 2,
       prefix = "",
-      severity = { min = vim.diagnostic.severity.WARN },
+      severity = { min = vim.diagnostic.severity.ERROR },
     },
     signs = true,
     underline = true,
@@ -34,14 +34,11 @@ local lsp_config = function()
       relative = "cursor",
       focusable = false,
     })
+end
 
-  -- Borders for LspInfo winodw
-  local win = require("lspconfig.ui.windows")
-  local _default_opts = win.default_opts
-  win.default_opts = function(options)
-    local opts = _default_opts(options)
-    opts.border = "single"
-    return opts
+local on_init = function(client, _)
+  if client.supports_method "textDocument/semanticTokens" then
+    client.server_capabilities.semanticTokensProvider = nil
   end
 end
 
@@ -51,23 +48,19 @@ local on_attach = function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
     require("ui.lsp.signature").setup(client)
   end
-
-  -- needs nvim v0.9
-  if vim.version().api_level >= 11 then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
 end
 
+-- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem = {
-  documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,
+  commitCharactersSupport = true,
+  documentationFormat = { "markdown", "plaintext" },
+  deprecatedSupport = true,
   preselectSupport = true,
+  tagSupport = { valueSet = { 1 } },
   insertReplaceSupport = true,
   labelDetailsSupport = true,
-  deprecatedSupport = true,
-  commitCharactersSupport = true,
-  tagSupport = { valueSet = { 1 } },
   resolveSupport = {
     properties = {
       "documentation",
@@ -75,20 +68,25 @@ capabilities.textDocument.completion.completionItem = {
       "additionalTextEdits",
     },
   },
+  insertTextModeSupport = { valueSet = { 1 } },
 }
 
-local M = {}
+local lua_server_on_init = function(client)
+  on_init(client)
+  local path = client.workspace_folders[1].name
+  if vim.loop.fs_stat(path.."/.luarc.json") or vim.loop.fs_stat(path.."/.luarc.jsonc") then
+    return
+  end
+end
 
-
-M.setup = function()
-  lsp_config()
-
-  local lspconfig = require("lspconfig")
-
-  -- Lua
-  lspconfig.lua_ls.setup({
+-- Lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
+local lua_server_setup = function()
+  require("lspconfig").lua_ls.setup({
+    on_init = lua_server_on_init,
     on_attach = on_attach,
     capabilities = capabilities,
+
     settings = {
       Lua = {
         runtime = {
@@ -99,23 +97,21 @@ M.setup = function()
         },
         workspace = {
           library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
             [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
           },
         },
       },
     },
   })
+end
 
-  -- Typescript
-  --
-  lspconfig.tsserver.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-
-  -- Rust
-  -- https://rust-analyzer.github.io/manual.html#nvim-lsp
-  lspconfig.rust_analyzer.setup({
+-- Rust
+-- https://rust-analyzer.github.io/manual.html#nvim-lsp
+local rust_server_setup = function()
+  require("lspconfig").rust_analyzer.setup({
+    on_init = on_init,
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -132,12 +128,19 @@ M.setup = function()
           },
         },
         procMacro = {
-          enable = true
+          enable = true,
         },
       }
     }
   })
+end
 
+local M = {}
+
+M.setup = function()
+  lsp_client_setup()
+  lua_server_setup()
+  rust_server_setup()
 end
 
 return M

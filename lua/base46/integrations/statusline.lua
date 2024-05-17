@@ -40,8 +40,8 @@ local highlights = {
   },
 
   StFileInfo = {
-    bg = base30.lightbg,
     fg = base30.white,
+    bg = base30.lightbg,
   },
 
   StCwdIcon = {

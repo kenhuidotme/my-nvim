@@ -36,7 +36,7 @@ M.common = {
     ["<S-b>"] = { "<cmd>enew<CR>", "Buffer new" },
 
     -- new terminal
-    ["<S-t>"] = { "<cmd>execute 'terminal' | startinsert<CR>", "Terminal new" },
+    ["<C-s>"] = { "<cmd>execute 'terminal' | startinsert<CR>", "Terminal new" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window jump left" },
@@ -206,28 +206,28 @@ M.lspconfig = {
       "LSP signature",
     },
 
-    ["<leader>df"] = {
+    ["gf"] = {
       function()
         vim.diagnostic.open_float()
       end,
       "LSP diagnostic floating",
     },
 
-    ["<leader>dn"] = {
+    ["gn"] = {
       function()
         vim.diagnostic.goto_next()
       end,
       "LSP diagnostic next",
     },
 
-    ["<leader>dp"] = {
+    ["gp"] = {
       function()
         vim.diagnostic.goto_prev()
       end,
       "LSP diagnostic prev",
     },
 
-    ["<leader>dl"] = {
+    ["gl"] = {
       function()
         vim.diagnostic.setloclist()
       end,
@@ -300,8 +300,8 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <cr>", "Fuzzy find in current buffer" },
 
     -- git
-    ["<leader>gc"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
-    ["<leader>gs"] = { "<cmd> Telescope git_status <cr>", "Git status" },
+    ["<leader>cm"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
+    ["<leader>st"] = { "<cmd> Telescope git_status <cr>", "Git status" },
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <cr>", "Select themes" },
@@ -346,7 +346,7 @@ M.gitsigns = {
       "Git hunk reset",
     },
 
-    ["<leader>hs"] = {
+    ["<leader>hv"] = {
       function()
         require("gitsigns").preview_hunk()
       end,
