@@ -21,8 +21,8 @@ Neovim configuration for myself.
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
 - A clipboard tool is necessary for the integration with the system clipboard
 - Optional Requirements:
-  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>fw`)
-  - [fd](https://github.com/sharkdp/fd) Telescope find file (`<leader>ff`)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fw)
+  - [fd](https://github.com/sharkdp/fd) Telescope find file (`<leader>`ff)
 
 # Install
 
