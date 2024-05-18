@@ -62,18 +62,37 @@ M.list_themes = function()
   return themes
 end
 
-M.config_replace = function(old, new)
-  local config_file = vim.fn.stdpath("config") .. "/lua/core/config.lua"
-  local file = io.open(config_file, "r")
+M.get_theme = function(default)
+  local theme_file = vim.fn.stdpath("state") .. "/mynvim_theme"
+  local file = io.open(theme_file, "r")
+  local name = default
   if file ~= nil then
-    local added_pattern = string.gsub(old, "-", "%%-") -- add % before - if exists
-    local new_content = file:read("*all"):gsub(added_pattern, new)
-    file = io.open(config_file, "w")
-    if file ~= nil then
-      file:write(new_content)
-      file:close()
-    end
+    name = file:read()
+    file:close()
+  end
+  return name
+end
+
+M.save_theme = function(name)
+  local theme_file = vim.fn.stdpath("state") .. "/mynvim_theme"
+  local file = io.open(theme_file, "w")
+  if file ~= nil then
+    file:write(name)
+    file:close()
   end
 end
+
+-- M.config_replace = function(old, new)
+--   local file = io.open(config_file, "r")
+--   if file ~= nil then
+--     local added_pattern = string.gsub(old, "-", "%%-") -- add % before - if exists
+--     local new_content = file:read("*all"):gsub(added_pattern, new)
+--     file = io.open(config_file, "w")
+--     if file ~= nil then
+--       file:write(new_content)
+--       file:close()
+--     end
+--   end
+-- end
 
 return M

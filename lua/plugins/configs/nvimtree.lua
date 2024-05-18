@@ -34,6 +34,9 @@ local options = {
     dotfiles = false,
   },
   disable_netrw = true,
+  update_focused_file = {
+    enable = true,
+  },
   view = {
     side = "left",
     preserve_window_proportions = true,
@@ -44,6 +47,7 @@ local options = {
       enable = true,
       open_win_config = {
         border = "single",
+        height = math.floor(vim.o.lines * 0.6),
       },
     },
   },

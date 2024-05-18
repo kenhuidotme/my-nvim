@@ -34,11 +34,6 @@ local highlights = {
     bg = base30.statusline_bg,
   },
 
-  StLspProgress = {
-    fg = base30.green,
-    bg = base30.statusline_bg,
-  },
-
   StFileInfo = {
     fg = base30.white,
     bg = base30.lightbg,

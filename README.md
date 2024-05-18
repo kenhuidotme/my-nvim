@@ -122,15 +122,14 @@ rm -Force ~\AppData\Local\nvim-data
 | Key | Description |
 | --- | --- |
 | C-t | Toggle terminal |
-| C-\ | Toggle terminal float |
-| C-q | Terminal mode escape |
+| C-f | Toggle terminal float |
+| C-d | Terminal mode escape |
 
 ## Nvim-tree
 
 | Key | Description |
 | --- | --- |
 | C-e | Nvim-tree toggle |
-| C-f | Nvim-tree focus |
 | C-x | Nvim-tree open: horizontal split |
 | C-y | Nvim-tree open: vertical split |
 | g? | Nvim-tree help |

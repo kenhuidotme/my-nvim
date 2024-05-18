@@ -30,11 +30,11 @@ local new_icon_hl = function(group_fg, group_bg)
   return "%#" .. group_fg .. group_bg .. "#"
 end
 
-local add_fileInfo = function(name, buf)
+local add_file_style = function(filename, buf)
   local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
   if devicons_present then
-    local icon, icon_hl = devicons.get_icon(name, string.match(name, "%a+$"))
+    local icon, icon_hl = devicons.get_icon(filename, string.match(filename, "%a+$"))
     if not icon then
       icon = "󰈚"
       icon_hl = "DevIconDefault"
@@ -48,38 +48,46 @@ local add_fileInfo = function(name, buf)
       or icon
 
     local name_max = 16
-    name =
-      #name > name_max
-      and string.sub(name, 1, 14) .. ".."
-      or name
+    filename =
+      #filename > name_max
+      and string.sub(filename, 1, 14) .. ".."
+      or filename
 
     -- padding around bufname; 24 = bufname length (icon + filename)
-    local padding = (24 - #name - 6) / 2
+    local padding = (24 - #filename - 6) / 2
 
-    name =
+    filename =
       buf == buf_current
-      and "%#TlBufOn#" .. " " .. name
-      or "%#TlBufOff#" .. " " .. name
+      and "%#TlBufOn#" .. " " .. filename
+      or "%#TlBufOff#" .. " " .. filename
 
     return
       string.rep(" ", padding)
       .. icon
-      .. name
+      .. filename
       .. string.rep(" ", padding)
   end
 end
 
 local style_buffer = function(buf)
-  local name = vim.api.nvim_buf_get_name(buf)
+  local filename = vim.api.nvim_buf_get_name(buf)
 
-  name =
-    #name ~= 0
-    and vim.fn.fnamemodify(name, ":t")
-    or " No Name "
+  if filename ~= "" then
+    filename = vim.fn.fnamemodify(filename, ":t")
+  end
 
-  name =
+  if filename == "" then
+    local filetype = vim.bo[buf].filetype
+    if filetype ~= "" then
+      filename = filetype
+    else
+      filename = "No Name"
+    end
+  end
+
+  filename =
     "%" .. buf .. "@TlGoToBuf@"
-    .. add_fileInfo(name, buf)
+    .. add_file_style(filename, buf)
 
   local modified = vim.api.nvim_buf_get_option(buf, "modified")
 
@@ -87,16 +95,16 @@ local style_buffer = function(buf)
     return
       modified
       and
-        "%#TlBufOn#" .. name
+        "%#TlBufOn#" .. filename
         .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnModified# "
       or
-        "%#TlBufOn#" .. name
+        "%#TlBufOn#" .. filename
         .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnClose# "
   else
     return
       modified
-      and "%#TlBufOff#" .. name .. "%#TlBufOffModified# "
-      or "%#TlBufOff#" .. name .. "%#TlBufOffClose#󰅖 "
+      and "%#TlBufOff#" .. filename .. "%#TlBufOffModified# "
+      or "%#TlBufOff#" .. filename .. "%#TlBufOffClose#󰅖 "
   end
 end
 

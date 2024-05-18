@@ -65,7 +65,7 @@ M.common = {
   },
 
   t = {
-    ["<C-q>"] = { escape_terminal_cmd, "Terminal escape" },
+    ["<C-d>"] = { escape_terminal_cmd, "Terminal escape" },
   },
 
   v = {
@@ -286,9 +286,6 @@ M.nvimtree = {
   n = {
     -- toggle
     ["<C-e>"] = { "<Cmd>NvimTreeToggle<CR>", "Nvim-tree toggle" },
-
-    -- focus
-    ["<C-f>"] = { "<Cmd>NvimTreeFindFile!<CR>", "Nvim-tree focus" },
   },
 }
 
@@ -315,11 +312,11 @@ M.telescope = {
 M.toggleterm = {
   n = {
     ["<C-t>"] = { "<Cmd>ToggleTerm direction=horizontal<CR>", "ToggleTerm horizontal" },
-    ["<C-\\>"] = { "<Cmd>ToggleTerm direction=float<CR>", "ToggleTerm float" },
+    ["<C-f>"] = { "<Cmd>ToggleTerm direction=float<CR>", "ToggleTerm float" },
   },
   t = {
     ["<C-t>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
-    ["<C-\\>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
+    ["<C-f>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
   }
 }
 

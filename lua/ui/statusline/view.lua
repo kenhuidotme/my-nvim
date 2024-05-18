@@ -49,42 +49,9 @@ local mode = function()
   return "%#" .. modes[m][2] .. "#" .. "  " .. modes[m][1] .. " "
 end
 
-local new_icon_hl = function(group_fg, group_bg)
-  local fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group_fg)), "fg#")
-  local bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group_bg)), "bg#")
-  vim.api.nvim_set_hl(0, group_fg .. group_bg, { fg = fg, bg = bg })
-  return "%#" .. group_fg .. group_bg .. "#"
-end
-
-local file_info = function()
-  local filename =
-    vim.fn.expand("%") == ""
-    and "Empty"
-    or (vim.bo.ft == "NvimTree" and "Explorer" or vim.fn.expand "%:t")
-
-  local fileicon = ""
-  if filename ~= "Empty" and filename ~= "Explorer" then
-    local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-    if devicons_present then
-      local icon, icon_hl = devicons.get_icon(filename, string.match(filename, "%a+$"))
-      if not icon then
-        icon = "󰈚"
-        icon_hl = "DevIconDefault"
-      end
-      fileicon = new_icon_hl(icon_hl, "StFileInfo") .. " " .. icon .. " "
-    end
-  end
-
-  if fileicon == "" then
-    filename = " " .. filename
-  end
-
-  return fileicon .. "%#StFileInfo#" .. filename .. " "
-end
-
 local git = function()
   if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
-    return ""
+    return "%#StGitIcons#" .. " "
   end
 
   local git_status = vim.b.gitsigns_status_dict
@@ -107,10 +74,6 @@ local git = function()
   local branch_name = "  " .. git_status.head
 
   return "%#StGitIcons#" .. branch_name .. added .. changed .. removed
-end
-
-local lsp_progress = function()
-  return "%#StLspProgress#" .. " "
 end
 
 local lsp_diagnostics = function()
@@ -191,12 +154,8 @@ end
 M.build = function()
   return table.concat {
     mode(),
-    file_info(),
     git(),
-    lsp_progress(),
-
     "%=",
-
     lsp_diagnostics(),
     lsp_status(),
     cwd(),

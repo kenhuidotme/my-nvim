@@ -136,8 +136,8 @@ local M = {}
 
 M.setup = function()
   lsp_client_setup()
-  lua_server_setup()
-  rust_server_setup()
+  -- lua_server_setup()
+  -- rust_server_setup()
 end
 
 return M

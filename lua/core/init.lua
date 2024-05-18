@@ -1,5 +1,5 @@
 -- globals
-vim.g.theme = "onedark"
+vim.g.theme = require("core.utils").get_theme("onedark")
 vim.g.transparency = false
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/MyNvim/base46/"
 

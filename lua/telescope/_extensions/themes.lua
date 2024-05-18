@@ -77,8 +77,7 @@ local function switcher()
       actions.select_default:replace(function()
         if action_state.get_selected_entry() then
           actions.close(prompt_bufnr)
-          local current_theme = require("core.config").ui.theme
-          require("core.utils").config_replace(current_theme, action_state.get_selected_entry()[1])
+          require("core.utils").save_theme(action_state.get_selected_entry()[1])
         end
       end)
       return true
