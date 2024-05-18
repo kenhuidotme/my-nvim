@@ -6,7 +6,7 @@ Neovim configuration for myself.
 
 # Features
 
-- Statusline and Tabar UI from [NvChad](https://github.com/NvChad/NvChad)
+- Basic structure and some ui from [NvChad](https://github.com/NvChad/NvChad)
 - File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
