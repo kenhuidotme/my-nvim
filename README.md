@@ -1,13 +1,28 @@
-Neovim configuration for myself, base on [NvChad](https://github.com/NvChad/NvChad).
+<h1 align="center">MyNvim</h1>
+
+<p align="center">
+Neovim configuration for myself.
+</p>
+
+# Features
+
+- Statusline and Tabar UI from [NvChad](https://github.com/NvChad/NvChad)
+- File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+- Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
+- Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+- Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
+- Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig)
 
 # Pre-requisites
-* [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-* [Neovim 0.9.5+](https://github.com/neovim/neovim/releases/tag/stable)
-* [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
-* A clipboard tool is necessary for the integration with the system clipboard
-* Optional Requirements:
-  * [ripgrep](https://github.com/BurntSushi/ripgrep) - telescope live grep (`<leader>fw`)
-  * [fd](https://github.com/sharkdp/fd) - telescope find file (`<leader>ff`)
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+- [Neovim 0.9.5+](https://github.com/neovim/neovim/releases/tag/stable)
+- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
+- A clipboard tool is necessary for the integration with the system clipboard
+- Optional Requirements:
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>fw`)
+  - [fd](https://github.com/sharkdp/fd) Telescope find file (`<leader>ff`)
 
 # Install
 
@@ -115,7 +130,7 @@ rm -Force ~\AppData\Local\nvim-data
 | Key | Description |
 | --- | --- |
 | C-e | Nvim-tree toggle |
-| C-f | Nvim-tree Focus |
+| C-f | Nvim-tree focus |
 | C-x | Nvim-tree open: horizontal split |
 | C-y | Nvim-tree open: vertical split |
 | g? | Nvim-tree help |

@@ -288,7 +288,7 @@ M.nvimtree = {
     ["<C-e>"] = { "<Cmd>NvimTreeToggle<CR>", "Nvim-tree toggle" },
 
     -- focus
-    ["<C-f>"] = { "<Cmd>NvimTreeFindFile!<CR>", "Nvim-tree Focus" },
+    ["<C-f>"] = { "<Cmd>NvimTreeFindFile!<CR>", "Nvim-tree focus" },
   },
 }
 
