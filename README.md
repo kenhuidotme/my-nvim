@@ -33,6 +33,9 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
+| <C-s> | Save file |
+| <C-c> | Copy selected text to clipboard |
+| <C-v> | Paste text from clipboard in insert mode |
 | `<leader>`n | Toggle line number |
 | `<leader>`rn | Toggle relative number |
 | `<leader>`/ | Toggle comment |
@@ -49,6 +52,15 @@ rm -Force ~\AppData\Local\nvim-data
 | S-b | Buffer new |
 | S-c | Buffer close |
 
+## Tab
+
+| Key | Description |
+| --- | --- |
+| S-t | Tab new |
+| S-q | Tab close |
+| } | Tab next |
+| { | Tab prev |
+
 ## Window
 
 | Key | Description |
@@ -63,23 +75,15 @@ rm -Force ~\AppData\Local\nvim-data
 | C-Down | Window height -1 |
 | C-Left | Window width +1 |
 | C-Right | Window width -1 |
-| C-c | Window close |
-
-## Tab
-
-| Key | Description |
-| --- | --- |
-| C-t | Tab new |
-| C-c | Tab close |
-| } | Tab next |
-| { | Tab prev |
+| C-q | Window close |
 
 ## Terminal
 
 | Key | Description |
 | --- | --- |
-| C-s | Terminal new |
-| C-d | Terminal escape |
+| C-t | Toggle terminal |
+| C-\ | Toggle terminal float |
+| C-q | Terminal mode escape |
 
 ## Nvim-tree
 

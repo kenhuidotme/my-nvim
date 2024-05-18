@@ -163,6 +163,20 @@ local plugins = {
       end
     end,
   },
+
+  {
+    "akinsho/toggleterm.nvim",
+    cmd = { "ToggleTerm", "TermExec" },
+    init = function()
+      require("core.utils").load_mappings("toggleterm")
+    end,
+    opts = function()
+      return require("plugins.configs.terminal")
+    end,
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+    end,
+  },
 }
 
 require("lazy").setup(plugins, require("plugins.configs.lazy_nvim"))

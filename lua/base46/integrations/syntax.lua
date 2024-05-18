@@ -115,10 +115,7 @@ local highlights = {
   },
 }
 
-if
-  require("core.config").ui.lsp_semantic_tokens
-  and vim.version().minor >= 9
-then
+if vim.version().minor >= 9 then
   local semantic_hls = {
     ["@lsp.type.class"] = { link = "Structure" },
     ["@lsp.type.decorator"] = { link = "Function" },
@@ -135,7 +132,6 @@ then
     ["@lsp.type.type"] = { link = "@type" },
     ["@lsp.type.typeParamater"] = { link = "TypeDef" },
     ["@lsp.type.variable"] = { link = "@variable" },
-
     -- ["@event"] = { fg = base16.base08 },
     -- ["@modifier"] = { fg = base16.base08 },
     -- ["@regexp"] = { fg = base16.base0F },

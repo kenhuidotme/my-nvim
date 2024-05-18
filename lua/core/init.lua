@@ -1,17 +1,16 @@
-local config = require("core.config")
-
 -- globals
-vim.g.theme = config.ui.theme
-vim.g.transparency = config.ui.transparency
+vim.g.theme = "onedark"
+vim.g.transparency = false
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/MyNvim/base46/"
 
--- global statusline
+-- statusline
 vim.opt.laststatus = 3
 
 vim.opt.showcmd = false
 vim.opt.showmode = false
 vim.opt.cursorline = true
 vim.opt.clipboard = ""
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Indenting
 vim.opt.expandtab = true
@@ -58,13 +57,22 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
--- add binaries installed by mason.nvim to path
+-- powershell on Windows
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-vim.env.PATH =
-    vim.env.PATH
-    .. (is_windows and ";" or ":")
-    .. vim.fn.stdpath("data")
-    .. "/mason/bin"
+if is_windows then
+  local powershell_options = {
+    shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+    shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+    shellquote = "",
+    shellxquote = "",
+  }
+
+  for option, value in pairs(powershell_options) do
+    vim.opt[option] = value
+  end
+end
 
 -- dont list quickfix buffers
 vim.api.nvim_create_autocmd("FileType", {

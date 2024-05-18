@@ -1,9 +1,13 @@
 local M = {}
 
+local escape_terminal_cmd = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+
 M.common = {
   i = {
+    ["<C-v>"] = { '<Esc>"+pa', "Paste text from clipboard" },
+
     -- go to beginning and end
-    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
+    ["<C-b>"] = { "<Esc>^i", "Beginning of line" },
     ["<C-e>"] = { "<End>", "End of line" },
 
     -- navigate within insert mode
@@ -14,11 +18,12 @@ M.common = {
   },
 
   n = {
-    ["<Esc>"] = { "<cmd>noh<CR>", "Clear highlights" },
+    ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
+    ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd>set nu!<CR>", "Toggle line number" },
-    ["<leader>rn"] = { "<cmd>set rnu!<CR>", "Toggle relative number" },
+    ["<leader>n"] = { "<Cmd>set nu!<CR>", "Toggle line number" },
+    ["<leader>rn"] = { "<Cmd>set rnu!<CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -33,10 +38,7 @@ M.common = {
     ["<C-i>"] = { "<C-i>", "Jump forward" },
 
     -- new buffer
-    ["<S-b>"] = { "<cmd>enew<CR>", "Buffer new" },
-
-    -- new terminal
-    ["<C-s>"] = { "<cmd>execute 'terminal' | startinsert<CR>", "Terminal new" },
+    ["<S-b>"] = { "<Cmd>enew<CR>", "Buffer new" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window jump left" },
@@ -45,28 +47,30 @@ M.common = {
     ["<C-k>"] = { "<C-w>k", "Window jump up" },
 
     -- window resize
-    ["<C-Up>"] = { "<cmd>resize -1<CR>", "Window height -1" },
-    ["<C-Down>"] = { "<cmd>resize +1<CR>", "Window height +1" },
-    ["<C-Left>"] = { "<cmd>vertical resize -1<CR>", "Window width +1" },
-    ["<C-Right>"] = { "<cmd>vertical resize +1<CR>", "Window width -1" },
+    ["<C-Up>"] = { "<Cmd>resize -1<CR>", "Window height -1" },
+    ["<C-Down>"] = { "<Cmd>resize +1<CR>", "Window height +1" },
+    ["<C-Left>"] = { "<Cmd>vertical resize -1<CR>", "Window width +1" },
+    ["<C-Right>"] = { "<Cmd>vertical resize +1<CR>", "Window width -1" },
 
     -- window split
-    ["<C-x>"] = { "<cmd>sp<CR>", "Window split" },
-    ["<C-y>"] = { "<cmd>vsp<CR>", "Window vertical split" },
+    ["<C-x>"] = { "<Cmd>sp<CR>", "Window split" },
+    ["<C-y>"] = { "<Cmd>vsp<CR>", "Window vertical split" },
 
     -- new tab
-    ["<C-t>"] = { "<cmd>tabnew<CR>", "Tab new" },
+    ["<S-t>"] = { "<Cmd>tabnew<CR>", "Tab new" },
 
     -- switch between tabs
-    ["}"] = { "<cmd>tabn<CR>", "Tab next" },
-    ["{"] = { "<cmd>tabp<CR>", "Tab prev" },
+    ["}"] = { "<Cmd>tabn<CR>", "Tab next" },
+    ["{"] = { "<Cmd>tabp<CR>", "Tab prev" },
   },
 
   t = {
-    ["<C-d>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true), "Terminal escape" },
+    ["<C-q>"] = { escape_terminal_cmd, "Terminal escape" },
   },
 
   v = {
+    ["<C-c>"] = { '"+y', "Copy selected text to clipboard" },
+
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
   },
@@ -126,7 +130,7 @@ M.tabline = {
       "Window close",
     },
 
-    ["<C-c>"] = {
+    ["<S-q>"] = {
       function()
         require("ui.tabline").close_tab()
       end,
@@ -148,7 +152,7 @@ M.comment = {
 
   v = {
     ["<leader>/"] = {
-      "<ESC><cmd> lua require('Comment.api').toggle.linewise(vim.fn.visualmode()) <cr>",
+      "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "Toggle comment",
     },
   },
@@ -281,31 +285,42 @@ M.lspconfig = {
 M.nvimtree = {
   n = {
     -- toggle
-    ["<C-e>"] = { "<cmd> NvimTreeToggle <cr>", "Nvim-tree toggle" },
+    ["<C-e>"] = { "<Cmd>NvimTreeToggle<CR>", "Nvim-tree toggle" },
 
     -- focus
-    ["<C-f>"] = { "<cmd> NvimTreeFindFile! <cr>", "Nvim-tree Focus" },
+    ["<C-f>"] = { "<Cmd>NvimTreeFindFile!<CR>", "Nvim-tree Focus" },
   },
 }
 
 M.telescope = {
   n = {
     -- find
-    ["<leader>ff"] = { "<cmd> Telescope find_files <cr>", "Find files" },
-    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <cr>", "Find all" },
-    ["<leader>fo"] = { "<cmd> Telescope oldfiles <cr>", "Find old files" },
-    ["<leader>fb"] = { "<cmd> Telescope buffers <cr>", "Find buffers" },
-    ["<leader>fh"] = { "<cmd> Telescope help_tags <cr>", "Find Help page" },
-    ["<leader>fw"] = { "<cmd> Telescope live_grep <cr>", "Live grep" },
-    ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <cr>", "Fuzzy find in current buffer" },
+    ["<leader>ff"] = { "<Cmd>Telescope find_files<CR>", "Find files" },
+    ["<leader>fa"] = { "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", "Find all" },
+    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "Find old files" },
+    ["<leader>fb"] = { "<Cmd>Telescope buffers<CR>", "Find buffers" },
+    ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "Find Help page" },
+    ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
+    ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find in current buffer" },
 
     -- git
-    ["<leader>st"] = { "<cmd> Telescope git_status <cr>", "Git status" },
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <cr>", "Git commits" },
+    ["<leader>st"] = { "<Cmd>Telescope git_status<CR>", "Git status" },
+    ["<leader>cm"] = { "<Cmd>Telescope git_commits<CR>", "Git commits" },
 
     -- theme switcher
-    ["<leader>th"] = { "<cmd> Telescope themes <cr>", "Select themes" },
+    ["<leader>th"] = { "<Cmd>Telescope themes<CR>", "Select themes" },
   },
+}
+
+M.toggleterm = {
+  n = {
+    ["<C-t>"] = { "<Cmd>ToggleTerm direction=horizontal<CR>", "ToggleTerm horizontal" },
+    ["<C-\\>"] = { "<Cmd>ToggleTerm direction=float<CR>", "ToggleTerm float" },
+  },
+  t = {
+    ["<C-t>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
+    ["<C-\\>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
+  }
 }
 
 M.gitsigns = {

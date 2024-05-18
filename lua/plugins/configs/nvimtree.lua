@@ -48,6 +48,7 @@ local options = {
     },
   },
   renderer = {
+    root_folder_label = false,
     icons = {
       glyphs = {
         default = "󰈚",

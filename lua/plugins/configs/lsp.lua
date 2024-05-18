@@ -108,7 +108,7 @@ local lua_server_setup = function()
 end
 
 -- Rust
--- https://rust-analyzer.github.io/manual.html#nvim-lsp
+-- https://rust-analyzer.github.io/manual.html#configuration
 local rust_server_setup = function()
   require("lspconfig").rust_analyzer.setup({
     on_init = on_init,
@@ -121,7 +121,10 @@ local rust_server_setup = function()
             enable = true,
           },
         },
-        checkOnSave = {
+        procMacro = {
+          enable = true,
+        },
+        check = {
           command = "clippy",
         },
       },
