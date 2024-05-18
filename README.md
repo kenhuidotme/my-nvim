@@ -1,28 +1,53 @@
 Neovim configuration for myself, base on [NvChad](https://github.com/NvChad/NvChad).
 
 # Pre-requisites
-
-* [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/v0.9.5).
-* [Nerd Font](https://www.nerdfonts.com/) as your terminal font.
+* [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+* [Neovim 0.9.5+](https://github.com/neovim/neovim/releases/tag/stable)
+* [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
+* A clipboard tool is necessary for the integration with the system clipboard
+* Optional Requirements:
+  * [ripgrep](https://github.com/BurntSushi/ripgrep) - telescope live grep (`<leader>fw`)
+  * [fd](https://github.com/sharkdp/fd) - telescope find file (`<leader>ff`)
 
 # Install
 
+## Linux / Macos (unix)
+
 ```shell
-git clone https://github.com/kenhuidotme/MyNvim ~/.config/nvim --depth 1 && nvim
+git clone https://github.com/kenhuidotme/MyNvim ~/.config/nvim && nvim
+```
+
+## Windows CMD
+
+```shell
+git clone https://github.com/kenhuidotme/MyNvim %USERPROFILE%\AppData\Local\nvim && nvim
+
+```
+## Window PowerShell
+
+```shell
+git clone https://github.com/kenhuidotme/MyNvim $ENV:USERPROFILE\AppData\Local\nvim && nvim
 ```
 
 # Uninstall
 
+## Linux / Macos (unix)
+
 ```shell
-# Linux / Macos (unix)
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
+```
 
-# Windows CMD
+## Windows CMD
+
+```shell
 rd -r ~\AppData\Local\nvim
 rd -r ~\AppData\Local\nvim-data
+```
 
-# Window PowerShell
+## Window PowerShell
+
+```shell
 rm -Force ~\AppData\Local\nvim
 rm -Force ~\AppData\Local\nvim-data
 ```
@@ -33,9 +58,9 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
-| <C-s> | Save file |
-| <C-c> | Copy selected text to clipboard |
-| <C-v> | Paste text from clipboard in insert mode |
+| C-s | Save file |
+| C-c | Copy selected text to clipboard |
+| C-v | Paste text from clipboard in insert mode |
 | `<leader>`n | Toggle line number |
 | `<leader>`rn | Toggle relative number |
 | `<leader>`/ | Toggle comment |
