@@ -6,7 +6,7 @@ local highlights = {
   TelescopePromptPrefix = { fg = base30.red, bg = base30.black2 },
   TelescopePreviewTitle = { fg = base30.black, bg = base30.green, },
 
-  TelescopeSelection = { bg = base30.black2, fg = base30.white },
+  TelescopeSelection = { bg = base30.grey, fg = base30.white },
   TelescopeResultsDiffAdd = { fg = base30.green },
   TelescopeResultsDiffChange = { fg = base30.yellow },
   TelescopeResultsDiffDelete = { fg = base30.red },

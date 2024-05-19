@@ -6,7 +6,6 @@ local options = {
       return vim.o.columns * 0.35
     end
   end,
-  -- start_in_insert = true,
   on_open = function(_)
     vim.cmd("startinsert!")
   end,

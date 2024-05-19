@@ -1,78 +1,82 @@
+local g = vim.g
+local o = vim.o
+local fn = vim.fn
+local opt = vim.opt
+local api = vim.api
+
 local utils = require("core.utils")
 
 -- globals
-vim.g.theme = utils.get_theme("onedark")
-vim.g.transparency = false
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/MyNvim/base46/"
+g.theme = utils.get_theme("onedark")
+g.transparency = false
+g.base46_cache = fn.stdpath("data") .. "/MyNvim/base46/"
+
+-- gui
+o.termguicolors = true
+o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- neovide
-if vim.g.neovide then
-  utils.set_launch_dir(vim.fn.expand("$HOME"))
-  vim.o.guifont = "SauceCodePro Nerd Font:h12"
-  vim.g.neovide_cursor_animation_length = 0.08
-  vim.g.neovide_cursor_trail_size = 0.16
-  vim.g.neovide_cursor_animate_command_line = false
+if g.neovide then
+  utils.set_launch_dir(fn.expand("$HOME"))
+  o.guifont = "SauceCodePro Nerd Font:h12"
+  g.neovide_cursor_animation_length = 0.08
+  g.neovide_cursor_trail_size = 0.16
+  g.neovide_cursor_smooth_blink = true
+  g.neovide_cursor_animate_command_line = false
 end
 
--- statusline
-vim.opt.laststatus = 3
-
-vim.opt.showcmd = false
-vim.opt.showmode = false
-vim.opt.cursorline = true
-vim.opt.clipboard = ""
--- vim.opt.clipboard = "unnamedplus"
+o.laststatus = 3
+o.showcmd = false
+o.showmode = false
+o.cursorline = true
+o.clipboard = ""
+-- o.clipboard = "unnamedplus"
 
 -- Indenting
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
+o.expandtab = true
+o.shiftwidth = 2
+o.smartindent = true
+o.tabstop = 2
+o.softtabstop = 2
 
-vim.opt.fillchars = { eob = " " }
--- vim.opt.mouse = "a"
-vim.opt.mouse = ""
+opt.fillchars = { eob = " " }
+-- o.mouse = "a"
+o.mouse = ""
 
 -- Numbers
-vim.opt.number = true
-vim.opt.numberwidth = 2
-vim.opt.ruler = false
+o.number = true
+o.numberwidth = 2
+o.ruler = false
 
 -- disable nvim intro
-vim.opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
-vim.opt.signcolumn = "yes"
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.timeoutlen = 400
-vim.opt.undofile = true
-
-vim.opt.termguicolors = true
-vim.opt.guicursor = ""
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.timeoutlen = 400
+o.undofile = true
 
 -- interval for writing swap file to disk, also used by gitsigns
-vim.opt.updatetime = 250
+o.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-vim.opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 
-vim.g.mapleader = " "
-
--- disable some default mappings
-vim.api.nvim_set_keymap("n", "<C-i>", "", { noremap = true, silent = true })
+g.mapleader = " "
 
 -- disable some default providers
-for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
-end
+g["loaded_node_provider"] = 0
+g["loaded_python3_provider"] = 0
+g["loaded_perl_provider"] = 0
+g["loaded_ruby_provider"] = 0
 
 -- powershell on Windows
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 if is_windows then
   local powershell_options = {
-    shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+    shell = fn.executable("pwsh") == 1 and "pwsh" or "powershell",
     shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
     shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
     shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
@@ -81,14 +85,9 @@ if is_windows then
   }
 
   for option, value in pairs(powershell_options) do
-    vim.opt[option] = value
+    o[option] = value
   end
 end
 
--- dont list quickfix buffers
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
-})
+-- disable some default mappings
+api.nvim_set_keymap("n", "<C-i>", "", { noremap = true, silent = true })

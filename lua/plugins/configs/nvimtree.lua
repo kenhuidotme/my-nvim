@@ -34,6 +34,7 @@ local options = {
     dotfiles = false,
   },
   disable_netrw = true,
+  sync_root_with_cwd = true,
   update_focused_file = {
     enable = true,
   },
@@ -52,7 +53,9 @@ local options = {
     },
   },
   renderer = {
-    root_folder_label = false,
+    root_folder_label = function(path)
+      return ".../" .. vim.fn.fnamemodify(path, ":t")
+    end,
     icons = {
       glyphs = {
         default = "󰈚",

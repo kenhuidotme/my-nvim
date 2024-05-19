@@ -4,7 +4,7 @@ local escape_terminal_cmd = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, 
 
 M.common = {
   i = {
-    ["<C-v>"] = { '<Esc>"+pa', "Paste text from clipboard" },
+    ["<C-v>"] = { '<Esc>"+p', "Paste text from clipboard" },
 
     -- go to beginning and end
     ["<C-b>"] = { "<Esc>^i", "Beginning of line" },
