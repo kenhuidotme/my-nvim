@@ -82,17 +82,12 @@ M.save_theme = function(name)
   end
 end
 
--- M.config_replace = function(old, new)
---   local file = io.open(config_file, "r")
---   if file ~= nil then
---     local added_pattern = string.gsub(old, "-", "%%-") -- add % before - if exists
---     local new_content = file:read("*all"):gsub(added_pattern, new)
---     file = io.open(config_file, "w")
---     if file ~= nil then
---       file:write(new_content)
---       file:close()
---     end
---   end
--- end
+M.set_launch_dir = function(dir)
+  local vim_enter_group = vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
+  vim.api.nvim_create_autocmd(
+    { "VimEnter" },
+    { pattern = "*", command = "cd " .. dir, group = vim_enter_group }
+  )
+end
 
 return M

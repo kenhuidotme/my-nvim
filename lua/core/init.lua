@@ -1,7 +1,18 @@
+local utils = require("core.utils")
+
 -- globals
-vim.g.theme = require("core.utils").get_theme("onedark")
+vim.g.theme = utils.get_theme("onedark")
 vim.g.transparency = false
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/MyNvim/base46/"
+
+-- neovide
+if vim.g.neovide then
+  utils.set_launch_dir(vim.fn.expand("$HOME"))
+  vim.o.guifont = "SauceCodePro Nerd Font:h12"
+  vim.g.neovide_cursor_animation_length = 0.08
+  vim.g.neovide_cursor_trail_size = 0.16
+  vim.g.neovide_cursor_animate_command_line = false
+end
 
 -- statusline
 vim.opt.laststatus = 3

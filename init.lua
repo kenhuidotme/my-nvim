@@ -16,5 +16,6 @@ end
 
 vim.opt.rtp:prepend(lazy_path)
 require("plugins")
+
 require("ui")
 require("base46").reload_all_highlights()
