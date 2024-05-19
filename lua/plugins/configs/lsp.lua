@@ -31,8 +31,6 @@ local lsp_client_setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(vim.lsp.handlers.signature_help, {
       border = "single",
-      relative = "cursor",
-      focusable = false,
     })
 end
 

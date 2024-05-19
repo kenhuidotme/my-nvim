@@ -15,26 +15,6 @@ local check_trigger_char = function(line_to_cursor, triggers)
   return false
 end
 
-local signature_window = function(_, result, ctx, conf)
-  local buf, win = vim.lsp.handlers.signature_help(_, result, ctx, conf)
-  local current_cursor_line = vim.api.nvim_win_get_cursor(0)[1]
-
-  if win then
-    if current_cursor_line > 3 then
-      vim.api.nvim_win_set_config(win, {
-        anchor = "SW",
-        relative = "cursor",
-        row = 0,
-        col = -1,
-      })
-    end
-  end
-
-  if buf and win then
-    return buf, win
-  end
-end
-
 -- thx to https://github.com/seblj/dotfiles/blob/0542cae6cd9a2a8cbddbb733f4f65155e6d20edf/nvim/lua/config/lspconfig/init.lua
 local clients = {}
 
@@ -68,9 +48,8 @@ local open_signature = function()
       0,
       "textDocument/signatureHelp",
       params,
-      vim.lsp.with(signature_window, {
+      vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "single",
-        focusable = false,
       })
     )
   end
