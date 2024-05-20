@@ -1,6 +1,6 @@
 local M = {}
 
-local escape_terminal_cmd = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+local escape_terminal_code = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
 
 M.common = {
   i = {
@@ -65,7 +65,7 @@ M.common = {
   },
 
   t = {
-    ["<C-d>"] = { escape_terminal_cmd, "Terminal escape" },
+    ["<C-d>"] = { escape_terminal_code, "Terminal escape" },
   },
 
   v = {
@@ -284,8 +284,10 @@ M.lspconfig = {
 
 M.nvimtree = {
   n = {
-    -- toggle
-    ["<C-e>"] = { "<Cmd>NvimTreeToggle<CR>", "Nvim-tree toggle" },
+    ["<C-e>"] = { function () vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
+  },
+  t = {
+    ["<C-e>"] = { function () vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
   },
 }
 
@@ -311,13 +313,33 @@ M.telescope = {
 
 M.toggleterm = {
   n = {
-    ["<C-t>"] = { "<Cmd>ToggleTerm direction=horizontal<CR>", "ToggleTerm horizontal" },
-    ["<C-f>"] = { "<Cmd>ToggleTerm direction=float<CR>", "ToggleTerm float" },
+    ["<C-t>"] = {
+      function()
+        require("core.utils").toggle_term()
+      end,
+      "Toggle horizontal terminal"
+    },
+    ["<C-f>"] = {
+      function()
+        require("core.utils").toggle_float_term()
+      end,
+      "Toggle float terminal"
+    },
   },
   t = {
-    ["<C-t>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
-    ["<C-f>"] = { escape_terminal_cmd .. "<Cmd>ToggleTerm<CR>", "ToggleTerm hide" },
-  }
+    ["<C-t>"] = {
+      function()
+        require("core.utils").toggle_term()
+      end,
+      "Toggle horizontal terminal"
+    },
+    ["<C-f>"] = {
+      function()
+        require("core.utils").toggle_float_term()
+      end,
+      "Toggle float terminal"
+    },
+  },
 }
 
 M.gitsigns = {

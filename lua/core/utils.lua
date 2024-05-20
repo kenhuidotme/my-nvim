@@ -90,4 +90,24 @@ M.set_launch_dir = function(dir)
   )
 end
 
+local term_count = 0
+local term_num = 0
+local float_term_num = 0
+
+M.toggle_term = function()
+  if term_num == 0 then
+    term_count = term_count + 1
+    term_num = term_count
+  end
+  vim.cmd(term_num .. "ToggleTerm direction=" .. vim.g.terminal_direction)
+end
+
+M.toggle_float_term = function()
+  if float_term_num == 0 then
+    term_count = term_count + 1
+    float_term_num = term_count
+  end
+  vim.cmd(float_term_num .. "ToggleTerm direction=float")
+end
+
 return M
