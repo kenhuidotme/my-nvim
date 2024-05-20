@@ -130,12 +130,25 @@ local rust_server_setup = function()
   })
 end
 
+-- Deno
+-- https://docs.deno.com/runtime/manual/getting_started/setup_your_environment
+local denols_setup = function()
+  local nvim_lsp = require('lspconfig')
+  nvim_lsp.denols.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+  })
+end
+
 local M = {}
 
 M.setup = function()
   lsp_client_setup()
-  -- lua_server_setup()
-  -- rust_server_setup()
+  lua_server_setup()
+  rust_server_setup()
+  denols_setup()
 end
 
 return M
