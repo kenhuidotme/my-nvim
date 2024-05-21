@@ -28,10 +28,11 @@ local function my_on_attach(bufnr)
   vim.keymap.del("n", "<C-r>", { buffer = bufnr })
 end
 
+-- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
 local options = {
   on_attach = my_on_attach,
   filters = {
-    dotfiles = false,
+    git_ignored = false,
   },
   disable_netrw = true,
   sync_root_with_cwd = true,

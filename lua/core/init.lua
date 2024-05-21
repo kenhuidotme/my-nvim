@@ -19,7 +19,7 @@ o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blink
 -- neovide
 if g.neovide then
   utils.set_launch_dir(fn.expand("$HOME"))
-  o.guifont = "SauceCodePro Nerd Font:h12"
+  o.guifont = "SauceCodePro Nerd Font:h13"
   g.neovide_scroll_animation_length = 0.1
   g.neovide_hide_mouse_when_typing = true
   g.neovide_cursor_animation_length = 0.08

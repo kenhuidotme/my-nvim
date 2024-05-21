@@ -24,14 +24,14 @@ local lsp_client_setup = function()
   })
 
   vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "single",
-    })
+      vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "single",
+      })
 
   vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = "single",
-    })
+      vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "single",
+      })
 end
 
 local on_init = function(client, _)
@@ -72,7 +72,7 @@ capabilities.textDocument.completion.completionItem = {
 local lua_server_on_init = function(client)
   on_init(client)
   local path = client.workspace_folders[1].name
-  if vim.loop.fs_stat(path.."/.luarc.json") or vim.loop.fs_stat(path.."/.luarc.jsonc") then
+  if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
     return
   end
 end
@@ -130,15 +130,13 @@ local rust_server_setup = function()
   })
 end
 
--- Deno
--- https://docs.deno.com/runtime/manual/getting_started/setup_your_environment
-local denols_setup = function()
-  local nvim_lsp = require('lspconfig')
-  nvim_lsp.denols.setup({
+-- Typescript
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
+local tsserver_setup = function()
+  require('lspconfig').tsserver.setup({
     on_init = on_init,
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
   })
 end
 
@@ -148,7 +146,7 @@ M.setup = function()
   lsp_client_setup()
   lua_server_setup()
   rust_server_setup()
-  denols_setup()
+  tsserver_setup()
 end
 
 return M
