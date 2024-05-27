@@ -160,10 +160,10 @@ rm -Force ~\AppData\Local\nvim-data
 | gi | LSP implementation |
 | gr | LSP references |
 | gs | LSP signature |
-| gf | LSP diagnostic floating |
-| gn | LSP diagnostic next |
-| gp | LSP diagnostic prev |
-| gl | LSP diagnostic list |
+| `<leader>`dn | LSP diagnostic next |
+| `<leader>`dp | LSP diagnostic prev |
+| `<leader>`dl | LSP diagnostic list |
+| `<leader>`df | LSP diagnostic floating |
 | `<leader>`ra | LSP rename |
 | `<leader>`fm | LSP formatting |
 | `<leader>`ca | LSP code action |

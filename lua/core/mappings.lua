@@ -5,6 +5,7 @@ local escape_terminal_code = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true,
 M.common = {
   i = {
     ["<C-v>"] = { '<Esc>"+p', "Paste text from clipboard" },
+    ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
 
     -- go to beginning and end
     ["<C-b>"] = { "<Esc>^i", "Beginning of line" },
@@ -210,32 +211,32 @@ M.lspconfig = {
       "LSP signature",
     },
 
-    ["gf"] = {
-      function()
-        vim.diagnostic.open_float()
-      end,
-      "LSP diagnostic floating",
-    },
-
-    ["gn"] = {
+    ["<leader>dn"] = {
       function()
         vim.diagnostic.goto_next()
       end,
       "LSP diagnostic next",
     },
 
-    ["gp"] = {
+    ["<leader>dp"] = {
       function()
         vim.diagnostic.goto_prev()
       end,
       "LSP diagnostic prev",
     },
 
-    ["gl"] = {
+    ["<leader>dl"] = {
       function()
         vim.diagnostic.setloclist()
       end,
       "LSP diagnostic list",
+    },
+
+    ["<leader>df"] = {
+      function()
+        vim.diagnostic.open_float()
+      end,
+      "LSP diagnostic floating",
     },
 
     ["<leader>ra"] = {

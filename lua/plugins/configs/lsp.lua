@@ -79,7 +79,7 @@ end
 
 -- Lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
-local lua_server_setup = function()
+local lua_ls_setup = function()
   require("lspconfig").lua_ls.setup({
     on_init = lua_server_on_init,
     on_attach = on_attach,
@@ -105,9 +105,39 @@ local lua_server_setup = function()
   })
 end
 
+-- Typescript
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
+local tsserver_setup = function()
+  require('lspconfig').tsserver.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
+-- clangd
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
+local clangd_setup = function()
+  require('lspconfig').clangd.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
+-- CMake
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#neocmake
+local neocmake_setup = function()
+  require('lspconfig').neocmake.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
 -- Rust
 -- https://rust-analyzer.github.io/manual.html#configuration
-local rust_server_setup = function()
+local rust_analyzer_setup = function()
   require("lspconfig").rust_analyzer.setup({
     on_init = on_init,
     on_attach = on_attach,
@@ -130,23 +160,15 @@ local rust_server_setup = function()
   })
 end
 
--- Typescript
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-local tsserver_setup = function()
-  require('lspconfig').tsserver.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
-
 local M = {}
 
 M.setup = function()
   lsp_client_setup()
-  lua_server_setup()
-  rust_server_setup()
+  lua_ls_setup()
   tsserver_setup()
+  clangd_setup()
+  neocmake_setup()
+  rust_analyzer_setup()
 end
 
 return M

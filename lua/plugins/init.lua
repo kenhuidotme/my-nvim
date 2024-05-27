@@ -179,4 +179,5 @@ local plugins = {
   },
 }
 
+require("plugins.configs")
 require("lazy").setup(plugins, require("plugins.configs.lazy_nvim"))
