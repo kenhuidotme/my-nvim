@@ -67,6 +67,7 @@ local plugins = {
     event = { 'BufReadPost', 'BufNewFile' },
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
+      require("plugins.configs.lsp").init()
     end,
     opts = {
       inlay_hints = { enabled = true },
@@ -179,5 +180,4 @@ local plugins = {
   },
 }
 
-require("plugins.configs")
 require("lazy").setup(plugins, require("plugins.configs.lazy_nvim"))

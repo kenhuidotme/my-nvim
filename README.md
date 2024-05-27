@@ -164,6 +164,8 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`dp | LSP diagnostic prev |
 | `<leader>`dl | LSP diagnostic list |
 | `<leader>`df | LSP diagnostic floating |
+| `<leader>`dt | LSP diagnostic toggle current buffer |
+| `<leader>`da | LSP diagnostic toggle all buffers |
 | `<leader>`ra | LSP rename |
 | `<leader>`fm | LSP formatting |
 | `<leader>`ca | LSP code action |

@@ -239,6 +239,20 @@ M.lspconfig = {
       "LSP diagnostic floating",
     },
 
+    ["<leader>dt"] = {
+      function()
+        require("core.utils").toggle_diagnostics()
+      end,
+      "Toggle diagnostics",
+    },
+
+    ["<leader>da"] = {
+      function()
+        require("core.utils").toggle_diagnostics(true)
+      end,
+      "Toggle diagnostics all buffers",
+    },
+
     ["<leader>ra"] = {
       function()
         vim.lsp.buf.rename()

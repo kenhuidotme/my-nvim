@@ -16,7 +16,7 @@ local lsp_client_setup = function()
     virtual_text = {
       spacing = 2,
       prefix = "",
-      severity = { min = vim.diagnostic.severity.ERROR },
+      -- severity = { min = vim.diagnostic.severity.ERROR },
     },
     signs = true,
     underline = true,
@@ -169,6 +169,19 @@ M.setup = function()
   clangd_setup()
   neocmake_setup()
   rust_analyzer_setup()
+end
+
+local wgsl_analyzer_setup = function ()
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.wgsl",
+    callback = function()
+      vim.bo.filetype = "wgsl"
+    end,
+  })
+end
+
+M.init = function()
+  wgsl_analyzer_setup()
 end
 
 return M

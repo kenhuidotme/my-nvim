@@ -110,4 +110,24 @@ M.toggle_float_term = function()
   vim.cmd(float_term_num .. "ToggleTerm direction=float")
 end
 
+M.toggle_diagnostics = function(global)
+	local vars, bufnr, cmd
+	if global then
+		vars = vim.g
+		bufnr = nil
+	else
+		vars = vim.b
+		bufnr = 0
+	end
+
+	vars.diagnostics_disabled = not vars.diagnostics_disabled
+	if vars.diagnostics_disabled then
+		cmd = "disable"
+	else
+		cmd = "enable"
+	end
+
+	vim.schedule(function() vim.diagnostic[cmd](bufnr) end)
+end
+
 return M
