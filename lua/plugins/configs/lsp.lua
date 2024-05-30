@@ -160,6 +160,16 @@ local rust_analyzer_setup = function()
   })
 end
 
+-- zls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#zls
+local zls_setup = function()
+  require('lspconfig').zls.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
 local M = {}
 
 M.setup = function()
@@ -169,9 +179,10 @@ M.setup = function()
   clangd_setup()
   neocmake_setup()
   rust_analyzer_setup()
+  zls_setup()
 end
 
-local wgsl_analyzer_setup = function ()
+local wgsl_filetype_setup = function ()
   vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     pattern = "*.wgsl",
     callback = function()
@@ -180,8 +191,22 @@ local wgsl_analyzer_setup = function ()
   })
 end
 
+local gn_filetype_setup = function ()
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.gn",
+    callback = function()
+      vim.bo.filetype = "gn"
+    end,
+  })
+end
+
+local filetype_setup = function ()
+  wgsl_filetype_setup()
+  gn_filetype_setup()
+end
+
 M.init = function()
-  wgsl_analyzer_setup()
+  filetype_setup()
 end
 
 return M
