@@ -200,9 +200,19 @@ local gn_filetype_setup = function ()
   })
 end
 
+local ninja_filetype_setup = function ()
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.ninja",
+    callback = function()
+      vim.bo.filetype = "ninja"
+    end,
+  })
+end
+
 local filetype_setup = function ()
   wgsl_filetype_setup()
   gn_filetype_setup()
+  ninja_filetype_setup()
 end
 
 M.init = function()

@@ -39,6 +39,10 @@ return {
     bold = true,
   },
 
+  NvimTreeExecFile = {
+    fg = base30.green,
+  },
+
   NvimTreeRootFolder = {
     fg = base30.light_grey,
   },
