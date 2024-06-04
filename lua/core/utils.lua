@@ -123,8 +123,10 @@ M.toggle_diagnostics = function(global)
 	vars.diagnostics_disabled = not vars.diagnostics_disabled
 	if vars.diagnostics_disabled then
 		cmd = "disable"
+    vim.api.nvim_echo({ { "Disabling diagnostics" } }, false, {})
 	else
 		cmd = "enable"
+    vim.api.nvim_echo({ { "Enabling diagnostics" } }, false, {})
 	end
 
 	vim.schedule(function() vim.diagnostic[cmd](bufnr) end)

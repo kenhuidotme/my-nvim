@@ -182,7 +182,7 @@ M.setup = function()
   zls_setup()
 end
 
-local wgsl_filetype_setup = function ()
+local wgsl_filetype_setup = function()
   vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     pattern = "*.wgsl",
     callback = function()
@@ -191,16 +191,16 @@ local wgsl_filetype_setup = function ()
   })
 end
 
-local gn_filetype_setup = function ()
+local gn_filetype_setup = function()
   vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-    pattern = "*.gn",
+    pattern = { "*.gn", "*.gni" },
     callback = function()
       vim.bo.filetype = "gn"
     end,
   })
 end
 
-local ninja_filetype_setup = function ()
+local ninja_filetype_setup = function()
   vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     pattern = "*.ninja",
     callback = function()
@@ -209,7 +209,7 @@ local ninja_filetype_setup = function ()
   })
 end
 
-local filetype_setup = function ()
+local filetype_setup = function()
   wgsl_filetype_setup()
   gn_filetype_setup()
   ninja_filetype_setup()
