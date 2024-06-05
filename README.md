@@ -8,6 +8,7 @@ Neovim configuration for myself.
 
 - Basic structure and some ui from [NvChad](https://github.com/NvChad/NvChad)
 - File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+- Outline explorer with [Aerial](https://github.com/stevearc/aerial.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
@@ -149,6 +150,14 @@ rm -Force ~\AppData\Local\nvim-data
 | f | Nvim-tree live filter: start |
 | F | Nvim-tree live filter: clear |
 
+## Aerial
+
+| Key | Description |
+| --- | --- |
+| C-\ | Aerial toggle |
+| C-[ | Aerial jump backwards |
+| C-] | Aerial jump forwards |
+
 ## Lsp
 
 | Key | Description |
@@ -163,8 +172,6 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`dn | LSP diagnostic next |
 | `<leader>`dp | LSP diagnostic prev |
 | `<leader>`dl | LSP diagnostic list |
-| `<leader>`df | LSP diagnostic floating |
-| `<leader>`dt | LSP diagnostic toggle current buffer |
 | `<leader>`da | LSP diagnostic toggle all buffers |
 | `<leader>`ra | LSP rename |
 | `<leader>`fm | LSP formatting |
@@ -184,6 +191,8 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`fh | Telescope find Help page |
 | `<leader>`fw | Telescope live grep |
 | `<leader>`fz | Telescope fuzzy find in current buffer |
+| `<leader>`db | Lists Diagnostics for current buffer |
+| `<leader>`dw | Lists Diagnostics for all open buffers |
 
 ## Git
 

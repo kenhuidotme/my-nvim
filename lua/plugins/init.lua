@@ -79,6 +79,21 @@ local plugins = {
   },
 
   {
+    "stevearc/aerial.nvim",
+    cmd = { "AerialToggle", "AerialPrev", "AerialNext" },
+    init = function()
+      require("core.utils").load_mappings("aerial")
+    end,
+    opts = function()
+      return require("plugins.configs.aerial")
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
@@ -159,10 +174,17 @@ local plugins = {
       dofile(vim.g.base46_cache .. "telescope")
       local telescope = require("telescope")
       telescope.setup(opts)
+      telescope.load_extension("fzf")
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
       end
     end,
+  },
+
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build =
+    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   },
 
   {

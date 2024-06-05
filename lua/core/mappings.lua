@@ -227,13 +227,6 @@ M.lspconfig = {
 
     ["<leader>dl"] = {
       function()
-        vim.diagnostic.setloclist()
-      end,
-      "LSP diagnostic list",
-    },
-
-    ["<leader>df"] = {
-      function()
         vim.diagnostic.open_float()
       end,
       "LSP diagnostic floating",
@@ -297,6 +290,14 @@ M.lspconfig = {
   },
 }
 
+M.aerial = {
+  n = {
+    ["<C-\\>"] = { function () vim.cmd("AerialToggle!") end, "Aerial toggle" },
+    ["<C-[>"] = { function () vim.cmd("AerialPrev") end, "Aerial Jump backwards" },
+    ["<C-]>"] = { function () vim.cmd("AerialNext") end, "Aerial Jump forwards" },
+  },
+}
+
 M.nvimtree = {
   n = {
     ["<C-e>"] = { function () vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
@@ -316,6 +317,10 @@ M.telescope = {
     ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "Find Help page" },
     ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
     ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find in current buffer" },
+
+    -- lsp
+    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Lists Diagnostics for current buffer" },
+    ["<leader>dw"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
 
     -- git
     ["<leader>st"] = { "<Cmd>Telescope git_status<CR>", "Git status" },
