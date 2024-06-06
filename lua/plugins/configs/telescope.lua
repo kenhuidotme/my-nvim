@@ -49,7 +49,7 @@ local options = {
     },
   },
 
-  extensions_list = { "themes" },
+  extensions_list = { "themes", "fzf", "ui-select" },
 
   extensions = {
     fzf = {

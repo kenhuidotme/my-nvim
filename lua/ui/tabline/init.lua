@@ -2,8 +2,8 @@ local M = {}
 
 M.is_valid_buffer = function(buf)
   return
-    vim.api.nvim_buf_is_valid(buf)
-    and vim.api.nvim_buf_get_option(buf, "buflisted")
+      vim.api.nvim_buf_is_valid(buf)
+      and vim.api.nvim_buf_get_option(buf, "buflisted")
 end
 
 M.buffer_filter = function()
@@ -81,10 +81,10 @@ local opened_in_other_tab = function(buf)
   return false
 end
 
-local is_new_empty_buffer = function (buf)
+local is_new_empty_buffer = function(buf)
   return vim.api.nvim_buf_get_name(buf) == ""
-    and vim.api.nvim_buf_get_option(buf, "filetype") == ""
-    and not vim.api.nvim_buf_get_option(buf, "modified")
+      and vim.api.nvim_buf_get_option(buf, "filetype") == ""
+      and not vim.api.nvim_buf_get_option(buf, "modified")
 end
 
 local remove_buffer = function(buf)
@@ -139,9 +139,9 @@ M.close_buffer = function()
 
   if #bufs > 1 then
     buf_switch =
-      index == #bufs
-      and bufs[index - 1]
-      or bufs[index + 1]
+        index == #bufs
+        and bufs[index - 1]
+        or bufs[index + 1]
     wins_switch = switch_buffer(vim.api.nvim_tabpage_list_wins(0), buf, buf_switch)
   end
 
@@ -228,13 +228,16 @@ M.load = function()
   vim.api.nvim_create_autocmd({ "BufEnter" }, {
     callback = function(args)
       local bufs = M.buffer_filter()
-      if
-        not vim.tbl_contains(bufs, args.buf)
-        and M.is_valid_buffer(args.buf)
+      if not vim.tbl_contains(bufs, args.buf) and M.is_valid_buffer(args.buf)
       then
         table.insert(bufs, args.buf)
       end
       vim.t.bufs = bufs
+      --
+      if vim.api.nvim_buf_get_option(args.buf, "buftype") == "terminal" then
+        print("here")
+        vim.cmd("startinsert!")
+      end
     end,
   })
 

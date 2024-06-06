@@ -1,6 +1,9 @@
 local M = {}
 
-local escape_terminal_code = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+local escape_terminal_cmd = function(cmd)
+  cmd = cmd == nil and "" or cmd
+  return vim.api.nvim_replace_termcodes("<C-\\><C-n>" .. cmd, true, true, true)
+end
 
 M.common = {
   i = {
@@ -66,7 +69,13 @@ M.common = {
   },
 
   t = {
-    ["<C-d>"] = { escape_terminal_code, "Terminal escape" },
+    ["<C-d>"] = { escape_terminal_cmd(), "Terminal escape" },
+
+    -- switch between windows within terminal mode
+    ["<C-h>"] = { escape_terminal_cmd("<C-w>h"), "Window jump left" },
+    ["<C-l>"] = { escape_terminal_cmd("<C-w>l"), "Window jump right" },
+    ["<C-j>"] = { escape_terminal_cmd("<C-w>j"), "Window jump down" },
+    ["<C-k>"] = { escape_terminal_cmd("<C-w>k"), "Window jump up" },
   },
 
   v = {
@@ -239,13 +248,6 @@ M.lspconfig = {
       "Toggle diagnostics",
     },
 
-    ["<leader>da"] = {
-      function()
-        require("core.utils").toggle_diagnostics(true)
-      end,
-      "Toggle diagnostics all buffers",
-    },
-
     ["<leader>ra"] = {
       function()
         vim.lsp.buf.rename()
@@ -292,18 +294,18 @@ M.lspconfig = {
 
 M.aerial = {
   n = {
-    ["<C-\\>"] = { function () vim.cmd("AerialToggle!") end, "Aerial toggle" },
-    ["<C-[>"] = { function () vim.cmd("AerialPrev") end, "Aerial Jump backwards" },
-    ["<C-]>"] = { function () vim.cmd("AerialNext") end, "Aerial Jump forwards" },
+    ["<C-\\>"] = { function() vim.cmd("AerialToggle!") end, "Aerial toggle" },
+    ["<C-[>"] = { function() vim.cmd("AerialPrev") end, "Aerial Jump backwards" },
+    ["<C-]>"] = { function() vim.cmd("AerialNext") end, "Aerial Jump forwards" },
   },
 }
 
 M.nvimtree = {
   n = {
-    ["<C-e>"] = { function () vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
+    ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
   },
   t = {
-    ["<C-e>"] = { function () vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
+    ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
   },
 }
 
@@ -318,16 +320,16 @@ M.telescope = {
     ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
     ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find in current buffer" },
 
-    -- lsp
-    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Lists Diagnostics for current buffer" },
-    ["<leader>dw"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
-
     -- git
     ["<leader>st"] = { "<Cmd>Telescope git_status<CR>", "Git status" },
     ["<leader>cm"] = { "<Cmd>Telescope git_commits<CR>", "Git commits" },
 
     -- theme switcher
     ["<leader>th"] = { "<Cmd>Telescope themes<CR>", "Select themes" },
+
+    -- lsp
+    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Lists Diagnostics for current buffer" },
+    ["<leader>dw"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
   },
 }
 

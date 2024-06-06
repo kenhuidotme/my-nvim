@@ -80,6 +80,10 @@ local plugins = {
 
   {
     "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
     cmd = { "AerialToggle", "AerialPrev", "AerialNext" },
     init = function()
       require("core.utils").load_mappings("aerial")
@@ -87,10 +91,6 @@ local plugins = {
     opts = function()
       return require("plugins.configs.aerial")
     end,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
   },
 
   {
@@ -163,7 +163,15 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build =
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
+      "nvim-telescope/telescope-ui-select.nvim",
+    },
+    lazy = false,
     init = function()
       require("core.utils").load_mappings("telescope")
     end,
@@ -174,17 +182,10 @@ local plugins = {
       dofile(vim.g.base46_cache .. "telescope")
       local telescope = require("telescope")
       telescope.setup(opts)
-      telescope.load_extension("fzf")
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
       end
     end,
-  },
-
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build =
-    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   },
 
   {
@@ -194,10 +195,11 @@ local plugins = {
       require("core.utils").load_mappings("toggleterm")
     end,
     opts = function()
-      return require("plugins.configs.terminal")
+      return require("plugins.configs.terminal").opts
     end,
     config = function(_, opts)
       require("toggleterm").setup(opts)
+      require("plugins.configs.terminal").setup()
     end,
   },
 }
