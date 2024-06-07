@@ -36,10 +36,6 @@ local options = {
     git_ignored = false,
   },
   disable_netrw = true,
-  sync_root_with_cwd = true,
-  update_focused_file = {
-    enable = true,
-  },
   view = {
     side = "left",
     preserve_window_proportions = true,

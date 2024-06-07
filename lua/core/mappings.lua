@@ -220,6 +220,13 @@ M.lspconfig = {
       "LSP signature",
     },
 
+    ["<leader>dt"] = {
+      function()
+        require("core.utils").toggle_diagnostics()
+      end,
+      "Toggle diagnostics",
+    },
+
     ["<leader>dn"] = {
       function()
         vim.diagnostic.goto_next()
@@ -239,13 +246,6 @@ M.lspconfig = {
         vim.diagnostic.open_float()
       end,
       "LSP diagnostic floating",
-    },
-
-    ["<leader>dt"] = {
-      function()
-        require("core.utils").toggle_diagnostics()
-      end,
-      "Toggle diagnostics",
     },
 
     ["<leader>ra"] = {
@@ -303,6 +303,7 @@ M.aerial = {
 M.nvimtree = {
   n = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
+    ["<C-b>"] = { "<Cmd>lua require('nvim-tree.api').tree.find_file({update_root = true, open = true, focus = true})<CR>", "Lists Diagnostics for current buffer" },
   },
   t = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
@@ -329,7 +330,7 @@ M.telescope = {
 
     -- lsp
     ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Lists Diagnostics for current buffer" },
-    ["<leader>dw"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
+    ["<leader>da"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
   },
 }
 

@@ -147,7 +147,7 @@ local plugins = {
 
   {
     "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    cmd = { "NvimTreeToggle" },
     init = function()
       require("core.utils").load_mappings("nvimtree")
     end,
@@ -190,7 +190,7 @@ local plugins = {
 
   {
     "akinsho/toggleterm.nvim",
-    cmd = { "ToggleTerm", "TermExec" },
+    cmd = { "ToggleTerm" },
     init = function()
       require("core.utils").load_mappings("toggleterm")
     end,
