@@ -20,7 +20,6 @@ if g.neovide then
   utils.set_launch_dir(fn.expand("$HOME"))
   o.guifont = "SauceCodePro Nerd Font:h13"
   g.neovide_scroll_animation_length = 0.1
-  g.neovide_hide_mouse_when_typing = true
   g.neovide_cursor_animation_length = 0.08
   g.neovide_cursor_trail_size = 0.16
 end
@@ -40,8 +39,7 @@ o.tabstop = 2
 o.softtabstop = 2
 
 opt.fillchars = { eob = " " }
--- o.mouse = "a"
-o.mouse = ""
+o.mouse = "a"
 
 -- Numbers
 o.number = true
