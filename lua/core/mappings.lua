@@ -303,7 +303,7 @@ M.aerial = {
 M.nvimtree = {
   n = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
-    ["<C-b>"] = { "<Cmd>lua require('nvim-tree.api').tree.find_file({update_root = true, open = true, focus = true})<CR>", "Lists Diagnostics for current buffer" },
+    ["<C-b>"] = { "<Cmd>lua require('nvim-tree.api').tree.find_file({update_root = true, open = true, focus = true})<CR>", "Nvim-tree open, locate current buffer" },
   },
   t = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
@@ -312,14 +312,14 @@ M.nvimtree = {
 
 M.telescope = {
   n = {
-    -- find
-    ["<leader>ff"] = { "<Cmd>Telescope find_files<CR>", "Find files" },
-    ["<leader>fa"] = { "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", "Find all" },
-    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "Find old files" },
-    ["<leader>fb"] = { "<Cmd>Telescope buffers<CR>", "Find buffers" },
-    ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "Find Help page" },
-    ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
-    ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find in current buffer" },
+    ["<leader>fe"] = { "<Cmd>Telescope file_browser<CR>", "Telescope file explorer" },
+    ["<leader>fb"] = { "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", "Telescope file explorer, locate current buffer" },
+    ["<leader>ff"] = { "<Cmd>Telescope find_files<CR>", "Telescope find files" },
+    ["<leader>fa"] = { "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", "Telescope find all" },
+    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "Telescope find old files" },
+    ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "Telescope find help page" },
+    ["<leader>fg"] = { "<Cmd>Telescope live_grep<CR>", "Telescope live grep" },
+    ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Telescope fuzzy find in current buffer" },
 
     -- git
     ["<leader>st"] = { "<Cmd>Telescope git_status<CR>", "Git status" },
@@ -329,8 +329,8 @@ M.telescope = {
     ["<leader>th"] = { "<Cmd>Telescope themes<CR>", "Select themes" },
 
     -- lsp
-    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Lists Diagnostics for current buffer" },
-    ["<leader>da"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "Lists Diagnostics for all open buffers" },
+    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "LSP diagnostic for current buffer" },
+    ["<leader>da"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "LSP diagnostic for all open buffers" },
   },
 }
 

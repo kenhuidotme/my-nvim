@@ -131,7 +131,7 @@ rm -Force ~\AppData\Local\nvim-data
 | Key | Description |
 | --- | --- |
 | C-e | Nvim-tree toggle |
-| C-b | Nvim-tree open and locate current buffer |
+| C-b | Nvim-tree open, locate current buffer |
 | C-x | Nvim-tree open: horizontal split |
 | C-y | Nvim-tree open: vertical split |
 | g? | Nvim-tree help |
@@ -174,6 +174,8 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`dn | LSP diagnostic next |
 | `<leader>`dp | LSP diagnostic prev |
 | `<leader>`dl | LSP diagnostic list |
+| `<leader>`db | LSP diagnostic for current buffer |
+| `<leader>`da | LSP diagnostic for all open buffers |
 | `<leader>`ra | LSP rename |
 | `<leader>`fm | LSP formatting |
 | `<leader>`ca | LSP code action |
@@ -185,15 +187,15 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description |
 | --- | --- |
+| `<leader>`fe | Telescope file explorer |
+| `<leader>`fb | Telescope file explorer, locate current buffer |
 | `<leader>`ff | Telescope find files |
 | `<leader>`fa | Telescope find all |
 | `<leader>`fo | Telescope find old files |
 | `<leader>`fb | Telescope find buffers |
-| `<leader>`fh | Telescope find Help page |
+| `<leader>`fh | Telescope find help page |
 | `<leader>`fw | Telescope live grep |
 | `<leader>`fz | Telescope fuzzy find in current buffer |
-| `<leader>`db | Telescope list LSP diagnostics for current buffer |
-| `<leader>`da | Telescope list LSP diagnostics for all open buffers |
 
 ## Git
 
