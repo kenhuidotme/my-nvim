@@ -6,7 +6,7 @@ Neovim configuration for myself.
 
 # Features
 
-- Basic structure and some ui from [NvChad](https://github.com/NvChad/NvChad)
+- Basic structure from [NvChad](https://github.com/NvChad/NvChad)
 - File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 - Outline explorer with [Aerial](https://github.com/stevearc/aerial.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
@@ -131,7 +131,7 @@ rm -Force ~\AppData\Local\nvim-data
 | Key | Description |
 | --- | --- |
 | C-e | Nvim-tree toggle |
-| C-b | Nvim-tree open, locate current buffer |
+| C-b | Nvim-tree file current buffer |
 | C-x | Nvim-tree open: horizontal split |
 | C-y | Nvim-tree open: vertical split |
 | g? | Nvim-tree help |
@@ -188,7 +188,7 @@ rm -Force ~\AppData\Local\nvim-data
 | Key | Description |
 | --- | --- |
 | `<leader>`fe | Telescope file explorer |
-| `<leader>`fb | Telescope file explorer, locate current buffer |
+| `<leader>`fb | Telescope file explorer, focus current buffer |
 | `<leader>`ff | Telescope find files |
 | `<leader>`fa | Telescope find all |
 | `<leader>`fo | Telescope find old files |

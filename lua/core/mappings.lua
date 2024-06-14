@@ -303,7 +303,7 @@ M.aerial = {
 M.nvimtree = {
   n = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },
-    ["<C-b>"] = { "<Cmd>lua require('nvim-tree.api').tree.find_file({update_root = true, open = true, focus = true})<CR>", "Nvim-tree open, locate current buffer" },
+    ["<C-b>"] = { "<Cmd>lua require('nvim-tree.api').tree.find_file({update_root=true, open=true, focus=true})<CR>", "Nvim-tree open, locate current buffer" },
   },
   t = {
     ["<C-e>"] = { function() vim.cmd("NvimTreeToggle") end, "Nvim-tree toggle" },

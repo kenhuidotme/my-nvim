@@ -12,10 +12,10 @@ M.load_mappings = function(section, mapping_options)
     for mode, mode_values in pairs(section_values) do
       for key_bind, mapping_info in pairs(mode_values) do
         local options =
-          vim.tbl_deep_extend(
-            "force",
-            mapping_options or {},
-            mapping_info.options or {})
+            vim.tbl_deep_extend(
+              "force",
+              mapping_options or {},
+              mapping_info.options or {})
         options.desc = mapping_info[2]
         vim.keymap.set(mode, key_bind, mapping_info[1], options)
       end
@@ -31,9 +31,9 @@ M.lazy_load = function(plugin)
       local file = vim.fn.expand("%")
 
       local is_valid_plugin =
-        string.sub(file, 1, 8) ~= "NvimTree"
-        and file ~= "[lazy]"
-        and file ~= ""
+          string.sub(file, 1, 8) ~= "NvimTree"
+          and file ~= "[lazy]"
+          and file ~= ""
 
       if is_valid_plugin then
         vim.api.nvim_del_augroup_by_name(group_name)
@@ -111,18 +111,18 @@ M.toggle_float_term = function()
 end
 
 M.toggle_diagnostics = function()
-	vim.b.diagnostics_disabled = not vim.b.diagnostics_disabled
+  vim.b.diagnostics_disabled = not vim.b.diagnostics_disabled
 
   local cmd
-	if vim.b.diagnostics_disabled then
-		cmd = "disable"
+  if vim.b.diagnostics_disabled then
+    cmd = "disable"
     vim.api.nvim_echo({ { "Disabling diagnostics" } }, false, {})
-	else
-		cmd = "enable"
+  else
+    cmd = "enable"
     vim.api.nvim_echo({ { "Enabling diagnostics" } }, false, {})
-	end
+  end
 
-	vim.schedule(function() vim.diagnostic[cmd](0) end)
+  vim.schedule(function() vim.diagnostic[cmd](0) end)
 end
 
 return M

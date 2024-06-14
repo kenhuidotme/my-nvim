@@ -3,6 +3,7 @@ local options = {
     vimgrep_arguments = {
       "rg",
       "-L",
+      "--no-ignore-vcs",
       "--color=never",
       "--no-heading",
       "--with-filename",
@@ -13,7 +14,7 @@ local options = {
     prompt_prefix = "   ",
     selection_caret = "  ",
     entry_prefix = "  ",
-    initial_mode = "insert",
+    initial_mode = "normal",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
