@@ -1,7 +1,7 @@
 <h1 align="center">MyNvim</h1>
 
 <p align="center">
-Neovim configuration for myself.
+Neovim configuration for myself/yourself.
 </p>
 
 # Features
