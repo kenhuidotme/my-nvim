@@ -90,6 +90,21 @@ M.set_launch_dir = function(dir)
   )
 end
 
+M.toggle_tree = function (all)
+  if vim.bo.buftype == 'terminal'
+    or vim.bo.buftype == 'prompt'
+    or vim.bo.buftype == 'nofile'
+  then
+    return
+  end
+
+  if all then
+    require('nvim-tree.api').tree.find_file({update_root=true, open=true, focus=true})
+  else
+    require('nvim-tree.api').tree.toggle()
+  end
+end
+
 local term_count = 0
 local term_num = 0
 local float_term_num = 0

@@ -7,17 +7,17 @@ local function my_on_attach(bufnr)
 
   api.config.mappings.default_on_attach(bufnr)
 
-  vim.keymap.del("n", "q", { buffer = bufnr })
-  -- vim.keymap.del("n", "C-e", { buffer = bufnr })
+  vim.keymap.del("n", "g?", { buffer = bufnr })
+  vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"), { buffer = bufnr })
 
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
-  vim.keymap.set("n", "i", api.node.show_info_popup, opts("Info"))
+  vim.keymap.set("n", "i", api.node.show_info_popup, opts("Info"), { buffer = bufnr })
 
   vim.keymap.del("n", "<C-v>", { buffer = bufnr })
-  vim.keymap.set("n", "<C-y>", api.node.open.vertical, opts("Open: Vertical Split"))
+  vim.keymap.set("n", "<C-y>", api.node.open.vertical, opts("Open: Vertical Split"), { buffer = bufnr })
 
   vim.keymap.del("n", "<C-]>", { buffer = bufnr })
-  vim.keymap.set("n", "=", api.tree.change_root_to_node, opts("CD"))
+  vim.keymap.set("n", "=", api.tree.change_root_to_node, opts("CD"), { buffer = bufnr })
 
   vim.keymap.del("n", "<2-LeftMouse>", { buffer = bufnr })
   vim.keymap.del("n", "<2-RightMouse>", { buffer = bufnr })
@@ -25,8 +25,6 @@ local function my_on_attach(bufnr)
   vim.keymap.del("n", "<CR>", { buffer = bufnr })
   vim.keymap.del("n", "<Tab>", { buffer = bufnr })
   vim.keymap.del("n", "<C-e>", { buffer = bufnr })
-  vim.keymap.del("n", "<C-t>", { buffer = bufnr })
-  vim.keymap.del("n", "<C-r>", { buffer = bufnr })
 end
 
 -- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt

@@ -132,24 +132,7 @@ rm -Force ~\AppData\Local\nvim-data
 | --- | --- |
 | C-e | Nvim-tree toggle |
 | C-b | Nvim-tree file current buffer |
-| C-x | Nvim-tree open: horizontal split |
-| C-y | Nvim-tree open: vertical split |
-| g? | Nvim-tree help |
-| = | Nvim-tree CD: change root to selected directory |
-| - | Nvim-tree CD: change root to parent |
-| P | Nvim-tree goto: parent directory |
-| < | Nvim-tree goto: previous sibling |
-| > | Nvim-tree goto: next sibling |
-| i | Nvim-tree info |
-| H | Nvim-tree toggle filter: dot files |
-| c | Nvim-tree copy |
-| d | Nvim-tree delete |
-| o | Nvim-tree open |
-| p | Nvim-tree paste |
-| r | Nvim-tree rename |
-| x | Nvim-tree cut |
-| f | Nvim-tree live filter: start |
-| F | Nvim-tree live filter: clear |
+| ? | Nvim-tree help |
 
 ## Aerial
 
@@ -196,6 +179,7 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`fh | Telescope find help page |
 | `<leader>`fw | Telescope live grep |
 | `<leader>`fz | Telescope fuzzy find in current buffer |
+| ? | Telescope help |
 
 ## Git
 
