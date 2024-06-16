@@ -21,8 +21,6 @@ local function my_on_attach(bufnr)
 
   vim.keymap.del("n", "<2-LeftMouse>", { buffer = bufnr })
   vim.keymap.del("n", "<2-RightMouse>", { buffer = bufnr })
-  vim.keymap.del("n", "<BS>", { buffer = bufnr })
-  vim.keymap.del("n", "<CR>", { buffer = bufnr })
   vim.keymap.del("n", "<Tab>", { buffer = bufnr })
   vim.keymap.del("n", "<C-e>", { buffer = bufnr })
 end

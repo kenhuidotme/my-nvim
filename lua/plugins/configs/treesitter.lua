@@ -1,5 +1,14 @@
 local options = {
-  ensure_installed = { "lua", "luadoc", "vim", "vimdoc", "json" },
+  ensure_installed = {
+    'lua',
+    'luadoc',
+    'vim',
+    'vimdoc',
+    'python',
+    'json',
+    'javascript',
+    'typescript'
+  },
 
   highlight = {
     enable = true,
