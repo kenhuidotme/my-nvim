@@ -115,6 +115,16 @@ local pyright_setup = function()
   })
 end
 
+-- ruff_lsp
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+local ruff_lsp_setup = function()
+  require('lspconfig').ruff_lsp.setup({
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
 -- Typescript
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
 local tsserver_setup = function()
@@ -184,8 +194,10 @@ local M = {}
 
 M.setup = function()
   lsp_client_setup()
+  --
   lua_ls_setup()
   pyright_setup()
+  ruff_lsp_setup()
   tsserver_setup()
   clangd_setup()
   neocmake_setup()
