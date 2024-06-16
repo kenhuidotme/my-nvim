@@ -91,10 +91,7 @@ M.set_launch_dir = function(dir)
 end
 
 M.toggle_tree = function (all)
-  if vim.bo.buftype == 'terminal'
-    or vim.bo.buftype == 'prompt'
-    or vim.bo.buftype == 'nofile'
-  then
+  if vim.bo.buftype == 'nofile' then
     return
   end
 

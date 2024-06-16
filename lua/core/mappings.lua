@@ -305,6 +305,9 @@ M.nvimtree = {
     ["<C-e>"] = { function() require("core.utils").toggle_tree() end, "Nvim-tree toggle" },
     ["<C-b>"] = { function() require("core.utils").toggle_tree(true) end, "Nvim-tree toggle" },
   },
+  t = {
+    ["<C-e>"] = { function() require("core.utils").toggle_tree() end, "Nvim-tree toggle" },
+  },
 }
 
 M.telescope = {
