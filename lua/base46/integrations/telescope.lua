@@ -11,8 +11,14 @@ local highlights = {
   TelescopeResultsDiffChange = { fg = base30.yellow },
   TelescopeResultsDiffDelete = { fg = base30.red },
 
-  TelescopeBorder = { fg = base30.darker_black, bg = base30.darker_black },
-  TelescopePromptBorder = { fg = base30.black2, bg = base30.black2 },
+  -- borderless
+  -- TelescopeBorder = { fg = base30.darker_black, bg = base30.darker_black },
+  -- TelescopePromptBorder = { fg = base30.black2, bg = base30.black2 },
+
+  -- bordered
+  TelescopeBorder = { fg = base30.one_bg3 },
+  TelescopePromptBorder = { fg = base30.one_bg3 },
+
   TelescopePromptNormal = { fg = base30.white, bg = base30.black2 },
   TelescopeResultsTitle = { fg = base30.darker_black, bg = base30.darker_black },
 }
