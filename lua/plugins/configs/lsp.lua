@@ -190,19 +190,15 @@ local zls_setup = function()
   })
 end
 
-local M = {}
-
-M.setup = function()
-  lsp_client_setup()
-  --
+local lsp_server_setup = function ()
   lua_ls_setup()
-  pyright_setup()
-  ruff_lsp_setup()
-  tsserver_setup()
-  clangd_setup()
-  neocmake_setup()
-  rust_analyzer_setup()
-  zls_setup()
+  -- pyright_setup()
+  -- ruff_lsp_setup()
+  -- tsserver_setup()
+  -- clangd_setup()
+  -- neocmake_setup()
+  -- rust_analyzer_setup()
+  -- zls_setup()
 end
 
 local wgsl_filetype_setup = function()
@@ -233,9 +229,16 @@ local ninja_filetype_setup = function()
 end
 
 local filetype_setup = function()
-  wgsl_filetype_setup()
-  gn_filetype_setup()
-  ninja_filetype_setup()
+  -- wgsl_filetype_setup()
+  -- gn_filetype_setup()
+  -- ninja_filetype_setup()
+end
+
+local M = {}
+
+M.setup = function()
+  lsp_client_setup()
+  lsp_server_setup()
 end
 
 M.init = function()
