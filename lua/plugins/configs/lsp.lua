@@ -191,7 +191,7 @@ local zls_setup = function()
 end
 
 local lsp_server_setup = function ()
-  lua_ls_setup()
+  -- lua_ls_setup()
   -- pyright_setup()
   -- ruff_lsp_setup()
   -- tsserver_setup()
