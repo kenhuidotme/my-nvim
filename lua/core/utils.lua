@@ -91,7 +91,8 @@ M.set_launch_dir = function(dir)
 end
 
 M.toggle_tree = function (all)
-  if vim.bo.buftype == 'nofile' then
+  -- nvim-tree help
+  if vim.bo.buftype == 'nofile' and vim.bo.filetype ~= 'NvimTree' then
     return
   end
 
