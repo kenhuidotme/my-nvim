@@ -238,11 +238,11 @@ local M = {}
 
 M.setup = function()
   lsp_client_setup()
-  -- lsp_server_setup()
+  lsp_server_setup()
 end
 
 M.init = function()
-  -- filetype_setup()
+  filetype_setup()
 end
 
 return M
