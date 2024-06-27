@@ -21,6 +21,8 @@ local function my_on_attach(bufnr)
 
   vim.keymap.del("n", "<Tab>", { buffer = bufnr })
   vim.keymap.del("n", "<C-e>", { buffer = bufnr })
+
+  vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"), { buffer = bufnr })
 end
 
 -- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
