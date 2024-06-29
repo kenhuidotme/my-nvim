@@ -43,29 +43,29 @@ local add_file_style = function(filename, buf)
     local buf_current = vim.api.nvim_get_current_buf()
 
     icon =
-      buf == buf_current
-      and new_icon_hl(icon_hl, "TlBufOn") .. icon
-      or icon
+        buf == buf_current
+        and new_icon_hl(icon_hl, "TlBufOn") .. icon
+        or icon
 
     local name_max = 16
     filename =
-      #filename > name_max
-      and string.sub(filename, 1, 14) .. ".."
-      or filename
+        #filename > name_max
+        and string.sub(filename, 1, 14) .. ".."
+        or filename
 
     -- padding around bufname; 24 = bufname length (icon + filename)
     local padding = (24 - #filename - 6) / 2
 
     filename =
-      buf == buf_current
-      and "%#TlBufOn#" .. " " .. filename
-      or "%#TlBufOff#" .. " " .. filename
+        buf == buf_current
+        and "%#TlBufOn#" .. " " .. filename
+        or "%#TlBufOff#" .. " " .. filename
 
     return
-      string.rep(" ", padding)
-      .. icon
-      .. filename
-      .. string.rep(" ", padding)
+        string.rep(" ", padding)
+        .. icon
+        .. filename
+        .. string.rep(" ", padding)
   end
 end
 
@@ -86,38 +86,38 @@ local style_buffer = function(buf)
   end
 
   filename =
-    "%" .. buf .. "@TlGoToBuf@"
-    .. add_file_style(filename, buf)
+      "%" .. buf .. "@TlGoToBuf@"
+      .. add_file_style(filename, buf)
 
   local modified = vim.api.nvim_buf_get_option(buf, "modified")
 
   if buf == vim.api.nvim_get_current_buf() then
     return
-      modified
-      and
+        modified
+        and
         "%#TlBufOn#" .. filename
         .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnModified# "
-      or
+        or
         "%#TlBufOn#" .. filename
         .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnClose# "
   else
     return
-      modified
-      and "%#TlBufOff#" .. filename .. "%#TlBufOffModified# "
-      or "%#TlBufOff#" .. filename .. "%#TlBufOffClose#󰅖 "
+        modified
+        and "%#TlBufOff#" .. filename .. "%#TlBufOffModified# "
+        or "%#TlBufOff#" .. filename .. "%#TlBufOffClose#󰅖 "
   end
 end
 
 local get_tabs_width = function()
   local tabs = vim.api.nvim_list_tabpages()
   return
-    #tabs > 1
-    and 3 * #tabs + 3
-    or 0
+      #tabs > 1
+      and 3 * #tabs + 3
+      or 0
 end
 
 local buffer_list = function()
-  local available_space = vim.o.columns - get_tabs_width()
+  local available_space = vim.o.columns - get_tabs_width() - 6
 
   local buf_current = vim.api.nvim_get_current_buf()
   local has_current = false
@@ -125,21 +125,36 @@ local buffer_list = function()
   local buffers = {}
   local bufs = require("ui.tabline").buffer_filter()
 
-  for _, buf in ipairs(bufs) do
+  local has_prefix = false
+  local last_index = 0
+
+  for i, buf in ipairs(bufs) do
     if (#buffers + 1) * 24 > available_space then
       if has_current then
         break
       end
       table.remove(buffers, 1)
+      has_prefix = true
     end
     has_current =
-      buf == buf_current
-      and true
-      or has_current
+        buf == buf_current
+        and true
+        or has_current
     table.insert(buffers, style_buffer(buf))
+    last_index = i
   end
 
-  return table.concat(buffers) .. "%#TlFill#" .. "%="
+  local prefix = ""
+  if has_prefix then
+    prefix = "%#TlBufMore#<< "
+  end
+
+  local suffix = ""
+  if last_index < #bufs then
+    suffix = "%#TlBufMore# >>"
+  end
+
+  return prefix .. table.concat(buffers) .. suffix .. "%#TlFill#" .. "%="
 end
 
 local tab_list = function()
@@ -150,18 +165,18 @@ local tab_list = function()
   if #tabs > 1 then
     for i, t in ipairs(tabs) do
       local tab_hl =
-        t == tab
-        and "%#TlTabOn#"
-        or "%#TlTabOff#"
+          t == tab
+          and "%#TlTabOn#"
+          or "%#TlTabOff#"
       result =
-        result
-        .. "%" .. i .. "@TlGoToTab@"
-        .. tab_hl .. " " .. i .. " "
+          result
+          .. "%" .. i .. "@TlGoToTab@"
+          .. tab_hl .. " " .. i .. " "
       if t == tab then
         result =
-          result
-          .. "%#TlTabOnClose#"
-          .. "%@TlCloseTab@󰅙 "
+            result
+            .. "%#TlTabOnClose#"
+            .. "%@TlCloseTab@󰅙 "
       end
     end
   end

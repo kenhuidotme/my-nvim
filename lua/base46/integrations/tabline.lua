@@ -8,6 +8,7 @@ return {
   TlBufOn = {
     fg = base30.white,
     bg = base30.black,
+    bold = true,
   },
 
   TlBufOff = {
@@ -15,8 +16,14 @@ return {
     bg = base30.black2,
   },
 
+  TlBufMore = {
+    fg = base30.light_grey,
+    bg = base30.black2,
+    bold = true,
+  },
+
   TlBufOnModified = {
-    fg = base30.green,
+    fg = base30.red,
     bg = base30.black,
   },
 
