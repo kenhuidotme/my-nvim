@@ -69,7 +69,7 @@ M.common = {
   },
 
   t = {
-    ["<C-d>"] = { escape_terminal_cmd(), "Terminal escape" },
+    ["<C-q>"] = { escape_terminal_cmd(), "Terminal escape" },
 
     -- switch between windows within terminal mode
     ["<C-h>"] = { escape_terminal_cmd("<C-w>h"), "Window jump left" },

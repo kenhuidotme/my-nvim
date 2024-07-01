@@ -121,7 +121,7 @@ rm -Force ~\AppData\Local\nvim-data
 | --- | --- |
 | C-t | Toggle terminal |
 | C-f | Toggle terminal float |
-| C-d | Terminal mode escape |
+| C-q | Terminal mode escape |
 
 ## Nvim-tree
 
