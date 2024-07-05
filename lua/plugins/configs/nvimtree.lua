@@ -32,6 +32,9 @@ local options = {
     git_ignored = false,
   },
   disable_netrw = true,
+  hijack_directories = {
+    enable = false,
+  },
   view = {
     side = "left",
     preserve_window_proportions = true,
@@ -51,6 +54,7 @@ local options = {
       return ".../" .. vim.fn.fnamemodify(path, ":t")
     end,
     icons = {
+      git_placement = "after",
       glyphs = {
         default = "󰈚",
       },

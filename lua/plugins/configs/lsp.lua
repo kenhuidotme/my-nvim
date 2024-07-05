@@ -34,13 +34,13 @@ local lsp_client_setup = function()
       })
 end
 
-local on_init = function(client, _)
+local on_init_common = function(client, _)
   if client.supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
 
-local on_attach = function(client, bufnr)
+local on_attach_common = function(client, bufnr)
   require("core.utils").load_mappings("lspconfig", { buffer = bufnr })
 
   if client.server_capabilities.signatureHelpProvider then
@@ -49,8 +49,8 @@ local on_attach = function(client, bufnr)
 end
 
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem = {
+local capabilities_common = vim.lsp.protocol.make_client_capabilities()
+capabilities_common.textDocument.completion.completionItem = {
   snippetSupport = true,
   commitCharactersSupport = true,
   documentationFormat = { "markdown", "plaintext" },
@@ -70,7 +70,7 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 local lua_server_on_init = function(client)
-  on_init(client)
+  on_init_common(client)
   local path = client.workspace_folders[1].name
   if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
     return
@@ -82,8 +82,8 @@ end
 local lua_ls_setup = function()
   require("lspconfig").lua_ls.setup({
     on_init = lua_server_on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
 
     settings = {
       Lua = {
@@ -109,9 +109,9 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
 local pyright_setup = function()
   require('lspconfig').pyright.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
@@ -119,9 +119,9 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 local ruff_lsp_setup = function()
   require('lspconfig').ruff_lsp.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
@@ -129,9 +129,9 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
 local tsserver_setup = function()
   require('lspconfig').tsserver.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
@@ -139,9 +139,9 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
 local clangd_setup = function()
   require('lspconfig').clangd.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
@@ -149,9 +149,9 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#neocmake
 local neocmake_setup = function()
   require('lspconfig').neocmake.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
@@ -159,9 +159,9 @@ end
 -- https://rust-analyzer.github.io/manual.html#configuration
 local rust_analyzer_setup = function()
   require("lspconfig").rust_analyzer.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
     settings = {
       ["rust-analyzer"] = {
         cargo = {
@@ -184,13 +184,13 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#zls
 local zls_setup = function()
   require('lspconfig').zls.setup({
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
   })
 end
 
-local lsp_server_setup = function ()
+local lsp_server_setup = function()
   lua_ls_setup()
   pyright_setup()
   ruff_lsp_setup()
