@@ -255,13 +255,6 @@ M.lspconfig = {
       "LSP rename",
     },
 
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format({ async = true })
-      end,
-      "LSP formatting",
-    },
-
     ["<leader>ca"] = {
       function()
         vim.lsp.buf.code_action()

@@ -8,6 +8,7 @@ local opts = {
     'json',
     'javascript',
     'typescript',
+    'html',
   },
 
   highlight = {

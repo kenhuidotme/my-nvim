@@ -44,10 +44,10 @@ local plugins = {
 
   {
     "stevearc/conform.nvim",
+    event = { "BufWritePre" },
     cmd = { "ConformInfo" },
-    lazy = false,
-    config = function()
-      require("plugins.configs.conform").setup()
+    opts = function()
+      return require("plugins.configs.conform")
     end,
   },
 
@@ -148,7 +148,8 @@ local plugins = {
       },
       "nvim-telescope/telescope-ui-select.nvim",
     },
-    lazy = false,
+    -- lazy = false,
+    event = { 'BufReadPost', 'BufNewFile' },
     init = function()
       require("core.utils").load_mappings("telescope")
     end,

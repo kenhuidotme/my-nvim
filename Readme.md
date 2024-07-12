@@ -157,7 +157,6 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`db | LSP diagnostic for current buffer |
 | `<leader>`da | LSP diagnostic for all open buffers |
 | `<leader>`ra | LSP rename |
-| `<leader>`fm | LSP formatting |
 | `<leader>`ca | LSP code action |
 | `<leader>`wl | LSP workspace list |
 | `<leader>`wa | LSP workspace add |
