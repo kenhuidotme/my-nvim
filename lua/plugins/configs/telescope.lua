@@ -1,15 +1,15 @@
-local options = {
+local opts = {
   defaults = {
     vimgrep_arguments = {
       "rg",
       "-L",
+      "--hidden",
       "--no-ignore-vcs",
       "--color=never",
       "--no-heading",
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case",
     },
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -50,30 +50,15 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "fzf", "file_browser", "ui-select" },
+  extensions_list = { "themes", "fzf", "ui-select" },
 
   extensions = {
     -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
     fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- "ignore_case" or "respect_case"
-    },
-
-    -- https://github.com/nvim-telescope/telescope-file-browser.nvim
-    file_browser = {
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      no_ignore = true,
-      mappings = {
-        ["i"] = {
-          -- your custom insert mode mappings
-        },
-        ["n"] = {
-          -- your custom normal mode mappings
-        },
-      },
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- "ignore_case" or "respect_case"
     },
 
     -- https://github.com/nvim-telescope/telescope-ui-select.nvim
@@ -98,4 +83,14 @@ local options = {
   },
 }
 
-return options
+local M = {}
+
+M.setup = function()
+  local telescope = require("telescope")
+  telescope.setup(opts)
+  for _, ext in ipairs(opts.extensions_list) do
+    telescope.load_extension(ext)
+  end
+end
+
+return M

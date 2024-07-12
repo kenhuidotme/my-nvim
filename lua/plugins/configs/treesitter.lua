@@ -1,4 +1,4 @@
-local options = {
+local opts = {
   ensure_installed = {
     'lua',
     'luadoc',
@@ -7,7 +7,7 @@ local options = {
     'python',
     'json',
     'javascript',
-    'typescript'
+    'typescript',
   },
 
   highlight = {
@@ -18,4 +18,4 @@ local options = {
   indent = { enable = true },
 }
 
-return options
+return opts

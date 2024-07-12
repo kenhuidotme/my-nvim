@@ -1,4 +1,4 @@
-local options = {
+local opts = {
   override = {
     default_icon = {
       icon = "󰈚",
@@ -142,4 +142,4 @@ local options = {
   },
 }
 
-return options
+return opts

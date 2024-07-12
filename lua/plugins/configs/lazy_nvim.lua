@@ -1,4 +1,4 @@
-return {
+local opts = {
   defaults = { lazy = true },
 
   ui = {
@@ -46,3 +46,5 @@ return {
     },
   },
 }
+
+return opts

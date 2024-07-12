@@ -1,4 +1,4 @@
-local options = {
+local opts = {
   layout = {
     max_width = { 30, 0.3 },
     min_width = 15,
@@ -6,4 +6,4 @@ local options = {
   },
 }
 
-return options
+return opts

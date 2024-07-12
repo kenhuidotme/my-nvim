@@ -1,32 +1,39 @@
 local function my_on_attach(bufnr)
   local api = require("nvim-tree.api")
 
-  local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  local function options(desc)
+    return {
+      desc = "nvim-tree: " .. desc,
+      buffer = bufnr,
+      noremap = true,
+      silent = true,
+      nowait = true
+    }
   end
 
   api.config.mappings.default_on_attach(bufnr)
 
   vim.keymap.del("n", "g?", { buffer = bufnr })
-  vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"), { buffer = bufnr })
+  vim.keymap.set("n", "?", api.tree.toggle_help, options("Help"))
 
   vim.keymap.del("n", "<C-k>", { buffer = bufnr })
-  vim.keymap.set("n", "i", api.node.show_info_popup, opts("Info"), { buffer = bufnr })
+  vim.keymap.set("n", "i", api.node.show_info_popup, options("Info"))
 
   vim.keymap.del("n", "<C-v>", { buffer = bufnr })
-  vim.keymap.set("n", "<C-y>", api.node.open.vertical, opts("Open: Vertical Split"), { buffer = bufnr })
+  vim.keymap.set("n", "<C-y>", api.node.open.vertical, options("Open: Vertical Split"))
 
   vim.keymap.del("n", "<C-]>", { buffer = bufnr })
-  vim.keymap.set("n", "=", api.tree.change_root_to_node, opts("CD"), { buffer = bufnr })
+  vim.keymap.set("n", "=", api.tree.change_root_to_node, options("CD"))
 
   vim.keymap.del("n", "<Tab>", { buffer = bufnr })
+  vim.keymap.del("n", "<C-t>", { buffer = bufnr })
   vim.keymap.del("n", "<C-e>", { buffer = bufnr })
 
-  vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"), { buffer = bufnr })
+  vim.keymap.set("n", "<Esc>", api.tree.close, options("Close"))
 end
 
 -- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
-local options = {
+local opts = {
   on_attach = my_on_attach,
   filters = {
     git_ignored = false,
@@ -62,4 +69,11 @@ local options = {
   },
 }
 
-return options
+local M = {}
+
+M.setup = function()
+  vim.g.nvimtree_side = opts.view.side
+  require("nvim-tree").setup(opts)
+end
+
+return M

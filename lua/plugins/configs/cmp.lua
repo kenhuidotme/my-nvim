@@ -65,7 +65,7 @@ local function gen_border(hl_name)
   }
 end
 
-local options = {
+local opts = {
   completion = {
     completeopt = "menu,menuone",
   },
@@ -134,6 +134,6 @@ local options = {
   },
 }
 
-options.window.completion.border = gen_border("CmpBorder")
+opts.window.completion.border = gen_border("CmpBorder")
 
-return options
+return opts

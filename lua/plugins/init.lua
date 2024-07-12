@@ -6,29 +6,25 @@ local plugins = {
 
   {
     "nvim-tree/nvim-web-devicons",
-    opts = function()
-      return require("plugins.configs.devicons")
-    end,
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "devicons")
+      local opts = require("plugins.configs.devicons")
       require("nvim-web-devicons").setup(opts)
     end,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
     init = function()
       require("core.utils").lazy_load("nvim-treesitter")
     end,
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require("plugins.configs.treesitter")
-    end,
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "syntax")
       dofile(vim.g.base46_cache .. "treesitter")
+      local opts = require("plugins.configs.treesitter")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
@@ -38,27 +34,20 @@ local plugins = {
     event = { 'BufReadPost', 'BufNewFile' },
     ft = { "gitcommit", "diff" },
     init = function()
-      local group_name = "GitSignsLazyLoad"
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup(group_name, { clear = true }),
-        callback = function()
-          vim.fn.system("git -C " .. '"' .. vim.fn.expand("%:p:h") .. '"' .. " rev-parse")
-          if vim.v.shell_error == 0 then
-            vim.api.nvim_del_augroup_by_name(group_name)
-            vim.schedule(function()
-              require("lazy").load({ plugins = { "gitsigns.nvim" } })
-            end)
-          end
-        end,
-      })
+      require("plugins.configs.gitsigns").init()
     end,
-    opts = function()
-      return require("plugins.configs.git")
+    config = function()
+      dofile(vim.g.base46_cache .. "gitsigns")
+      require("plugins.configs.gitsigns").setup()
     end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
-      require("gitsigns").setup(opts)
+  },
+
+  {
+    "stevearc/conform.nvim",
+    cmd = { "ConformInfo" },
+    lazy = false,
+    config = function()
+      require("plugins.configs.conform").setup()
     end,
   },
 
@@ -67,23 +56,16 @@ local plugins = {
     event = { 'BufReadPost', 'BufNewFile' },
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
-      require("plugins.configs.lsp").init()
+      require("plugins.configs.lspconfig").init()
     end,
-    opts = {
-      inlay_hints = { enabled = true },
-    },
     config = function()
-      dofile(vim.g.base46_cache .. "lsp")
-      require("plugins.configs.lsp").setup()
+      dofile(vim.g.base46_cache .. "lspconfig")
+      require("plugins.configs.lspconfig").setup()
     end,
   },
 
   {
     "stevearc/aerial.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
     cmd = { "AerialToggle", "AerialPrev", "AerialNext" },
     init = function()
       require("core.utils").load_mappings("aerial")
@@ -100,19 +82,17 @@ local plugins = {
       {
         "L3MON4D3/LuaSnip",
         dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged, TextChangedI" },
-        config = function(_, opts)
-          require("plugins.configs.snippets").setup(opts)
+        config = function()
+          require("plugins.configs.snippets").setup()
         end,
       },
       {
         "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
+        config = function()
+          require("nvim-autopairs").setup({
+            fast_wrap = {},
+            disable_filetype = { "TelescopePrompt", "vim" },
+          })
           require("cmp").event:on(
             "confirm_done",
             require("nvim-autopairs.completion.cmp").on_confirm_done())
@@ -126,11 +106,9 @@ local plugins = {
         "hrsh7th/cmp-path",
       },
     },
-    opts = function()
-      return require("plugins.configs.cmp")
-    end,
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "cmp")
+      local opts = require("plugins.configs.cmp")
       require("cmp").setup(opts)
     end,
   },
@@ -151,13 +129,9 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings("nvimtree")
     end,
-    opts = function()
-      return require("plugins.configs.nvimtree")
-    end,
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "nvimtree")
-      require("nvim-tree").setup(opts)
-      vim.g.nvimtree_side = opts.view.side
+      require("plugins.configs.nvimtree").setup()
     end,
   },
 
@@ -172,23 +146,15 @@ local plugins = {
           "cmake --install build --prefix build",
         },
       },
-      "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
     },
     lazy = false,
     init = function()
       require("core.utils").load_mappings("telescope")
     end,
-    opts = function()
-      return require("plugins.configs.telescope")
-    end,
-    config = function(_, opts)
+    config = function()
       dofile(vim.g.base46_cache .. "telescope")
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
+      require("plugins.configs.telescope").setup()
     end,
   },
 
@@ -198,14 +164,11 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings("toggleterm")
     end,
-    opts = function()
-      return require("plugins.configs.terminal").opts
-    end,
-    config = function(_, opts)
-      require("toggleterm").setup(opts)
+    config = function()
       require("plugins.configs.terminal").setup()
     end,
   },
 }
 
-require("lazy").setup(plugins, require("plugins.configs.lazy_nvim"))
+local opts = require("plugins.configs.lazy_nvim")
+require("lazy").setup(plugins, opts)
