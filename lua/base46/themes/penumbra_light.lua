@@ -57,12 +57,12 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  Constant = { fg = M.base_30.red, },
-  Include = { fg = M.base_30.dark_purple, },
-  ["@function.builtin"] = { fg = M.base_30.teal, },
-  ["@field.key"] = { fg = M.base_30.red, },
-  ["@punctuation.bracket"] = { fg = M.base_30.coal, },
-  ["@field"] = { fg = M.base_30.coal, },
+  Constant = { fg = M.base_30.red },
+  Include = { fg = M.base_30.dark_purple },
+  ["@function.builtin"] = { fg = M.base_30.teal },
+  ["@field.key"] = { fg = M.base_30.red },
+  ["@punctuation.bracket"] = { fg = M.base_30.coal },
+  ["@field"] = { fg = M.base_30.coal },
 }
 
 M.type = "light"

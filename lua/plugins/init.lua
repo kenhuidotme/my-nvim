@@ -31,7 +31,7 @@ local plugins = {
 
   {
     "lewis6991/gitsigns.nvim",
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { "BufReadPost", "BufNewFile" },
     ft = { "gitcommit", "diff" },
     init = function()
       require("plugins.configs.gitsigns").init()
@@ -53,7 +53,7 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { "BufReadPost", "BufNewFile" },
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
       require("plugins.configs.lspconfig").init()
@@ -95,7 +95,8 @@ local plugins = {
           })
           require("cmp").event:on(
             "confirm_done",
-            require("nvim-autopairs.completion.cmp").on_confirm_done())
+            require("nvim-autopairs.completion.cmp").on_confirm_done()
+          )
         end,
       },
       {
@@ -149,7 +150,7 @@ local plugins = {
       "nvim-telescope/telescope-ui-select.nvim",
     },
     -- lazy = false,
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { "BufReadPost", "BufNewFile" },
     init = function()
       require("core.utils").load_mappings("telescope")
     end,

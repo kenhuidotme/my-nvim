@@ -33,10 +33,26 @@ M.common = {
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
     -- empty mode is same as using :map
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
-    ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
-    ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
+    ["j"] = {
+      'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+      "Move down",
+      options = { expr = true },
+    },
+    ["k"] = {
+      'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+      "Move up",
+      options = { expr = true },
+    },
+    ["<Up>"] = {
+      'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+      "Move up",
+      options = { expr = true },
+    },
+    ["<Down>"] = {
+      'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+      "Move down",
+      options = { expr = true },
+    },
 
     -- restore jump forward
     ["<C-i>"] = { "<C-i>", "Jump forward" },
@@ -81,17 +97,37 @@ M.common = {
   v = {
     ["<C-c>"] = { '"+y', "Copy selected text to clipboard" },
 
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
+    ["<Up>"] = {
+      'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+      "Move up",
+      options = { expr = true },
+    },
+    ["<Down>"] = {
+      'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+      "Move down",
+      options = { expr = true },
+    },
   },
 
   x = {
-    ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", options = { expr = true } },
-    ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", options = { expr = true } },
+    ["j"] = {
+      'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+      "Move down",
+      options = { expr = true },
+    },
+    ["k"] = {
+      'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+      "Move up",
+      options = { expr = true },
+    },
 
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", options = { silent = true } },
+    ["p"] = {
+      'p:let @+=@0<CR>:let @"=@0<CR>',
+      "Dont copy replaced text",
+      options = { silent = true },
+    },
   },
 }
 
@@ -287,32 +323,80 @@ M.lspconfig = {
 
 M.aerial = {
   n = {
-    ["<C-\\>"] = { function() vim.cmd("AerialToggle!") end, "Aerial toggle" },
-    ["<C-[>"] = { function() vim.cmd("AerialPrev") end, "Aerial Jump backwards" },
-    ["<C-]>"] = { function() vim.cmd("AerialNext") end, "Aerial Jump forwards" },
+    ["<C-\\>"] = {
+      function()
+        vim.cmd("AerialToggle!")
+      end,
+      "Aerial toggle",
+    },
+    ["<C-[>"] = {
+      function()
+        vim.cmd("AerialPrev")
+      end,
+      "Aerial Jump backwards",
+    },
+    ["<C-]>"] = {
+      function()
+        vim.cmd("AerialNext")
+      end,
+      "Aerial Jump forwards",
+    },
   },
 }
 
 M.nvimtree = {
   n = {
-    ["<C-e>"] = { function() require("core.utils").toggle_tree() end, "Nvim-tree toggle" },
-    ["<C-b>"] = { function() require("core.utils").toggle_tree(true) end, "Nvim-tree toggle" },
+    ["<C-e>"] = {
+      function()
+        require("core.utils").toggle_tree()
+      end,
+      "Nvim-tree toggle",
+    },
+    ["<C-b>"] = {
+      function()
+        require("core.utils").toggle_tree(true)
+      end,
+      "Nvim-tree toggle",
+    },
   },
   t = {
-    ["<C-e>"] = { function() require("core.utils").toggle_tree() end, "Nvim-tree toggle" },
+    ["<C-e>"] = {
+      function()
+        require("core.utils").toggle_tree()
+      end,
+      "Nvim-tree toggle",
+    },
   },
 }
 
 M.telescope = {
   n = {
-    ["<leader>fe"] = { "<Cmd>Telescope file_browser<CR>", "Telescope file explorer" },
-    ["<leader>fb"] = { "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", "Telescope file explorer, locate current buffer" },
+    ["<leader>fe"] = {
+      "<Cmd>Telescope file_browser<CR>",
+      "Telescope file explorer",
+    },
+    ["<leader>fb"] = {
+      "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
+      "Telescope file explorer, locate current buffer",
+    },
     ["<leader>ff"] = { "<Cmd>Telescope find_files<CR>", "Telescope find files" },
-    ["<leader>fa"] = { "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", "Telescope find all" },
-    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "Telescope find old files" },
-    ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "Telescope find help page" },
+    ["<leader>fa"] = {
+      "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+      "Telescope find all",
+    },
+    ["<leader>fo"] = {
+      "<Cmd>Telescope oldfiles<CR>",
+      "Telescope find old files",
+    },
+    ["<leader>fh"] = {
+      "<Cmd>Telescope help_tags<CR>",
+      "Telescope find help page",
+    },
     ["<leader>fg"] = { "<Cmd>Telescope live_grep<CR>", "Telescope live grep" },
-    ["<leader>fz"] = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Telescope fuzzy find in current buffer" },
+    ["<leader>fz"] = {
+      "<Cmd>Telescope current_buffer_fuzzy_find<CR>",
+      "Telescope fuzzy find in current buffer",
+    },
 
     -- git
     ["<leader>st"] = { "<Cmd>Telescope git_status<CR>", "Git status" },
@@ -322,8 +406,14 @@ M.telescope = {
     ["<leader>th"] = { "<Cmd>Telescope themes<CR>", "Select themes" },
 
     -- lsp
-    ["<leader>db"] = { "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "LSP diagnostic for current buffer" },
-    ["<leader>da"] = { "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", "LSP diagnostic for all open buffers" },
+    ["<leader>db"] = {
+      "<Cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
+      "LSP diagnostic for current buffer",
+    },
+    ["<leader>da"] = {
+      "<Cmd>lua require('telescope.builtin').diagnostics()<CR>",
+      "LSP diagnostic for all open buffers",
+    },
   },
 }
 
@@ -333,13 +423,13 @@ M.toggleterm = {
       function()
         require("core.utils").toggle_term()
       end,
-      "Toggle horizontal terminal"
+      "Toggle horizontal terminal",
     },
     ["<C-f>"] = {
       function()
         require("core.utils").toggle_float_term()
       end,
-      "Toggle float terminal"
+      "Toggle float terminal",
     },
   },
   t = {
@@ -347,13 +437,13 @@ M.toggleterm = {
       function()
         require("core.utils").toggle_term()
       end,
-      "Toggle horizontal terminal"
+      "Toggle horizontal terminal",
     },
     ["<C-f>"] = {
       function()
         require("core.utils").toggle_float_term()
       end,
-      "Toggle float terminal"
+      "Toggle float terminal",
     },
   },
 }

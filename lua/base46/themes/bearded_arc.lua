@@ -56,12 +56,12 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  Include = { fg = M.base_30.yellow, },
-  Conditional = { fg = M.base_30.yellow, },
-  ["@constructor"] = { fg = M.base_16.blue, },
-  ["@punctuation.bracket"] = { fg = M.base_30.dark_purple, },
-  ["@keyword.return"] = { fg = M.base_30.yellow, },
-  ["@parameter"] = { fg = M.base_30.pink, },
+  Include = { fg = M.base_30.yellow },
+  Conditional = { fg = M.base_30.yellow },
+  ["@constructor"] = { fg = M.base_16.blue },
+  ["@punctuation.bracket"] = { fg = M.base_30.dark_purple },
+  ["@keyword.return"] = { fg = M.base_30.yellow },
+  ["@parameter"] = { fg = M.base_30.pink },
 }
 
 M.type = "dark"

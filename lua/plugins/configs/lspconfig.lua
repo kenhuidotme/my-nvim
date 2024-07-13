@@ -24,18 +24,18 @@ local lsp_client_setup = function()
   })
 
   vim.lsp.handlers["textDocument/hover"] =
-      vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "single",
+    })
 
   vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = "single",
+    })
 end
 
 local on_init_common = function(client, _)
-  if client.supports_method "textDocument/semanticTokens" then
+  if client.supports_method("textDocument/semanticTokens") then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -72,7 +72,10 @@ capabilities_common.textDocument.completion.completionItem = {
 local lua_server_on_init = function(client)
   on_init_common(client)
   local path = client.workspace_folders[1].name
-  if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+  if
+    vim.loop.fs_stat(path .. "/.luarc.json")
+    or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+  then
     return
   end
 end
@@ -88,7 +91,7 @@ local lua_ls_setup = function()
     settings = {
       Lua = {
         runtime = {
-          version = 'LuaJIT',
+          version = "LuaJIT",
         },
         diagnostics = {
           globals = { "vim" },
@@ -108,7 +111,7 @@ end
 -- pyright
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
 local pyright_setup = function()
-  require('lspconfig').pyright.setup({
+  require("lspconfig").pyright.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -118,7 +121,7 @@ end
 -- ruff_lsp
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 local ruff_lsp_setup = function()
-  require('lspconfig').ruff_lsp.setup({
+  require("lspconfig").ruff_lsp.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -128,7 +131,7 @@ end
 -- Typescript
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
 local tsserver_setup = function()
-  require('lspconfig').tsserver.setup({
+  require("lspconfig").tsserver.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -138,7 +141,7 @@ end
 -- clangd
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
 local clangd_setup = function()
-  require('lspconfig').clangd.setup({
+  require("lspconfig").clangd.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -148,7 +151,7 @@ end
 -- CMake
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#neocmake
 local neocmake_setup = function()
-  require('lspconfig').neocmake.setup({
+  require("lspconfig").neocmake.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -183,7 +186,7 @@ end
 -- zls
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#zls
 local zls_setup = function()
-  require('lspconfig').zls.setup({
+  require("lspconfig").zls.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,

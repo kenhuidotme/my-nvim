@@ -4,7 +4,8 @@ local M = {}
 local check_trigger_char = function(line_to_cursor, triggers)
   for _, trigger_char in ipairs(triggers) do
     local current_char = line_to_cursor:sub(#line_to_cursor, #line_to_cursor)
-    local prev_char = line_to_cursor:sub(#line_to_cursor - 1, #line_to_cursor - 1)
+    local prev_char =
+      line_to_cursor:sub(#line_to_cursor - 1, #line_to_cursor - 1)
     if current_char == trigger_char then
       return true
     end
@@ -26,7 +27,8 @@ local open_signature = function()
       break
     end
 
-    local triggers = client.server_capabilities.signatureHelpProvider.triggerCharacters
+    local triggers =
+      client.server_capabilities.signatureHelpProvider.triggerCharacters
 
     if triggers then
       -- csharp has wrong trigger chars for some odd reason

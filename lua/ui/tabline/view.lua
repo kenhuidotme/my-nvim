@@ -34,7 +34,8 @@ local add_file_style = function(filename, buf)
   local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
   if devicons_present then
-    local icon, icon_hl = devicons.get_icon(filename, string.match(filename, "%a+$"))
+    local icon, icon_hl =
+      devicons.get_icon(filename, string.match(filename, "%a+$"))
     if not icon then
       icon = "󰈚"
       icon_hl = "DevIconDefault"
@@ -42,30 +43,23 @@ local add_file_style = function(filename, buf)
 
     local buf_current = vim.api.nvim_get_current_buf()
 
-    icon =
-        buf == buf_current
-        and new_icon_hl(icon_hl, "TlBufOn") .. icon
-        or icon
+    icon = buf == buf_current and new_icon_hl(icon_hl, "TlBufOn") .. icon
+      or icon
 
     local name_max = 16
-    filename =
-        #filename > name_max
-        and string.sub(filename, 1, 14) .. ".."
-        or filename
+    filename = #filename > name_max and string.sub(filename, 1, 14) .. ".."
+      or filename
 
     -- padding around bufname; 24 = bufname length (icon + filename)
     local padding = (24 - #filename - 6) / 2
 
-    filename =
-        buf == buf_current
-        and "%#TlBufOn#" .. " " .. filename
-        or "%#TlBufOff#" .. " " .. filename
+    filename = buf == buf_current and "%#TlBufOn#" .. " " .. filename
+      or "%#TlBufOff#" .. " " .. filename
 
-    return
-        string.rep(" ", padding)
-        .. icon
-        .. filename
-        .. string.rep(" ", padding)
+    return string.rep(" ", padding)
+      .. icon
+      .. filename
+      .. string.rep(" ", padding)
   end
 end
 
@@ -85,35 +79,27 @@ local style_buffer = function(buf)
     end
   end
 
-  filename =
-      "%" .. buf .. "@TlGoToBuf@"
-      .. add_file_style(filename, buf)
+  filename = "%" .. buf .. "@TlGoToBuf@" .. add_file_style(filename, buf)
 
   local modified = vim.api.nvim_buf_get_option(buf, "modified")
 
   if buf == vim.api.nvim_get_current_buf() then
-    return
-        modified
-        and
-        "%#TlBufOn#" .. filename
-        .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnModified# "
-        or
-        "%#TlBufOn#" .. filename
-        .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnClose# "
+    return modified
+        and "%#TlBufOn#" .. filename .. "%" .. buf .. "@TlCloseBuf@%#TlBufOnModified# "
+      or "%#TlBufOn#"
+        .. filename
+        .. "%"
+        .. buf
+        .. "@TlCloseBuf@%#TlBufOnClose# "
   else
-    return
-        modified
-        and "%#TlBufOff#" .. filename .. "%#TlBufOffModified# "
-        or "%#TlBufOff#" .. filename .. "%#TlBufOffClose#󰅖 "
+    return modified and "%#TlBufOff#" .. filename .. "%#TlBufOffModified# "
+      or "%#TlBufOff#" .. filename .. "%#TlBufOffClose#󰅖 "
   end
 end
 
 local get_tabs_width = function()
   local tabs = vim.api.nvim_list_tabpages()
-  return
-      #tabs > 1
-      and 3 * #tabs + 3
-      or 0
+  return #tabs > 1 and 3 * #tabs + 3 or 0
 end
 
 local buffer_list = function()
@@ -136,10 +122,7 @@ local buffer_list = function()
       table.remove(buffers, 1)
       has_prefix = true
     end
-    has_current =
-        buf == buf_current
-        and true
-        or has_current
+    has_current = buf == buf_current and true or has_current
     table.insert(buffers, style_buffer(buf))
     last_index = i
   end
@@ -164,19 +147,10 @@ local tab_list = function()
   local result = ""
   if #tabs > 1 then
     for i, t in ipairs(tabs) do
-      local tab_hl =
-          t == tab
-          and "%#TlTabOn#"
-          or "%#TlTabOff#"
-      result =
-          result
-          .. "%" .. i .. "@TlGoToTab@"
-          .. tab_hl .. " " .. i .. " "
+      local tab_hl = t == tab and "%#TlTabOn#" or "%#TlTabOff#"
+      result = result .. "%" .. i .. "@TlGoToTab@" .. tab_hl .. " " .. i .. " "
       if t == tab then
-        result =
-            result
-            .. "%#TlTabOnClose#"
-            .. "%@TlCloseTab@󰅙 "
+        result = result .. "%#TlTabOnClose#" .. "%@TlCloseTab@󰅙 "
       end
     end
   end

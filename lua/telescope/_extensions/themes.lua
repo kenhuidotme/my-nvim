@@ -17,7 +17,7 @@ local function switcher()
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
   -- show current buffer content in previewer
-  local previewer = previewers.new_buffer_previewer {
+  local previewer = previewers.new_buffer_previewer({
     define_preview = function(self, entry)
       -- add content
       local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
@@ -29,7 +29,7 @@ local function switcher()
 
       reload_theme(entry.value)
     end,
-  }
+  })
 
   local themes = require("core.utils").list_themes()
   local current_theme_index = 1
@@ -44,9 +44,9 @@ local function switcher()
   local picker = pickers.new({
     prompt_title = "󱥚  Select Theme",
     previewer = previewer,
-    finder = finders.new_table {
+    finder = finders.new_table({
       results = themes,
-    },
+    }),
     default_selection_index = current_theme_index,
     sorter = config.generic_sorter(),
 
@@ -87,6 +87,6 @@ local function switcher()
   picker:find()
 end
 
-return require("telescope").register_extension {
+return require("telescope").register_extension({
   exports = { themes = switcher },
-}
+})

@@ -1,6 +1,6 @@
 local M = {}
 
-M.load = function ()
+M.load = function()
   local base16 = require("base46").get_theme_tbl("base_16")
 
   vim.g.terminal_color_0 = base16.base01

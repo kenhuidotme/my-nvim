@@ -1,4 +1,5 @@
 Neovim configuration for myself / yourself.
+
 </p>
 
 # Features
@@ -14,6 +15,7 @@ Neovim configuration for myself / yourself.
 - Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig)
 
 # Pre-requisites
+
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 - [Neovim 0.9.5+](https://github.com/neovim/neovim/releases/tag/stable)
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
@@ -36,6 +38,7 @@ git clone https://github.com/kenhuidotme/MyNvim ~/.config/nvim && nvim
 git clone https://github.com/kenhuidotme/MyNvim %USERPROFILE%\AppData\Local\nvim && nvim
 
 ```
+
 ## Window PowerShell
 
 ```shell
@@ -69,123 +72,123 @@ rm -Force ~\AppData\Local\nvim-data
 
 ## Common
 
-| Key | Description |
-| --- | --- |
-| C-s | Save file |
-| C-c | Copy selected text to clipboard |
-| C-v | Paste text from clipboard in insert mode |
-| `<leader>`n | Toggle line number |
-| `<leader>`rn | Toggle relative number |
-| `<leader>`/ | Toggle comment |
-| `<leader>`th | Select themes |
+| Key          | Description                              |
+| ------------ | ---------------------------------------- |
+| C-s          | Save file                                |
+| C-c          | Copy selected text to clipboard          |
+| C-v          | Paste text from clipboard in insert mode |
+| `<leader>`n  | Toggle line number                       |
+| `<leader>`rn | Toggle relative number                   |
+| `<leader>`/  | Toggle comment                           |
+| `<leader>`th | Select themes                            |
 
 ## Buffer
 
-| Key | Description |
-| --- | --- |
-| < | Buffer prev |
-| > | Buffer next |
-| _ | Buffer move left |
-| + | Buffer move right |
-| S-b | Buffer new |
-| S-c | Buffer close |
+| Key | Description       |
+| --- | ----------------- |
+| <   | Buffer prev       |
+| >   | Buffer next       |
+| \_  | Buffer move left  |
+| +   | Buffer move right |
+| S-b | Buffer new        |
+| S-c | Buffer close      |
 
 ## Tab
 
 | Key | Description |
-| --- | --- |
-| S-t | Tab new |
-| S-q | Tab close |
-| } | Tab next |
-| { | Tab prev |
+| --- | ----------- |
+| S-t | Tab new     |
+| S-q | Tab close   |
+| }   | Tab next    |
+| {   | Tab prev    |
 
 ## Window
 
-| Key | Description |
-| --- | --- |
-| C-x | Window horizontal split |
-| C-y | Window vertical split |
-| C-k | Window jump up |
-| C-j | Window jump down |
-| C-h | Window jump left |
-| C-l | Window jump right |
-| C-Up | Window height +1 |
-| C-Down | Window height -1 |
-| C-Left | Window width +1 |
-| C-Right | Window width -1 |
-| C-q | Window close |
+| Key     | Description             |
+| ------- | ----------------------- |
+| C-x     | Window horizontal split |
+| C-y     | Window vertical split   |
+| C-k     | Window jump up          |
+| C-j     | Window jump down        |
+| C-h     | Window jump left        |
+| C-l     | Window jump right       |
+| C-Up    | Window height +1        |
+| C-Down  | Window height -1        |
+| C-Left  | Window width +1         |
+| C-Right | Window width -1         |
+| C-q     | Window close            |
 
 ## Terminal
 
-| Key | Description |
-| --- | --- |
-| C-t | Toggle terminal |
+| Key | Description           |
+| --- | --------------------- |
+| C-t | Toggle terminal       |
 | C-f | Toggle terminal float |
-| C-q | Terminal mode escape |
+| C-q | Terminal mode escape  |
 
 ## Nvim-tree
 
-| Key | Description |
-| --- | --- |
-| C-e | Nvim-tree toggle |
+| Key | Description                   |
+| --- | ----------------------------- |
+| C-e | Nvim-tree toggle              |
 | C-b | Nvim-tree file current buffer |
-| ? | Nvim-tree help |
+| ?   | Nvim-tree help                |
 
 ## Aerial
 
-| Key | Description |
-| --- | --- |
-| C-\ | Aerial toggle |
-| C-[ | Aerial jump backwards |
-| C-] | Aerial jump forwards |
+| Key  | Description           |
+| ---- | --------------------- |
+| C-\  | Aerial toggle         |
+| C-[  | Aerial jump backwards |
+| C-]  | Aerial jump forwards  |
 
 ## Lsp
 
-| Key | Description |
-| --- | --- |
-| gh | LSP hover |
-| gd | LSP definition |
-| gD | LSP declaration |
-| gt | LSP type definition |
-| gi | LSP implementation |
-| gr | LSP references |
-| gs | LSP signature |
-| `<leader>`dt | LSP Toggle diagnostics |
-| `<leader>`dn | LSP diagnostic next |
-| `<leader>`dp | LSP diagnostic prev |
-| `<leader>`dl | LSP diagnostic list |
-| `<leader>`db | LSP diagnostic for current buffer |
+| Key          | Description                         |
+| ------------ | ----------------------------------- |
+| gh           | LSP hover                           |
+| gd           | LSP definition                      |
+| gD           | LSP declaration                     |
+| gt           | LSP type definition                 |
+| gi           | LSP implementation                  |
+| gr           | LSP references                      |
+| gs           | LSP signature                       |
+| `<leader>`dt | LSP Toggle diagnostics              |
+| `<leader>`dn | LSP diagnostic next                 |
+| `<leader>`dp | LSP diagnostic prev                 |
+| `<leader>`dl | LSP diagnostic list                 |
+| `<leader>`db | LSP diagnostic for current buffer   |
 | `<leader>`da | LSP diagnostic for all open buffers |
-| `<leader>`ra | LSP rename |
-| `<leader>`ca | LSP code action |
-| `<leader>`wl | LSP workspace list |
-| `<leader>`wa | LSP workspace add |
-| `<leader>`wr | LSP workspace remove |
+| `<leader>`ra | LSP rename                          |
+| `<leader>`ca | LSP code action                     |
+| `<leader>`wl | LSP workspace list                  |
+| `<leader>`wa | LSP workspace add                   |
+| `<leader>`wr | LSP workspace remove                |
 
 ## Telescope
 
-| Key | Description |
-| --- | --- |
-| `<leader>`fe | Telescope file explorer |
+| Key          | Description                                   |
+| ------------ | --------------------------------------------- |
+| `<leader>`fe | Telescope file explorer                       |
 | `<leader>`fb | Telescope file explorer, focus current buffer |
-| `<leader>`ff | Telescope find files |
-| `<leader>`fa | Telescope find all |
-| `<leader>`fo | Telescope find old files |
-| `<leader>`fb | Telescope find buffers |
-| `<leader>`fh | Telescope find help page |
-| `<leader>`fw | Telescope live grep |
-| `<leader>`fz | Telescope fuzzy find in current buffer |
-| ? | Telescope help |
+| `<leader>`ff | Telescope find files                          |
+| `<leader>`fa | Telescope find all                            |
+| `<leader>`fo | Telescope find old files                      |
+| `<leader>`fb | Telescope find buffers                        |
+| `<leader>`fh | Telescope find help page                      |
+| `<leader>`fw | Telescope live grep                           |
+| `<leader>`fz | Telescope fuzzy find in current buffer        |
+| ?            | Telescope help                                |
 
 ## Git
 
-| Key | Description |
-| --- | --- |
-| `<leader>`st | Git status |
-| `<leader>`cm | Git commits |
-| `<leader>`hn | Git next hunk |
-| `<leader>`hp | Git prev hunk |
-| `<leader>`hr | Git hunk reset |
+| Key          | Description      |
+| ------------ | ---------------- |
+| `<leader>`st | Git status       |
+| `<leader>`cm | Git commits      |
+| `<leader>`hn | Git next hunk    |
+| `<leader>`hp | Git prev hunk    |
+| `<leader>`hr | Git hunk reset   |
 | `<leader>`hv | Git hunk preview |
-| `<leader>`hb | Git hunk blame |
+| `<leader>`hb | Git hunk blame   |
 | `<leader>`hd | Git hunk deleted |

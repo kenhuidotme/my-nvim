@@ -56,14 +56,14 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  Constant = { fg = M.base_30.red, },
-  Operator = { fg = M.base_30.cyan, },
-  ["@field.key"] = { fg = M.base_30.red, },
-  ["@punctuation.bracket"] = { fg = M.base_16.base08, },
-  ["@constructor"] = { fg = M.base_30.orange, },
-  ["@parameter"] = { fg = M.base_30.orange, },
-  ["@tag.delimiter"] = { fg = M.base_16.base08, },
-  ["@tag.attribute"] = { link = "@annotation", },
+  Constant = { fg = M.base_30.red },
+  Operator = { fg = M.base_30.cyan },
+  ["@field.key"] = { fg = M.base_30.red },
+  ["@punctuation.bracket"] = { fg = M.base_16.base08 },
+  ["@constructor"] = { fg = M.base_30.orange },
+  ["@parameter"] = { fg = M.base_30.orange },
+  ["@tag.delimiter"] = { fg = M.base_16.base08 },
+  ["@tag.attribute"] = { link = "@annotation" },
 }
 
 M.type = "dark"

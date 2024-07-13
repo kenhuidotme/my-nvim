@@ -1,9 +1,8 @@
 local M = {}
 
 M.is_valid_buffer = function(buf)
-  return
-      vim.api.nvim_buf_is_valid(buf)
-      and vim.api.nvim_buf_get_option(buf, "buflisted")
+  return vim.api.nvim_buf_is_valid(buf)
+    and vim.api.nvim_buf_get_option(buf, "buflisted")
 end
 
 M.buffer_filter = function()
@@ -83,8 +82,8 @@ end
 
 local is_new_empty_buffer = function(buf)
   return vim.api.nvim_buf_get_name(buf) == ""
-      and vim.api.nvim_buf_get_option(buf, "filetype") == ""
-      and not vim.api.nvim_buf_get_option(buf, "modified")
+    and vim.api.nvim_buf_get_option(buf, "filetype") == ""
+    and not vim.api.nvim_buf_get_option(buf, "modified")
 end
 
 local remove_buffer = function(buf)
@@ -138,11 +137,9 @@ M.close_buffer = function()
   local wins_switch = nil
 
   if #bufs > 1 then
-    buf_switch =
-        index == #bufs
-        and bufs[index - 1]
-        or bufs[index + 1]
-    wins_switch = switch_buffer(vim.api.nvim_tabpage_list_wins(0), buf, buf_switch)
+    buf_switch = index == #bufs and bufs[index - 1] or bufs[index + 1]
+    wins_switch =
+      switch_buffer(vim.api.nvim_tabpage_list_wins(0), buf, buf_switch)
   end
 
   remove_buffer(buf)
@@ -220,15 +217,17 @@ M.load = function()
     callback = function()
       -- https://github.com/neovim/neovim/issues/7144
       -- Keep the terminal buffer open after the shell closes
-      local key = vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)
-      vim.api.nvim_feedkeys(key, 'n', false)
+      local key =
+        vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)
+      vim.api.nvim_feedkeys(key, "n", false)
     end,
   })
 
   vim.api.nvim_create_autocmd({ "BufEnter" }, {
     callback = function(args)
       local bufs = M.buffer_filter()
-      if not vim.tbl_contains(bufs, args.buf) and M.is_valid_buffer(args.buf)
+      if
+        not vim.tbl_contains(bufs, args.buf) and M.is_valid_buffer(args.buf)
       then
         table.insert(bufs, args.buf)
       end

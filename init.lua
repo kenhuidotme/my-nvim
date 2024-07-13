@@ -10,7 +10,14 @@ local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy_path) then
   echo("  Installing lazy.nvim & plugins ...")
   local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", repo, lazy_path })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--branch=stable",
+    repo,
+    lazy_path,
+  })
   require("base46").compile()
 end
 

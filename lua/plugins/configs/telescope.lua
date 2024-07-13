@@ -55,17 +55,17 @@ local opts = {
   extensions = {
     -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
     fzf = {
-      fuzzy = true,                   -- false will only do exact matching
+      fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true,    -- override the file sorter
-      case_mode = "smart_case",       -- "ignore_case" or "respect_case"
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- "ignore_case" or "respect_case"
     },
 
     -- https://github.com/nvim-telescope/telescope-ui-select.nvim
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
+      require("telescope.themes").get_dropdown({
         -- even more opts
-      }
+      }),
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
       -- specific_opts = {
@@ -79,7 +79,7 @@ local opts = {
       --      do the following
       --   codeactions = false,
       -- }
-    }
+    },
   },
 }
 

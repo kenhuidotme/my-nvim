@@ -56,8 +56,8 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  Operator = { fg = M.base_30.nord_blue, },
-  ["@operator"] = { fg = M.base_30.nord_blue, },
+  Operator = { fg = M.base_30.nord_blue },
+  ["@operator"] = { fg = M.base_30.nord_blue },
 }
 
 M.type = "dark"

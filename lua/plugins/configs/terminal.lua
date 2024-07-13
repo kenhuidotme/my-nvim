@@ -19,7 +19,7 @@ M.setup = function()
       if bt == "terminal" then
         vim.cmd("startinsert!")
       end
-    end
+    end,
   })
 end
 

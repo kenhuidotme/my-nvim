@@ -1,4 +1,4 @@
-local supported = {
+local prettier_supported = {
   "css",
   "graphql",
   "handlebars",
@@ -19,8 +19,12 @@ local supported = {
 
 local opts = {
   formatters_by_ft = {
-    lua = { "stylua" },
+    -- go install mvdan.cc/sh/v3/cmd/gosh@latest
     sh = { "shfmt" },
+    -- cargo install stylua
+    lua = { "stylua" },
+    -- cargo install taplo-cli
+    toml = { "taplo" },
   },
   format_on_save = {
     timeout_ms = 1000,
@@ -28,8 +32,9 @@ local opts = {
   },
 }
 
-for _, ft in ipairs(supported) do
-  opts.formatters_by_ft[ft] = { "prettierd", "prettier" }
+-- npm install -g @fsouza/prettierd
+for _, ft in ipairs(prettier_supported) do
+  opts.formatters_by_ft[ft] = { "prettierd" }
 end
 
 return opts

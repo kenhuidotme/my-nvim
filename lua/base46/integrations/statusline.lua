@@ -63,7 +63,8 @@ local highlights = {
 highlights = vim.tbl_deep_extend("force", highlights, lsp_highlights)
 
 local add_mode_highlights = function(mode, col)
-  highlights["St" .. mode .. "Mode"] = { fg = base30.black, bg = base30[col], bold = true }
+  highlights["St" .. mode .. "Mode"] =
+    { fg = base30.black, bg = base30[col], bold = true }
 end
 
 -- add mode highlights

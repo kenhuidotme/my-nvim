@@ -56,19 +56,16 @@ local git = function()
 
   local git_status = vim.b.gitsigns_status_dict
 
-  local added =
-    (git_status.added and git_status.added ~= 0)
-    and "  " .. git_status.added
+  local added = (git_status.added and git_status.added ~= 0)
+      and "  " .. git_status.added
     or ""
 
-  local changed =
-    (git_status.changed and git_status.changed ~= 0)
-    and "  " .. git_status.changed
+  local changed = (git_status.changed and git_status.changed ~= 0)
+      and "  " .. git_status.changed
     or ""
 
-  local removed =
-    (git_status.removed and git_status.removed ~= 0)
-    and "  " .. git_status.removed
+  local removed = (git_status.removed and git_status.removed ~= 0)
+      and "  " .. git_status.removed
     or ""
 
   local branch_name = "  " .. git_status.head
@@ -86,25 +83,14 @@ local lsp_diagnostics = function()
   local h = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local i = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
-  local errors =
-    (e and e > 0)
-    and ("%#StLspError#" .. " " .. e .. " ")
+  local errors = (e and e > 0) and ("%#StLspError#" .. " " .. e .. " ") or ""
+
+  local warnings = (w and w > 0) and ("%#StLspWarning#" .. " " .. w .. " ")
     or ""
 
-  local warnings =
-    (w and w > 0)
-    and ("%#StLspWarning#" .. " " .. w .. " ")
-    or ""
+  local hints = (h and h > 0) and ("%#StLspHints#" .. "󰛩 " .. h .. " ") or ""
 
-  local hints =
-    (h and h > 0)
-    and ("%#StLspHints#" .. "󰛩 " .. h .. " ")
-    or ""
-
-  local info =
-    (i and i > 0)
-    and ("%#StLspInfo#" .. "󰋼 " .. i .. " ")
-    or ""
+  local info = (i and i > 0) and ("%#StLspInfo#" .. "󰋼 " .. i .. " ") or ""
 
   return errors .. warnings .. hints .. info
 end
@@ -112,12 +98,12 @@ end
 local lsp_status = function()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.attached_buffers[vim.api.nvim_get_current_buf()]
+      if
+        client.attached_buffers[vim.api.nvim_get_current_buf()]
         and client.name ~= "null-ls"
       then
-        return
-          vim.o.columns > 100
-          and "%#StLspStatus#" .. "  " .. client.name .. " "
+        return vim.o.columns > 100
+            and "%#StLspStatus#" .. "  " .. client.name .. " "
           or "  LSP "
       end
     end
@@ -126,23 +112,19 @@ local lsp_status = function()
 end
 
 local cwd = function()
-  local dir_name =
-    "%#StCwdText#"
+  local dir_name = "%#StCwdText#"
     .. " "
     .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     .. " "
 
-  return
-    vim.o.columns > 85
-    and "%#StCwdIcon#" .. " 󰉋 " .. dir_name
-    or ""
+  return vim.o.columns > 85 and "%#StCwdIcon#" .. " 󰉋 " .. dir_name or ""
 end
 
 local cursor_position = function()
-  local current_line = vim.fn.line "."
-  local total_line = vim.fn.line "$"
+  local current_line = vim.fn.line(".")
+  local total_line = vim.fn.line("$")
 
-  local text = math.modf((current_line / total_line) * 100) .. tostring "%%"
+  local text = math.modf((current_line / total_line) * 100) .. tostring("%%")
   text = string.format("%4s", text)
 
   text = current_line == 1 and "Top" or text
@@ -152,7 +134,7 @@ local cursor_position = function()
 end
 
 M.build = function()
-  return table.concat {
+  return table.concat({
     mode(),
     git(),
     "%=",
@@ -160,7 +142,7 @@ M.build = function()
     lsp_status(),
     cwd(),
     cursor_position(),
-  }
+  })
 end
 
 return M

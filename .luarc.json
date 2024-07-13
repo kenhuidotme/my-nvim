@@ -1,5 +1,3 @@
 {
-    "diagnostics.disable": [
-        "different-requires"
-    ]
+  "diagnostics.disable": ["different-requires"]
 }

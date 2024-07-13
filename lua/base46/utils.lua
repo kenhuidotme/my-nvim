@@ -23,7 +23,12 @@ end
 -- @param b: Blue (0-255)
 -- @return The hexadecimal string representation of the color
 M.rgb2hex = function(r, g, b)
-  return string.format("#%02x%02x%02x", math.floor(r), math.floor(g), math.floor(b))
+  return string.format(
+    "#%02x%02x%02x",
+    math.floor(r),
+    math.floor(g),
+    math.floor(b)
+  )
 end
 
 -- Helper function to convert a HSL color value to RGB

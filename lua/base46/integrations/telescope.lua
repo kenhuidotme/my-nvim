@@ -2,9 +2,9 @@ local base30 = require("base46").get_theme_tbl("base_30")
 
 local highlights = {
   TelescopeNormal = { bg = base30.darker_black },
-  TelescopePromptTitle = { fg = base30.black, bg = base30.red, },
+  TelescopePromptTitle = { fg = base30.black, bg = base30.red },
   TelescopePromptPrefix = { fg = base30.red, bg = base30.black2 },
-  TelescopePreviewTitle = { fg = base30.black, bg = base30.green, },
+  TelescopePreviewTitle = { fg = base30.black, bg = base30.green },
 
   TelescopeSelection = { bg = base30.grey, fg = base30.white },
   TelescopeResultsDiffAdd = { fg = base30.green },

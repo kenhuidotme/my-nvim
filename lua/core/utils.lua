@@ -11,11 +11,11 @@ M.load_mappings = function(section, mapping_options)
 
     for mode, mode_values in pairs(section_values) do
       for key_bind, mapping_info in pairs(mode_values) do
-        local options =
-            vim.tbl_deep_extend(
-              "force",
-              mapping_options or {},
-              mapping_info.options or {})
+        local options = vim.tbl_deep_extend(
+          "force",
+          mapping_options or {},
+          mapping_info.options or {}
+        )
         options.desc = mapping_info[2]
         vim.keymap.set(mode, key_bind, mapping_info[1], options)
       end
@@ -30,10 +30,9 @@ M.lazy_load = function(plugin)
     callback = function()
       local file = vim.fn.expand("%")
 
-      local is_valid_plugin =
-          string.sub(file, 1, 8) ~= "NvimTree"
-          and file ~= "[lazy]"
-          and file ~= ""
+      local is_valid_plugin = string.sub(file, 1, 8) ~= "NvimTree"
+        and file ~= "[lazy]"
+        and file ~= ""
 
       if is_valid_plugin then
         vim.api.nvim_del_augroup_by_name(group_name)
@@ -55,7 +54,8 @@ M.lazy_load = function(plugin)
 end
 
 M.list_themes = function()
-  local themes = vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
+  local themes =
+    vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
   for index, theme in ipairs(themes) do
     themes[index] = theme:match("(.+)%..+")
   end
@@ -83,23 +83,28 @@ M.save_theme = function(name)
 end
 
 M.set_launch_dir = function(dir)
-  local vim_enter_group = vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
+  local vim_enter_group =
+    vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
   vim.api.nvim_create_autocmd(
     { "VimEnter" },
     { pattern = "*", command = "cd " .. dir, group = vim_enter_group }
   )
 end
 
-M.toggle_tree = function (all)
+M.toggle_tree = function(all)
   -- nvim-tree help
-  if vim.bo.buftype == 'nofile' and vim.bo.filetype ~= 'NvimTree' then
+  if vim.bo.buftype == "nofile" and vim.bo.filetype ~= "NvimTree" then
     return
   end
 
   if all then
-    require('nvim-tree.api').tree.find_file({update_root=true, open=true, focus=true})
+    require("nvim-tree.api").tree.find_file({
+      update_root = true,
+      open = true,
+      focus = true,
+    })
   else
-    require('nvim-tree.api').tree.toggle()
+    require("nvim-tree.api").tree.toggle()
   end
 end
 
@@ -135,7 +140,9 @@ M.toggle_diagnostics = function()
     vim.api.nvim_echo({ { "Enabling diagnostics" } }, false, {})
   end
 
-  vim.schedule(function() vim.diagnostic[cmd](0) end)
+  vim.schedule(function()
+    vim.diagnostic[cmd](0)
+  end)
 end
 
 return M

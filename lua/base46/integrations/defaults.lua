@@ -208,7 +208,10 @@ local highlights = {
   },
 
   LazyButton = {
-    fg = require("base46.utils").change_hex_lightness(base30.light_grey, vim.o.bg == "dark" and 10 or -20),
+    fg = require("base46.utils").change_hex_lightness(
+      base30.light_grey,
+      vim.o.bg == "dark" and 10 or -20
+    ),
     bg = base30.one_bg,
   },
 

@@ -56,8 +56,8 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  Constant = { fg = M.base_16.base09, },
-  ["@parameter"] = { fg = M.base_16.base0A, },
+  Constant = { fg = M.base_16.base09 },
+  ["@parameter"] = { fg = M.base_16.base0A },
 }
 
 M.type = "dark"

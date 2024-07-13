@@ -1,16 +1,16 @@
 local opts = {
   ensure_installed = {
-    'bash',
-    'lua',
-    'luadoc',
-    'vim',
-    'vimdoc',
-    'python',
-    'json',
-    'javascript',
-    'typescript',
-    'html',
-    'css',
+    "bash",
+    "lua",
+    "luadoc",
+    "vim",
+    "vimdoc",
+    "python",
+    "json",
+    "javascript",
+    "typescript",
+    "html",
+    "css",
   },
 
   highlight = {

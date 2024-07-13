@@ -7,7 +7,7 @@ local function my_on_attach(bufnr)
       buffer = bufnr,
       noremap = true,
       silent = true,
-      nowait = true
+      nowait = true,
     }
   end
 
@@ -20,7 +20,12 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "i", api.node.show_info_popup, options("Info"))
 
   vim.keymap.del("n", "<C-v>", { buffer = bufnr })
-  vim.keymap.set("n", "<C-y>", api.node.open.vertical, options("Open: Vertical Split"))
+  vim.keymap.set(
+    "n",
+    "<C-y>",
+    api.node.open.vertical,
+    options("Open: Vertical Split")
+  )
 
   vim.keymap.del("n", "<C-]>", { buffer = bufnr })
   vim.keymap.set("n", "=", api.tree.change_root_to_node, options("CD"))
