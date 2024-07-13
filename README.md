@@ -1,5 +1,7 @@
 Neovim configuration for myself / yourself.
 
+Polishing details in daily use.
+
 </p>
 
 # Features
@@ -8,6 +10,7 @@ Neovim configuration for myself / yourself.
 - File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 - Outline explorer with [Aerial](https://github.com/stevearc/aerial.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
+- Autoformatting with [Conform](https://github.com/stevearc/conform.nvim)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
 - Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
