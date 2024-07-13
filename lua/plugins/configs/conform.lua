@@ -23,8 +23,6 @@ local opts = {
     sh = { "shfmt" },
     -- cargo install stylua
     lua = { "stylua" },
-    -- cargo install taplo-cli
-    toml = { "taplo" },
   },
   format_on_save = {
     timeout_ms = 1000,

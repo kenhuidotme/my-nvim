@@ -138,6 +138,16 @@ local tsserver_setup = function()
   })
 end
 
+-- tailwindcss
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+local tailwindcss_setup = function()
+  require("lspconfig").tailwindcss.setup({
+    on_init = on_init_common,
+    on_attach = on_attach_common,
+    capabilities = capabilities_common,
+  })
+end
+
 -- clangd
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
 local clangd_setup = function()
@@ -183,10 +193,10 @@ local rust_analyzer_setup = function()
   })
 end
 
--- zls
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#zls
-local zls_setup = function()
-  require("lspconfig").zls.setup({
+-- taplo
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
+local taplo_setup = function()
+  require("lspconfig").taplo.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -198,10 +208,11 @@ local lsp_server_setup = function()
   pyright_setup()
   ruff_lsp_setup()
   tsserver_setup()
+  tailwindcss_setup()
   clangd_setup()
   neocmake_setup()
   rust_analyzer_setup()
-  zls_setup()
+  taplo_setup()
 end
 
 local wgsl_filetype_setup = function()
