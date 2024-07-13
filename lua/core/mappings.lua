@@ -26,8 +26,7 @@ M.common = {
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- line numbers
-    ["<leader>n"] = { "<Cmd>set nu!<CR>", "Toggle line number" },
-    ["<leader>rn"] = { "<Cmd>set rnu!<CR>", "Toggle relative number" },
+    ["<leader>n"] = { "<Cmd>set nu!<CR>", "Line numbers toggle" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -192,14 +191,25 @@ M.comment = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
-      "Toggle comment",
+      "Comment toggle ",
     },
   },
 
   v = {
     ["<leader>/"] = {
       "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "Toggle comment",
+      "Comment toggle",
+    },
+  },
+}
+
+M["highlight-colors"] = {
+  n = {
+    ["<leader>ct"] = {
+      function()
+        require("nvim-highlight-colors").toggle()
+      end,
+      "Highlight colors toggle",
     },
   },
 }
@@ -260,7 +270,7 @@ M.lspconfig = {
       function()
         require("core.utils").toggle_diagnostics()
       end,
-      "Toggle diagnostics",
+      "LSP diagnostics toggle",
     },
 
     ["<leader>dn"] = {
@@ -423,13 +433,13 @@ M.toggleterm = {
       function()
         require("core.utils").toggle_term()
       end,
-      "Toggle horizontal terminal",
+      "Terminal toggle",
     },
     ["<C-f>"] = {
       function()
         require("core.utils").toggle_float_term()
       end,
-      "Toggle float terminal",
+      "Terminal toggle float",
     },
   },
   t = {
@@ -437,13 +447,13 @@ M.toggleterm = {
       function()
         require("core.utils").toggle_term()
       end,
-      "Toggle horizontal terminal",
+      "Terminal toggle",
     },
     ["<C-f>"] = {
       function()
         require("core.utils").toggle_float_term()
       end,
-      "Toggle float terminal",
+      "Terminal toggle float",
     },
   },
 }

@@ -52,6 +52,18 @@ local plugins = {
   },
 
   {
+    "brenoprata10/nvim-highlight-colors",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "HighlightColors" },
+    init = function()
+      require("core.utils").load_mappings("highlight-colors")
+    end,
+    config = function()
+      require("nvim-highlight-colors").setup()
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
     init = function()

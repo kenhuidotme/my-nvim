@@ -80,9 +80,9 @@ rm -Force ~\AppData\Local\nvim-data
 | C-s          | Save file                                |
 | C-c          | Copy selected text to clipboard          |
 | C-v          | Paste text from clipboard in insert mode |
-| `<leader>`n  | Toggle line number                       |
-| `<leader>`rn | Toggle relative number                   |
-| `<leader>`/  | Toggle comment                           |
+| `<leader>`n  | Line number toggle                       |
+| `<leader>`/  | Comment toggle                           |
+| `<leader>`ct | Highlight colors toggle                  |
 | `<leader>`th | Select themes                            |
 
 ## Buffer
@@ -125,8 +125,8 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description           |
 | --- | --------------------- |
-| C-t | Toggle terminal       |
-| C-f | Toggle terminal float |
+| C-t | Terminal toggle       |
+| C-f | Terminal toggle float |
 | C-q | Terminal mode escape  |
 
 ## Nvim-tree
@@ -156,7 +156,7 @@ rm -Force ~\AppData\Local\nvim-data
 | gi           | LSP implementation                  |
 | gr           | LSP references                      |
 | gs           | LSP signature                       |
-| `<leader>`dt | LSP Toggle diagnostics              |
+| `<leader>`dt | LSP diagnostics toggle              |
 | `<leader>`dn | LSP diagnostic next                 |
 | `<leader>`dp | LSP diagnostic prev                 |
 | `<leader>`dl | LSP diagnostic list                 |
