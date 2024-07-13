@@ -1,5 +1,6 @@
 local opts = {
   ensure_installed = {
+    'bash',
     'lua',
     'luadoc',
     'vim',
@@ -9,6 +10,7 @@ local opts = {
     'javascript',
     'typescript',
     'html',
+    'css',
   },
 
   highlight = {
