@@ -47,7 +47,9 @@ local formatting_style = {
   fields = { "abbr", "kind", "menu" },
   format = function(_, item)
     local icon = lspkind_icons[item.kind]
-    item.kind = " " .. icon .. "  " .. item.kind
+    if icon then
+      item.kind = " " .. icon .. "  " .. item.kind
+    end
     return item
   end,
 }

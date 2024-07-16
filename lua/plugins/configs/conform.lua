@@ -25,14 +25,14 @@ local opts = {
     lua = { "stylua" },
   },
   format_on_save = {
-    timeout_ms = 1000,
+    timeout_ms = 2000,
     lsp_format = "fallback",
   },
 }
 
--- npm install -g @fsouza/prettierd
+-- npm install -g prettier
 for _, ft in ipairs(prettier_supported) do
-  opts.formatters_by_ft[ft] = { "prettierd" }
+  opts.formatters_by_ft[ft] = { "prettier" }
 end
 
 return opts
