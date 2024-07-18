@@ -102,7 +102,7 @@ local get_tabs_width = function()
   return #tabs > 1 and 3 * #tabs + 3 or 0
 end
 
-local buffer_list = function()
+local list_buffer = function()
   local available_space = vim.o.columns - get_tabs_width() - 6
 
   local buf_current = vim.api.nvim_get_current_buf()
@@ -111,7 +111,15 @@ local buffer_list = function()
   local buffers = {}
   local bufs = require("ui.tabline").buffer_filter()
 
-  local has_prefix = false
+  if not vim.tbl_contains(bufs, buf_current) then
+    buf_current = vim.t.buf_current
+  end
+
+  if buf_current == nil then
+    has_current = true
+  end
+
+  local has_omit = false
   local last_index = 0
 
   for i, buf in ipairs(bufs) do
@@ -120,7 +128,7 @@ local buffer_list = function()
         break
       end
       table.remove(buffers, 1)
-      has_prefix = true
+      has_omit = true
     end
     has_current = buf == buf_current and true or has_current
     table.insert(buffers, style_buffer(buf))
@@ -128,7 +136,7 @@ local buffer_list = function()
   end
 
   local prefix = ""
-  if has_prefix then
+  if has_omit then
     prefix = "%#TlBufMore#<< "
   end
 
@@ -140,16 +148,15 @@ local buffer_list = function()
   return prefix .. table.concat(buffers) .. suffix .. "%#TlFill#" .. "%="
 end
 
-local tab_list = function()
+local list_tab = function()
+  local tab_current = vim.api.nvim_get_current_tabpage()
   local tabs = vim.api.nvim_list_tabpages()
-  local tab = vim.api.nvim_get_current_tabpage()
-
   local result = ""
   if #tabs > 1 then
-    for i, t in ipairs(tabs) do
-      local tab_hl = t == tab and "%#TlTabOn#" or "%#TlTabOff#"
+    for i, tab in ipairs(tabs) do
+      local tab_hl = tab == tab_current and "%#TlTabOn#" or "%#TlTabOff#"
       result = result .. "%" .. i .. "@TlGoToTab@" .. tab_hl .. " " .. i .. " "
-      if t == tab then
+      if tab == tab_current then
         result = result .. "%#TlTabOnClose#" .. "%@TlCloseTab@󰅙 "
       end
     end
@@ -160,7 +167,7 @@ end
 local M = {}
 
 M.build = function()
-  return buffer_list() .. tab_list()
+  return list_buffer() .. list_tab()
 end
 
 return M
