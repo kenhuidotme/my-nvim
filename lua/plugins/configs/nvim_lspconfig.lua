@@ -41,7 +41,7 @@ local on_init_common = function(client, _)
 end
 
 local on_attach_common = function(client, bufnr)
-  require("core.utils").load_mappings("lspconfig", { buffer = bufnr })
+  require("core.utils").load_mappings("nvim_lspconfig", { buffer = bufnr })
 
   if client.server_capabilities.signatureHelpProvider then
     require("ui.lsp.signature").setup(client)

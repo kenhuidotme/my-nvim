@@ -7,8 +7,8 @@ local plugins = {
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
-      dofile(vim.g.base46_cache .. "devicons")
-      local opts = require("plugins.configs.devicons")
+      dofile(vim.g.base46_cache .. "nvim_web_devicons")
+      local opts = require("plugins.configs.nvim_web_devicons")
       require("nvim-web-devicons").setup(opts)
     end,
   },
@@ -23,8 +23,8 @@ local plugins = {
     end,
     config = function()
       dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
-      local opts = require("plugins.configs.treesitter")
+      dofile(vim.g.base46_cache .. "nvim_treesitter")
+      local opts = require("plugins.configs.nvim_treesitter")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
@@ -34,11 +34,11 @@ local plugins = {
     event = { "BufReadPost", "BufNewFile" },
     ft = { "gitcommit", "diff" },
     init = function()
-      require("plugins.configs.gitsigns").init()
+      require("plugins.configs.gitsigns_nvim").init()
     end,
     config = function()
-      dofile(vim.g.base46_cache .. "gitsigns")
-      require("plugins.configs.gitsigns").setup()
+      dofile(vim.g.base46_cache .. "gitsigns_nvim")
+      require("plugins.configs.gitsigns_nvim").setup()
     end,
   },
 
@@ -47,7 +47,7 @@ local plugins = {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     opts = function()
-      return require("plugins.configs.conform")
+      return require("plugins.configs.conform_nvim")
     end,
   },
 
@@ -56,7 +56,7 @@ local plugins = {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "HighlightColors" },
     init = function()
-      require("core.utils").load_mappings("highlight-colors")
+      require("core.utils").load_mappings("highlight_colors")
     end,
     config = function()
       require("nvim-highlight-colors").setup()
@@ -68,11 +68,11 @@ local plugins = {
     event = { "BufReadPost", "BufNewFile" },
     init = function()
       require("core.utils").lazy_load("nvim-lspconfig")
-      require("plugins.configs.lspconfig").init()
+      require("plugins.configs.nvim_lspconfig").init()
     end,
     config = function()
-      dofile(vim.g.base46_cache .. "lspconfig")
-      require("plugins.configs.lspconfig").setup()
+      dofile(vim.g.base46_cache .. "nvim_lspconfig")
+      require("plugins.configs.nvim_lspconfig").setup()
     end,
   },
 
@@ -80,10 +80,10 @@ local plugins = {
     "stevearc/aerial.nvim",
     cmd = { "AerialToggle", "AerialPrev", "AerialNext" },
     init = function()
-      require("core.utils").load_mappings("aerial")
+      require("core.utils").load_mappings("aerial_nvim")
     end,
     opts = function()
-      return require("plugins.configs.aerial")
+      return require("plugins.configs.aerial_nvim")
     end,
   },
 
@@ -95,7 +95,7 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         dependencies = "rafamadriz/friendly-snippets",
         config = function()
-          require("plugins.configs.snippets").setup()
+          require("plugins.configs.friendly_snippets").setup()
         end,
       },
       {
@@ -120,8 +120,8 @@ local plugins = {
       },
     },
     config = function()
-      dofile(vim.g.base46_cache .. "cmp")
-      local opts = require("plugins.configs.cmp")
+      dofile(vim.g.base46_cache .. "nvim_cmp")
+      local opts = require("plugins.configs.nvim_cmp")
       require("cmp").setup(opts)
     end,
   },
@@ -129,7 +129,7 @@ local plugins = {
   {
     "numToStr/Comment.nvim",
     init = function()
-      require("core.utils").load_mappings("comment")
+      require("core.utils").load_mappings("comment_nvim")
     end,
     config = function()
       require("Comment").setup()
@@ -140,11 +140,11 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle" },
     init = function()
-      require("core.utils").load_mappings("nvimtree")
+      require("core.utils").load_mappings("nvim_tree")
     end,
     config = function()
-      dofile(vim.g.base46_cache .. "nvimtree")
-      require("plugins.configs.nvimtree").setup()
+      dofile(vim.g.base46_cache .. "nvim_tree")
+      require("plugins.configs.nvim_tree").setup()
     end,
   },
 
@@ -164,11 +164,11 @@ local plugins = {
     -- lazy = false,
     event = { "BufReadPost", "BufNewFile" },
     init = function()
-      require("core.utils").load_mappings("telescope")
+      require("core.utils").load_mappings("telescope_nvim")
     end,
     config = function()
-      dofile(vim.g.base46_cache .. "telescope")
-      require("plugins.configs.telescope").setup()
+      dofile(vim.g.base46_cache .. "telescope_nvim")
+      require("plugins.configs.telescope_nvim").setup()
     end,
   },
 
@@ -176,10 +176,10 @@ local plugins = {
     "akinsho/toggleterm.nvim",
     cmd = { "ToggleTerm" },
     init = function()
-      require("core.utils").load_mappings("toggleterm")
+      require("core.utils").load_mappings("toggleterm_nvim")
     end,
     config = function()
-      require("plugins.configs.terminal").setup()
+      require("plugins.configs.toggleterm_nvim").setup()
     end,
   },
 }

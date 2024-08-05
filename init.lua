@@ -1,4 +1,4 @@
-require("core")
+require("core.options")
 require("core.utils").load_mappings("common")
 
 local echo = function(str)

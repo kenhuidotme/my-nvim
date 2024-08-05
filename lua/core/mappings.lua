@@ -184,7 +184,7 @@ M.tabline = {
   },
 }
 
-M.comment = {
+M.comment_nvim = {
   -- toggle comment in both modes
   n = {
     ["<leader>/"] = {
@@ -203,7 +203,7 @@ M.comment = {
   },
 }
 
-M["highlight-colors"] = {
+M.highlight_colors = {
   n = {
     ["<leader>ct"] = {
       function()
@@ -214,7 +214,7 @@ M["highlight-colors"] = {
   },
 }
 
-M.lspconfig = {
+M.nvim_lspconfig = {
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   n = {
     ["gh"] = {
@@ -331,7 +331,7 @@ M.lspconfig = {
   },
 }
 
-M.aerial = {
+M.aerial_nvim = {
   n = {
     ["<C-\\>"] = {
       function()
@@ -354,7 +354,7 @@ M.aerial = {
   },
 }
 
-M.nvimtree = {
+M.nvim_tree = {
   n = {
     ["<C-e>"] = {
       function()
@@ -379,7 +379,7 @@ M.nvimtree = {
   },
 }
 
-M.telescope = {
+M.telescope_nvim = {
   n = {
     ["<leader>fe"] = {
       "<Cmd>Telescope file_browser<CR>",
@@ -427,7 +427,7 @@ M.telescope = {
   },
 }
 
-M.toggleterm = {
+M.toggleterm_nvim = {
   n = {
     ["<C-t>"] = {
       function()
@@ -458,7 +458,7 @@ M.toggleterm = {
   },
 }
 
-M.gitsigns = {
+M.gitsigns_nvim = {
   n = {
     ["<leader>hn"] = {
       function()

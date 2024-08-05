@@ -6,7 +6,6 @@ Polishing details in daily use.
 
 # Features
 
-- Basic structure from [NvChad](https://github.com/NvChad/NvChad)
 - File explorer with [Nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 - Outline explorer with [Aerial](https://github.com/stevearc/aerial.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
@@ -20,7 +19,7 @@ Polishing details in daily use.
 # Pre-requisites
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Neovim 0.9.5+](https://github.com/neovim/neovim/releases/tag/stable)
+- [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/stable)
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
 - A clipboard tool is necessary for the integration with the system clipboard
 - Optional Requirements:

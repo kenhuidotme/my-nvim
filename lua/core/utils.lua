@@ -1,9 +1,8 @@
-local mappings = require("core.mappings")
-
 local M = {}
 
 M.load_mappings = function(section, mapping_options)
   vim.schedule(function()
+    local mappings = require("core.mappings")
     local section_values = mappings[section]
     if not section_values then
       return

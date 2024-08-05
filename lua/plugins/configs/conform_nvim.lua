@@ -19,7 +19,7 @@ local prettier_supported = {
 
 local opts = {
   formatters_by_ft = {
-    -- go install mvdan.cc/sh/v3/cmd/gosh@latest
+    -- go install mvdan.cc/sh/v3/cmd/shfmt@latest
     sh = { "shfmt" },
     -- cargo install stylua
     lua = { "stylua" },
