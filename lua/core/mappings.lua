@@ -381,18 +381,14 @@ M.nvim_tree = {
 
 M.telescope_nvim = {
   n = {
-    ["<leader>fe"] = {
-      "<Cmd>Telescope file_browser<CR>",
-      "Telescope file explorer",
-    },
-    ["<leader>fb"] = {
-      "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
-      "Telescope file explorer, locate current buffer",
-    },
     ["<leader>ff"] = { "<Cmd>Telescope find_files<CR>", "Telescope find files" },
     ["<leader>fa"] = {
       "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-      "Telescope find all",
+      "Telescope find all files",
+    },
+    ["<leader>fb"] = {
+      "<Cmd>Telescope buffers<CR>",
+      "Telescope find buffers",
     },
     ["<leader>fo"] = {
       "<Cmd>Telescope oldfiles<CR>",

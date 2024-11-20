@@ -2,7 +2,7 @@ Neovim configuration for myself / yourself.
 
 Polishing details in daily use.
 
-</p>
+<p/>
 
 # Features
 
@@ -18,13 +18,12 @@ Polishing details in daily use.
 
 # Pre-requisites
 
+- [Neovim v0.10.2](https://github.com/neovim/neovim/releases/tag/stable)
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Neovim 0.9.5](https://github.com/neovim/neovim/releases/tag/stable)
-- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
+- [Cmake](https://cmake.org/)
 - A clipboard tool is necessary for the integration with the system clipboard
 - Optional Requirements:
-  - [fd](https://github.com/sharkdp/fd) Telescope find file (`<leader>`ff)
-  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fw)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg)
 
 # Install
 
@@ -169,18 +168,16 @@ rm -Force ~\AppData\Local\nvim-data
 
 ## Telescope
 
-| Key          | Description                                   |
-| ------------ | --------------------------------------------- |
-| `<leader>`fe | Telescope file explorer                       |
-| `<leader>`fb | Telescope file explorer, focus current buffer |
-| `<leader>`ff | Telescope find files                          |
-| `<leader>`fa | Telescope find all                            |
-| `<leader>`fo | Telescope find old files                      |
-| `<leader>`fb | Telescope find buffers                        |
-| `<leader>`fh | Telescope find help page                      |
-| `<leader>`fw | Telescope live grep                           |
-| `<leader>`fz | Telescope fuzzy find in current buffer        |
-| ?            | Telescope help                                |
+| Key          | Description                            |
+| ------------ | -------------------------------------- |
+| `<leader>`ff | Telescope find files                   |
+| `<leader>`fa | Telescope find all                     |
+| `<leader>`fb | Telescope find buffers                 |
+| `<leader>`fo | Telescope find old files               |
+| `<leader>`fh | Telescope find help page               |
+| `<leader>`fg | Telescope live grep                    |
+| `<leader>`fz | Telescope fuzzy find in current buffer |
+| ?            | Telescope help                         |
 
 ## Git
 

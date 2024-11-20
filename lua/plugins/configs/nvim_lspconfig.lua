@@ -24,14 +24,14 @@ local lsp_client_setup = function()
   })
 
   vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "single",
-    })
+      vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "single",
+      })
 
   vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = "single",
-    })
+      vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "single",
+      })
 end
 
 local on_init_common = function(client, _)
@@ -71,17 +71,19 @@ capabilities_common.textDocument.completion.completionItem = {
 
 local lua_server_on_init = function(client)
   on_init_common(client)
-  local path = client.workspace_folders[1].name
-  if
-    vim.loop.fs_stat(path .. "/.luarc.json")
-    or vim.loop.fs_stat(path .. "/.luarc.jsonc")
-  then
-    return
+  if client.workspace_folders then
+    local path = client.workspace_folders[1].name
+    if
+        vim.uv.fs_stat(path .. '/.luarc.json')
+        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+    then
+      return
+    end
   end
 end
 
 -- Lua
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local lua_ls_setup = function()
   require("lspconfig").lua_ls.setup({
     on_init = lua_server_on_init,
@@ -101,6 +103,7 @@ local lua_ls_setup = function()
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
             [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
             [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+            ["${3rd}/luv/library"] = true,
           },
         },
       },
@@ -109,7 +112,7 @@ local lua_ls_setup = function()
 end
 
 -- pyright
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
 local pyright_setup = function()
   require("lspconfig").pyright.setup({
     on_init = on_init_common,
@@ -119,7 +122,7 @@ local pyright_setup = function()
 end
 
 -- ruff_lsp
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ruff_lsp
 local ruff_lsp_setup = function()
   require("lspconfig").ruff_lsp.setup({
     on_init = on_init_common,
@@ -129,9 +132,9 @@ local ruff_lsp_setup = function()
 end
 
 -- Typescript
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-local tsserver_setup = function()
-  require("lspconfig").tsserver.setup({
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
+local ts_ls_setup = function()
+  require("lspconfig").ts_ls.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -139,7 +142,7 @@ local tsserver_setup = function()
 end
 
 -- tailwindcss
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#tailwindcss
 local tailwindcss_setup = function()
   require("lspconfig").tailwindcss.setup({
     on_init = on_init_common,
@@ -149,7 +152,7 @@ local tailwindcss_setup = function()
 end
 
 -- clangd
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#clangd
 local clangd_setup = function()
   require("lspconfig").clangd.setup({
     on_init = on_init_common,
@@ -159,7 +162,7 @@ local clangd_setup = function()
 end
 
 -- CMake
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#neocmake
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#neocmake
 local neocmake_setup = function()
   require("lspconfig").neocmake.setup({
     on_init = on_init_common,
@@ -194,7 +197,7 @@ local rust_analyzer_setup = function()
 end
 
 -- taplo
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#taplo
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#taplo
 local taplo_setup = function()
   require("lspconfig").taplo.setup({
     on_init = on_init_common,
@@ -205,14 +208,14 @@ end
 
 local lsp_server_setup = function()
   lua_ls_setup()
-  pyright_setup()
-  ruff_lsp_setup()
-  tsserver_setup()
-  tailwindcss_setup()
-  clangd_setup()
-  neocmake_setup()
-  rust_analyzer_setup()
-  taplo_setup()
+  -- pyright_setup()
+  -- ruff_lsp_setup()
+  -- ts_ls_setup()
+  -- tailwindcss_setup()
+  -- clangd_setup()
+  -- neocmake_setup()
+  -- rust_analyzer_setup()
+  -- taplo_setup()
 end
 
 local wgsl_filetype_setup = function()
@@ -252,7 +255,7 @@ local M = {}
 
 M.setup = function()
   lsp_client_setup()
-  -- lsp_server_setup()
+  lsp_server_setup()
 end
 
 M.init = function()

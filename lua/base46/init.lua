@@ -1,7 +1,7 @@
 local M = {}
 
 local base46_path =
-  vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+    vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
 
 M.get_theme_tbl = function(type)
   local theme_path = "base46.themes." .. vim.g.theme
@@ -51,7 +51,7 @@ local tbl_to_str = function(tbl)
     for opt_name, opt_val in pairs(group_vals) do
       opt_val = ((type(opt_val)) == "boolean" or type(opt_val) == "number")
           and tostring(opt_val)
-        or '"' .. opt_val .. '"'
+          or '"' .. opt_val .. '"'
       opts = opts .. opt_name .. "=" .. opt_val .. ","
     end
 
@@ -65,9 +65,9 @@ local save_cache = function(filename, tbl)
   local bg_opt = "vim.opt.bg='" .. M.get_theme_tbl("type") .. "'"
 
   local lines = "return string.dump(function()"
-    .. (filename == "defaults" and bg_opt or "")
-    .. tbl_to_str(tbl)
-    .. "end, true)"
+      .. (filename == "defaults" and bg_opt or "")
+      .. tbl_to_str(tbl)
+      .. "end, true)"
 
   local file = io.open(vim.g.base46_cache .. filename, "wb")
 
@@ -78,7 +78,7 @@ local save_cache = function(filename, tbl)
 end
 
 M.compile = function()
-  if not vim.loop.fs_stat(vim.g.base46_cache) then
+  if not vim.uv.fs_stat(vim.g.base46_cache) then
     vim.fn.mkdir(vim.g.base46_cache, "p")
   end
 

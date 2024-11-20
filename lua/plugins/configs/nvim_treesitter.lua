@@ -9,6 +9,7 @@ local opts = {
     "json",
     "javascript",
     "typescript",
+    "tsx",
     "html",
     "css",
   },
