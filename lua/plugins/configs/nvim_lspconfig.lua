@@ -112,7 +112,6 @@ end
 
 -- pyright
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
--- pip install "python-lsp-server[rope]"
 local pyright_setup = function()
   require("lspconfig").pyright.setup({
     on_init = on_init_common,
