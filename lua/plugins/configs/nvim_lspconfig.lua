@@ -89,7 +89,6 @@ local lua_ls_setup = function()
     on_init = lua_server_on_init,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
-
     settings = {
       Lua = {
         runtime = {
@@ -113,6 +112,7 @@ end
 
 -- pyright
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
+-- pip install "python-lsp-server[rope]"
 local pyright_setup = function()
   require("lspconfig").pyright.setup({
     on_init = on_init_common,
@@ -128,6 +128,25 @@ local ruff_lsp_setup = function()
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
+
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+            [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+            ["${3rd}/luv/library"] = true,
+          },
+        },
+      },
+    },
   })
 end
 
