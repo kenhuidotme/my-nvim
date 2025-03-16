@@ -24,14 +24,14 @@ local lsp_client_setup = function()
   })
 
   vim.lsp.handlers["textDocument/hover"] =
-      vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "single",
+    })
 
   vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = "single",
+    })
 end
 
 local on_init_common = function(client, _)
@@ -74,8 +74,8 @@ local lua_server_on_init = function(client)
   if client.workspace_folders then
     local path = client.workspace_folders[1].name
     if
-        vim.uv.fs_stat(path .. '/.luarc.json')
-        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+      vim.uv.fs_stat(path .. "/.luarc.json")
+      or vim.uv.fs_stat(path .. "/.luarc.jsonc")
     then
       return
     end
@@ -89,7 +89,6 @@ local lua_ls_setup = function()
     on_init = lua_server_on_init,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
-
     settings = {
       Lua = {
         runtime = {
@@ -111,20 +110,10 @@ local lua_ls_setup = function()
   })
 end
 
--- pyright
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
-local pyright_setup = function()
-  require("lspconfig").pyright.setup({
-    on_init = on_init_common,
-    on_attach = on_attach_common,
-    capabilities = capabilities_common,
-  })
-end
-
--- ruff_lsp
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ruff_lsp
-local ruff_lsp_setup = function()
-  require("lspconfig").ruff_lsp.setup({
+-- pylsp
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pylsp
+local pylsp_setup = function()
+  require("lspconfig").pylsp.setup({
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -208,8 +197,7 @@ end
 
 local lsp_server_setup = function()
   lua_ls_setup()
-  -- pyright_setup()
-  -- ruff_lsp_setup()
+  -- pylsp_setup()
   -- ts_ls_setup()
   -- tailwindcss_setup()
   -- clangd_setup()
@@ -259,7 +247,7 @@ M.setup = function()
 end
 
 M.init = function()
-  -- filetype_setup()
+  filetype_setup()
 end
 
 return M
