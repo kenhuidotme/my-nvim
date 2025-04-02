@@ -80,6 +80,7 @@ rm -Force ~\AppData\Local\nvim-data
 | C-v          | Paste text from clipboard in insert mode |
 | `<leader>`n  | Line number toggle                       |
 | `<leader>`/  | Comment toggle                           |
+| `<leader>`cc | Color column toggle                      |
 | `<leader>`ct | Highlight colors toggle                  |
 | `<leader>`th | Select themes                            |
 

@@ -25,6 +25,14 @@ M.common = {
     ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
+    -- colorcolumn
+    ["<leader>cc"] = {
+      function()
+        require("core.utils").toggle_colorcolumn()
+      end,
+      "Color column toggle",
+    },
+
     -- line numbers
     ["<leader>n"] = { "<Cmd>set nu!<CR>", "Line numbers toggle" },
 

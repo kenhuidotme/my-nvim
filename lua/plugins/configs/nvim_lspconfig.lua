@@ -120,35 +120,6 @@ local pyright_setup = function()
   })
 end
 
--- ruff_lsp
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ruff_lsp
-local ruff_lsp_setup = function()
-  require("lspconfig").ruff_lsp.setup({
-    on_init = on_init_common,
-    on_attach = on_attach_common,
-    capabilities = capabilities_common,
-
-    settings = {
-      Lua = {
-        runtime = {
-          version = "LuaJIT",
-        },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-            [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
-            ["${3rd}/luv/library"] = true,
-          },
-        },
-      },
-    },
-  })
-end
-
 -- Typescript
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
 local ts_ls_setup = function()
@@ -226,7 +197,7 @@ end
 
 local lsp_server_setup = function()
   lua_ls_setup()
-  -- pylsp_setup()
+  -- pyright_setup()
   -- ts_ls_setup()
   -- tailwindcss_setup()
   -- clangd_setup()

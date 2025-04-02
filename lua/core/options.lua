@@ -9,6 +9,7 @@ local utils = require("core.utils")
 -- globals
 g.theme = utils.get_theme("onedark")
 g.transparency = false
+g.colorcolumn = "80"
 g.base46_cache = fn.stdpath("data") .. "/MyNvim/base46/"
 g.terminal_direction = "horizontal" -- or vertical
 
