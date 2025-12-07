@@ -82,6 +82,7 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`/  | Comment toggle                           |
 | `<leader>`cc | Color column toggle                      |
 | `<leader>`ct | Highlight colors toggle                  |
+| `<leader>`md | Render Markdown toggle                   |
 | `<leader>`th | Select themes                            |
 
 ## Buffer

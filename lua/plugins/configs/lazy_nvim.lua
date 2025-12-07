@@ -10,6 +10,8 @@ local opts = {
     },
   },
 
+  rocks = { enabled = false },
+
   concurrency = 5,
 
   performance = {

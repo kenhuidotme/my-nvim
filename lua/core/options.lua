@@ -43,9 +43,9 @@ opt.fillchars = { eob = " " }
 o.mouse = "a"
 
 -- Numbers
-o.number = true
-o.numberwidth = 2
-o.ruler = false
+-- o.number = false
+-- o.numberwidth = 2
+-- o.ruler = false
 
 -- disable nvim intro
 opt.shortmess:append("sI")
@@ -76,8 +76,7 @@ local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
 if is_windows then
   local powershell_options = {
     shell = fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-    shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
     shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
     shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
     shellquote = "",

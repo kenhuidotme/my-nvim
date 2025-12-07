@@ -58,15 +58,15 @@ local git = function()
 
   local added = (git_status.added and git_status.added ~= 0)
       and "  " .. git_status.added
-      or ""
+    or ""
 
   local changed = (git_status.changed and git_status.changed ~= 0)
       and "  " .. git_status.changed
-      or ""
+    or ""
 
   local removed = (git_status.removed and git_status.removed ~= 0)
       and "  " .. git_status.removed
-      or ""
+    or ""
 
   local branch_name = "  " .. git_status.head
 
@@ -86,7 +86,7 @@ local lsp_diagnostics = function()
   local errors = (e and e > 0) and ("%#StLspError#" .. " " .. e .. " ") or ""
 
   local warnings = (w and w > 0) and ("%#StLspWarning#" .. " " .. w .. " ")
-      or ""
+    or ""
 
   local hints = (h and h > 0) and ("%#StLspHints#" .. "󰛩 " .. h .. " ") or ""
 
@@ -97,14 +97,14 @@ end
 
 local lsp_status = function()
   if rawget(vim, "lsp") then
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
+    for _, client in ipairs(vim.lsp.get_clients()) do
       if
-          client.attached_buffers[vim.api.nvim_get_current_buf()]
-          and client.name ~= "null-ls"
+        client.attached_buffers[vim.api.nvim_get_current_buf()]
+        and client.name ~= "null-ls"
       then
         return vim.o.columns > 100
             and "%#StLspStatus#" .. "  " .. client.name .. " "
-            or "  LSP "
+          or "  LSP "
       end
     end
   end
@@ -113,9 +113,9 @@ end
 
 local cwd = function()
   local dir_name = "%#StCwdText#"
-      .. " "
-      .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-      .. " "
+    .. " "
+    .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+    .. " "
 
   return vim.o.columns > 85 and "%#StCwdIcon#" .. " 󰉋 " .. dir_name or ""
 end

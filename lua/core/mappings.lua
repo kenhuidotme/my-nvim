@@ -222,6 +222,17 @@ M.highlight_colors = {
   },
 }
 
+M.render_markdown = {
+  n = {
+    ["<leader>md"] = {
+      function()
+        require("render-markdown").toggle()
+      end,
+      "Render Markdown toggle",
+    },
+  },
+}
+
 M.nvim_lspconfig = {
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   n = {

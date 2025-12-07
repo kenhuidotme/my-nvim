@@ -64,6 +64,19 @@ local plugins = {
   },
 
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = { "RenderMarkdown" },
+    init = function()
+      require("core.utils").load_mappings("render_markdown")
+    end,
+    opts = {},
+  },
+
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
     init = function()
@@ -112,7 +125,7 @@ local plugins = {
         end,
       },
       {
-        "saadparwaiz1/cmp_luasnip",
+        -- "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
