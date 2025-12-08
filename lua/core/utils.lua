@@ -30,8 +30,8 @@ M.lazy_load = function(plugin)
       local file = vim.fn.expand("%")
 
       local is_valid_plugin = string.sub(file, 1, 8) ~= "NvimTree"
-        and file ~= "[lazy]"
-        and file ~= ""
+          and file ~= "[lazy]"
+          and file ~= ""
 
       if is_valid_plugin then
         vim.api.nvim_del_augroup_by_name(group_name)
@@ -54,7 +54,7 @@ end
 
 M.list_themes = function()
   local themes =
-    vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
+      vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
   for index, theme in ipairs(themes) do
     themes[index] = theme:match("(.+)%..+")
   end
@@ -83,7 +83,7 @@ end
 
 M.set_launch_dir = function(dir)
   local vim_enter_group =
-    vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
+      vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
   vim.api.nvim_create_autocmd(
     { "VimEnter" },
     { pattern = "*", command = "cd " .. dir, group = vim_enter_group }
@@ -105,6 +105,18 @@ M.toggle_tree = function(all)
   else
     require("nvim-tree.api").tree.toggle()
   end
+end
+
+local colorcolumn = ""
+M.toggle_colorcolumn = function()
+  if colorcolumn == "" then
+    colorcolumn = vim.g.colorcolumn
+  else
+    colorcolumn = ""
+  end
+  vim.opt.colorcolumn = colorcolumn
+  local base30 = require("base46").get_theme_tbl("base_30")
+  vim.api.nvim_set_hl(0, "ColorColumn", { bg = base30.black2 })
 end
 
 local term_count = 0

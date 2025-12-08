@@ -74,8 +74,8 @@ local lua_server_on_init = function(client)
   if client.workspace_folders then
     local path = client.workspace_folders[1].name
     if
-        vim.uv.fs_stat(path .. '/.luarc.json')
-        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+        vim.uv.fs_stat(path .. "/.luarc.json")
+        or vim.uv.fs_stat(path .. "/.luarc.jsonc")
     then
       return
     end
@@ -117,35 +117,6 @@ local pyright_setup = function()
     on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
-  })
-end
-
--- ruff_lsp
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ruff_lsp
-local ruff_lsp_setup = function()
-  require("lspconfig").ruff_lsp.setup({
-    on_init = on_init_common,
-    on_attach = on_attach_common,
-    capabilities = capabilities_common,
-
-    settings = {
-      Lua = {
-        runtime = {
-          version = "LuaJIT",
-        },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-            [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
-            ["${3rd}/luv/library"] = true,
-          },
-        },
-      },
-    },
   })
 end
 
@@ -227,12 +198,11 @@ end
 local lsp_server_setup = function()
   lua_ls_setup()
   -- pyright_setup()
-  -- ruff_lsp_setup()
   -- ts_ls_setup()
   -- tailwindcss_setup()
-  -- clangd_setup()
+  clangd_setup()
   -- neocmake_setup()
-  -- rust_analyzer_setup()
+  rust_analyzer_setup()
   -- taplo_setup()
 end
 
@@ -277,7 +247,7 @@ M.setup = function()
 end
 
 M.init = function()
-  -- filetype_setup()
+  filetype_setup()
 end
 
 return M

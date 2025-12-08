@@ -25,6 +25,14 @@ M.common = {
     ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
+    -- colorcolumn
+    ["<leader>cc"] = {
+      function()
+        require("core.utils").toggle_colorcolumn()
+      end,
+      "Color column toggle",
+    },
+
     -- line numbers
     ["<leader>n"] = { "<Cmd>set nu!<CR>", "Line numbers toggle" },
 
@@ -210,6 +218,17 @@ M.highlight_colors = {
         require("nvim-highlight-colors").toggle()
       end,
       "Highlight colors toggle",
+    },
+  },
+}
+
+M.render_markdown = {
+  n = {
+    ["<leader>md"] = {
+      function()
+        require("render-markdown").toggle()
+      end,
+      "Render Markdown toggle",
     },
   },
 }

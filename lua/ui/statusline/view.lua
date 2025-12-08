@@ -97,7 +97,7 @@ end
 
 local lsp_status = function()
   if rawget(vim, "lsp") then
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
+    for _, client in ipairs(vim.lsp.get_clients()) do
       if
         client.attached_buffers[vim.api.nvim_get_current_buf()]
         and client.name ~= "null-ls"

@@ -18,12 +18,12 @@ Polishing details in daily use.
 
 # Pre-requisites
 
-- [Neovim v0.10.2](https://github.com/neovim/neovim/releases/tag/stable)
+- [Neovim v0.10.x](https://github.com/neovim/neovim/releases)
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Cmake](https://cmake.org/)
-- A clipboard tool is necessary for the integration with the system clipboard
-- Optional Requirements:
-  - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg)
+<!-- - [Cmake](https://cmake.org/) -->
+<!-- - A clipboard tool is necessary for the integration with the system clipboard -->
+<!-- - Optional Requirements: -->
+<!--   - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg) -->
 
 # Install
 
@@ -80,7 +80,9 @@ rm -Force ~\AppData\Local\nvim-data
 | C-v          | Paste text from clipboard in insert mode |
 | `<leader>`n  | Line number toggle                       |
 | `<leader>`/  | Comment toggle                           |
+| `<leader>`cc | Color column toggle                      |
 | `<leader>`ct | Highlight colors toggle                  |
+| `<leader>`md | Render Markdown toggle                   |
 | `<leader>`th | Select themes                            |
 
 ## Buffer
