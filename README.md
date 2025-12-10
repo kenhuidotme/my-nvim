@@ -18,12 +18,12 @@ Polishing details in daily use.
 
 # Pre-requisites
 
-- [Neovim v0.10.x](https://github.com/neovim/neovim/releases)
+- [Neovim v0.11.x](https://github.com/neovim/neovim/releases)
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-<!-- - [Cmake](https://cmake.org/) -->
-<!-- - A clipboard tool is necessary for the integration with the system clipboard -->
-<!-- - Optional Requirements: -->
-<!--   - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg) -->
+  <!-- - [Cmake](https://cmake.org/) -->
+  <!-- - A clipboard tool is necessary for the integration with the system clipboard -->
+  <!-- - Optional Requirements: -->
+  <!--   - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg) -->
 
 # Install
 

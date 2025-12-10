@@ -73,7 +73,10 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings("render_markdown")
     end,
-    opts = {},
+    opts = {
+      enabled = false,
+      render_modes = { "n", "no", "c", "t", "i", "v" },
+    },
   },
 
   {

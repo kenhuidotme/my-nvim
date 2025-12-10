@@ -24,14 +24,14 @@ local lsp_client_setup = function()
   })
 
   vim.lsp.handlers["textDocument/hover"] =
-      vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "single",
+    })
 
   vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "single",
-      })
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = "single",
+    })
 end
 
 local on_init_common = function(client, _)
@@ -74,8 +74,8 @@ local lua_server_on_init = function(client)
   if client.workspace_folders then
     local path = client.workspace_folders[1].name
     if
-        vim.uv.fs_stat(path .. "/.luarc.json")
-        or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+      vim.uv.fs_stat(path .. "/.luarc.json")
+      or vim.uv.fs_stat(path .. "/.luarc.jsonc")
     then
       return
     end
@@ -200,9 +200,9 @@ local lsp_server_setup = function()
   -- pyright_setup()
   -- ts_ls_setup()
   -- tailwindcss_setup()
-  clangd_setup()
+  -- clangd_setup()
   -- neocmake_setup()
-  rust_analyzer_setup()
+  -- rust_analyzer_setup()
   -- taplo_setup()
 end
 

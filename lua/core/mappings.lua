@@ -74,10 +74,10 @@ M.common = {
     ["<C-k>"] = { "<C-w>k", "Window jump up" },
 
     -- window resize
-    ["<C-Up>"] = { "<Cmd>resize -1<CR>", "Window height -1" },
-    ["<C-Down>"] = { "<Cmd>resize +1<CR>", "Window height +1" },
-    ["<C-Left>"] = { "<Cmd>vertical resize -1<CR>", "Window width +1" },
-    ["<C-Right>"] = { "<Cmd>vertical resize +1<CR>", "Window width -1" },
+    ["<S-Up>"] = { "<Cmd>resize -1<CR>", "Window height -1" },
+    ["<S-Down>"] = { "<Cmd>resize +1<CR>", "Window height +1" },
+    ["<S-Left>"] = { "<Cmd>vertical resize -1<CR>", "Window width +1" },
+    ["<S-Right>"] = { "<Cmd>vertical resize +1<CR>", "Window width -1" },
 
     -- window split
     ["<C-x>"] = { "<Cmd>sp<CR>", "Window split" },
