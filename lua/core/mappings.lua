@@ -8,7 +8,6 @@ end
 M.common = {
   i = {
     ["<C-v>"] = { '<Esc>"+p', "Paste text from clipboard" },
-    ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
 
     -- go to beginning and end
     ["<C-b>"] = { "<Esc>^i", "Beginning of line" },
@@ -22,7 +21,6 @@ M.common = {
   },
 
   n = {
-    ["<C-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- colorcolumn
@@ -74,10 +72,10 @@ M.common = {
     ["<C-k>"] = { "<C-w>k", "Window jump up" },
 
     -- window resize
-    ["<S-Up>"] = { "<Cmd>resize -1<CR>", "Window height -1" },
-    ["<S-Down>"] = { "<Cmd>resize +1<CR>", "Window height +1" },
-    ["<S-Left>"] = { "<Cmd>vertical resize -1<CR>", "Window width +1" },
-    ["<S-Right>"] = { "<Cmd>vertical resize +1<CR>", "Window width -1" },
+    ["<C-s>"] = { "<Cmd>resize -1<CR>", "Window height -1" },
+    ["<C-t>"] = { "<Cmd>resize +1<CR>", "Window height +1" },
+    ["<C-n>"] = { "<Cmd>vertical resize -1<CR>", "Window width -1" },
+    ["<C-w>"] = { "<Cmd>vertical resize +1<CR>", "Window width +1" },
 
     -- window split
     ["<C-x>"] = { "<Cmd>sp<CR>", "Window split" },
@@ -375,7 +373,7 @@ M.aerial_nvim = {
 
 M.nvim_tree = {
   n = {
-    ["<C-e>"] = {
+    ["<C-t>"] = {
       function()
         require("core.utils").toggle_tree()
       end,
@@ -389,7 +387,7 @@ M.nvim_tree = {
     },
   },
   t = {
-    ["<C-e>"] = {
+    ["<C-t>"] = {
       function()
         require("core.utils").toggle_tree()
       end,
@@ -438,37 +436,6 @@ M.telescope_nvim = {
     ["<leader>da"] = {
       "<Cmd>lua require('telescope.builtin').diagnostics()<CR>",
       "LSP diagnostic for all open buffers",
-    },
-  },
-}
-
-M.toggleterm_nvim = {
-  n = {
-    ["<C-t>"] = {
-      function()
-        require("core.utils").toggle_term()
-      end,
-      "Terminal toggle",
-    },
-    ["<C-f>"] = {
-      function()
-        require("core.utils").toggle_float_term()
-      end,
-      "Terminal toggle float",
-    },
-  },
-  t = {
-    ["<C-t>"] = {
-      function()
-        require("core.utils").toggle_term()
-      end,
-      "Terminal toggle",
-    },
-    ["<C-f>"] = {
-      function()
-        require("core.utils").toggle_float_term()
-      end,
-      "Terminal toggle float",
     },
   },
 }

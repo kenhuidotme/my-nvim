@@ -11,7 +11,6 @@ Polishing details in daily use.
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Autoformatting with [Conform](https://github.com/stevearc/conform.nvim)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-- Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
 - Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig)
@@ -75,7 +74,6 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key          | Description                              |
 | ------------ | ---------------------------------------- |
-| C-s          | Save file                                |
 | C-c          | Copy selected text to clipboard          |
 | C-v          | Paste text from clipboard in insert mode |
 | `<leader>`n  | Line number toggle                       |
@@ -107,33 +105,25 @@ rm -Force ~\AppData\Local\nvim-data
 
 ## Window
 
-| Key     | Description             |
-| ------- | ----------------------- |
-| C-x     | Window horizontal split |
-| C-y     | Window vertical split   |
-| C-k     | Window jump up          |
-| C-j     | Window jump down        |
-| C-h     | Window jump left        |
-| C-l     | Window jump right       |
-| C-Up    | Window height +1        |
-| C-Down  | Window height -1        |
-| C-Left  | Window width +1         |
-| C-Right | Window width -1         |
-| C-q     | Window close            |
-
-## Terminal
-
-| Key | Description           |
-| --- | --------------------- |
-| C-t | Terminal toggle       |
-| C-f | Terminal toggle float |
-| C-q | Terminal mode escape  |
+| Key | Description             |
+| --- | ----------------------- |
+| C-x | Window horizontal split |
+| C-y | Window vertical split   |
+| C-k | Window jump up          |
+| C-j | Window jump down        |
+| C-h | Window jump left        |
+| C-l | Window jump right       |
+| C-t | Window taller           |
+| C-s | Window shorter          |
+| C-w | Window wider            |
+| C-n | Window narrower         |
+| C-q | Window close            |
 
 ## Nvim-tree
 
 | Key | Description                   |
 | --- | ----------------------------- |
-| C-e | Nvim-tree toggle              |
+| C-t | Nvim-tree toggle              |
 | C-b | Nvim-tree file current buffer |
 | ?   | Nvim-tree help                |
 

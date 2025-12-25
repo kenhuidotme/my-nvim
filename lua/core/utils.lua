@@ -30,8 +30,8 @@ M.lazy_load = function(plugin)
       local file = vim.fn.expand("%")
 
       local is_valid_plugin = string.sub(file, 1, 8) ~= "NvimTree"
-          and file ~= "[lazy]"
-          and file ~= ""
+        and file ~= "[lazy]"
+        and file ~= ""
 
       if is_valid_plugin then
         vim.api.nvim_del_augroup_by_name(group_name)
@@ -54,7 +54,7 @@ end
 
 M.list_themes = function()
   local themes =
-      vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
+    vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
   for index, theme in ipairs(themes) do
     themes[index] = theme:match("(.+)%..+")
   end
@@ -83,7 +83,7 @@ end
 
 M.set_launch_dir = function(dir)
   local vim_enter_group =
-      vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
+    vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
   vim.api.nvim_create_autocmd(
     { "VimEnter" },
     { pattern = "*", command = "cd " .. dir, group = vim_enter_group }
@@ -117,26 +117,6 @@ M.toggle_colorcolumn = function()
   vim.opt.colorcolumn = colorcolumn
   local base30 = require("base46").get_theme_tbl("base_30")
   vim.api.nvim_set_hl(0, "ColorColumn", { bg = base30.black2 })
-end
-
-local term_count = 0
-local term_num = 0
-local float_term_num = 0
-
-M.toggle_term = function()
-  if term_num == 0 then
-    term_count = term_count + 1
-    term_num = term_count
-  end
-  vim.cmd(term_num .. "ToggleTerm direction=" .. vim.g.terminal_direction)
-end
-
-M.toggle_float_term = function()
-  if float_term_num == 0 then
-    term_count = term_count + 1
-    float_term_num = term_count
-  end
-  vim.cmd(float_term_num .. "ToggleTerm direction=float")
 end
 
 M.toggle_diagnostics = function()

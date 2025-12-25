@@ -75,6 +75,7 @@ local plugins = {
     end,
     opts = {
       enabled = false,
+      code = { language = false },
       render_modes = { "n", "no", "c", "t", "i", "v" },
     },
   },
@@ -185,17 +186,6 @@ local plugins = {
     config = function()
       dofile(vim.g.base46_cache .. "telescope_nvim")
       require("plugins.configs.telescope_nvim").setup()
-    end,
-  },
-
-  {
-    "akinsho/toggleterm.nvim",
-    cmd = { "ToggleTerm" },
-    init = function()
-      require("core.utils").load_mappings("toggleterm_nvim")
-    end,
-    config = function()
-      require("plugins.configs.toggleterm_nvim").setup()
     end,
   },
 }
