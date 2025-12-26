@@ -77,12 +77,14 @@ local opts = {
       side_padding = 1,
       winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
       scrollbar = false,
+      border = gen_border("CmpBorder"),
     },
     documentation = {
       border = gen_border("CmpDocBorder"),
       winhighlight = "Normal:CmpDoc",
     },
   },
+
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -97,62 +99,47 @@ local opts = {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-y>"] = cmp.mapping.confirm({
+      select = true,
+      behavior = cmp.SelectBehavior.Insert,
+    }),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif require("luasnip").expand_or_jumpable() then
-        vim.fn.feedkeys(
-          vim.api.nvim_replace_termcodes(
-            "<Plug>luasnip-expand-or-jump",
-            true,
-            true,
-            true
-          ),
-          ""
-        )
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        vim.fn.feedkeys(
-          vim.api.nvim_replace_termcodes(
-            "<Plug>luasnip-jump-prev",
-            true,
-            true,
-            true
-          ),
-          ""
-        )
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "nvim_lua" },
+    { name = "buffer" },
     { name = "path" },
-  },
+  }),
 }
 
-opts.window.completion.border = gen_border("CmpBorder")
+-- Configuration for ':' command-line
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" }, -- Source for file paths
+  }, {
+    {
+      name = "cmdline", -- Source for actual Ex commands
+      option = {
+        ignore_cmds = { "Man", "!" }, -- Example: ignore completions for these commands
+      },
+    },
+  }),
+})
+
+-- Configuration for '/' and '?' search command-line
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" }, -- Source for words in the current buffer
+  },
+})
 
 return opts

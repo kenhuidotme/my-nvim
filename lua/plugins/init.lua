@@ -103,45 +103,6 @@ local plugins = {
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        config = function()
-          require("plugins.configs.friendly_snippets").setup()
-        end,
-      },
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require("nvim-autopairs").setup({
-            fast_wrap = {},
-            disable_filetype = { "TelescopePrompt", "vim" },
-          })
-          require("cmp").event:on(
-            "confirm_done",
-            require("nvim-autopairs.completion.cmp").on_confirm_done()
-          )
-        end,
-      },
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-      },
-    },
-    config = function()
-      dofile(vim.g.base46_cache .. "nvim_cmp")
-      local opts = require("plugins.configs.nvim_cmp")
-      require("cmp").setup(opts)
-    end,
-  },
-
-  {
     "numToStr/Comment.nvim",
     init = function()
       require("core.utils").load_mappings("comment_nvim")
@@ -180,26 +141,85 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   cmd = { "Copilot" },
-  --   event = { "InsertEnter" },
-  --   opts = {
-  --     suggestion = { enable = false },
-  --     panel = { enable = false },
-  --     filetypes = {
-  --       markdown = true,
-  --     },
-  --   },
-  -- },
-  --
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   config = function()
-  --     require("copilot_cmp").setup()
-  --   end,
-  -- },
-  --
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      -- Auto pairs integration
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("nvim-autopairs").setup({
+            fast_wrap = {},
+            disable_filetype = { "TelescopePrompt", "vim" },
+          })
+          require("cmp").event:on(
+            "confirm_done",
+            require("nvim-autopairs.completion.cmp").on_confirm_done()
+          )
+        end,
+      },
+
+      -- Adds vscode-like pictograms to nvim-cmp completions
+      {
+        "onsails/lspkind.nvim",
+        config = function()
+          require("lspkind").setup()
+        end,
+      },
+
+      -- Snippet engine
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        config = function()
+          require("plugins.configs.friendly_snippets").setup()
+        end,
+      },
+
+      -- GitHub Copilot integration
+      {
+        "zbirenbaum/copilot.lua",
+        cmd = { "Copilot" },
+        config = function()
+          require("copilot").setup({
+            suggestion = { enabled = false }, -- Disable default ghost text
+            panel = { enabled = false }, -- Disable default panel
+          })
+        end,
+      },
+
+      -- nvim-cmp source for GitHub Copilot
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+
+      {
+        -- nvim-cmp source for LuaSnip
+        "saadparwaiz1/cmp_luasnip",
+        -- nvim-cmp source for neovim's built-in language server client.
+        "hrsh7th/cmp-nvim-lsp",
+        -- nvim-cmp source for neovim Lua API.
+        "hrsh7th/cmp-nvim-lua",
+        -- nvim-cmp source for buffer words.
+        "hrsh7th/cmp-buffer",
+        -- nvim-cmp source for filesystem paths.
+        "hrsh7th/cmp-path",
+        -- nvim-cmp source for vim's cmdline.
+        "hrsh7th/cmp-cmdline",
+      },
+    },
+
+    config = function()
+      dofile(vim.g.base46_cache .. "nvim_cmp")
+      local opts = require("plugins.configs.nvim_cmp")
+      require("cmp").setup(opts)
+    end,
+  },
+
   -- {
   --   "olimorris/codecompanion.nvim",
   --   cmd = {
