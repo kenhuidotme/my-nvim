@@ -2,7 +2,7 @@ local M = {}
 
 M.is_valid_buffer = function(buf)
   return vim.api.nvim_buf_is_valid(buf)
-    and vim.api.nvim_buf_get_option(buf, "buflisted")
+    and vim.api.nvim_get_option_value("buflisted", { buf = buf })
 end
 
 M.buffer_filter = function()
@@ -216,7 +216,10 @@ M.load = function()
         vim.t.buf_current = args.buf
       end
       --
-      if vim.api.nvim_buf_get_option(args.buf, "buftype") == "terminal" then
+      if
+        vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+        == "terminal"
+      then
         vim.cmd("startinsert!")
       end
     end,

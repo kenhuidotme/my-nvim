@@ -292,14 +292,14 @@ M.nvim_lspconfig = {
 
     ["<leader>dn"] = {
       function()
-        vim.diagnostic.goto_next()
+        vim.diagnostic.jump({ count = 1, float = true })
       end,
       "LSP diagnostic next",
     },
 
     ["<leader>dp"] = {
       function()
-        vim.diagnostic.goto_prev()
+        vim.diagnostic.jump({ count = -1, float = true })
       end,
       "LSP diagnostic prev",
     },
@@ -373,7 +373,7 @@ M.aerial_nvim = {
 
 M.nvim_tree = {
   n = {
-    ["<C-t>"] = {
+    ["<C-e>"] = {
       function()
         require("core.utils").toggle_tree()
       end,
@@ -387,7 +387,7 @@ M.nvim_tree = {
     },
   },
   t = {
-    ["<C-t>"] = {
+    ["<C-e>"] = {
       function()
         require("core.utils").toggle_tree()
       end,

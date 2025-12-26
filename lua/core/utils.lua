@@ -22,36 +22,6 @@ M.load_mappings = function(section, mapping_options)
   end)
 end
 
-M.lazy_load = function(plugin)
-  local group_name = "BeLazyOnFileOpen:" .. plugin
-  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-    group = vim.api.nvim_create_augroup(group_name, {}),
-    callback = function()
-      local file = vim.fn.expand("%")
-
-      local is_valid_plugin = string.sub(file, 1, 8) ~= "NvimTree"
-        and file ~= "[lazy]"
-        and file ~= ""
-
-      if is_valid_plugin then
-        vim.api.nvim_del_augroup_by_name(group_name)
-        -- Don't defer for treesitter as it will show slow highlighting
-        -- This deferring only happens when we do "nvim filename"
-        if plugin == "nvim-treesitter" then
-          require("lazy").load({ plugins = plugin })
-        else
-          vim.schedule(function()
-            require("lazy").load({ plugins = plugin })
-            if plugin == "nvim-lspconfig" then
-              vim.cmd("silent! do FileType")
-            end
-          end, 0)
-        end
-      end
-    end,
-  })
-end
-
 M.list_themes = function()
   local themes =
     vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/base46/themes")
@@ -79,15 +49,6 @@ M.save_theme = function(name)
     file:write(name)
     file:close()
   end
-end
-
-M.set_launch_dir = function(dir)
-  local vim_enter_group =
-    vim.api.nvim_create_augroup("vim_enter_group", { clear = true })
-  vim.api.nvim_create_autocmd(
-    { "VimEnter" },
-    { pattern = "*", command = "cd " .. dir, group = vim_enter_group }
-  )
 end
 
 M.toggle_tree = function(all)
@@ -120,19 +81,16 @@ M.toggle_colorcolumn = function()
 end
 
 M.toggle_diagnostics = function()
-  vim.b.diagnostics_disabled = not vim.b.diagnostics_disabled
+  local is_enabled = vim.diagnostic.is_enabled({ bufnr = 0 })
 
-  local cmd
-  if vim.b.diagnostics_disabled then
-    cmd = "disable"
+  if is_enabled then
     vim.api.nvim_echo({ { "Disabling diagnostics" } }, false, {})
   else
-    cmd = "enable"
     vim.api.nvim_echo({ { "Enabling diagnostics" } }, false, {})
   end
 
   vim.schedule(function()
-    vim.diagnostic[cmd](0)
+    vim.diagnostic.enable(not is_enabled, { bufnr = 0 })
   end)
 end
 

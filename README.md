@@ -123,7 +123,7 @@ rm -Force ~\AppData\Local\nvim-data
 
 | Key | Description                   |
 | --- | ----------------------------- |
-| C-t | Nvim-tree toggle              |
+| C-e | Nvim-tree toggle              |
 | C-b | Nvim-tree file current buffer |
 | ?   | Nvim-tree help                |
 

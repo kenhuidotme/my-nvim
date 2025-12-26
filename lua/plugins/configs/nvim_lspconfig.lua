@@ -1,14 +1,4 @@
-local lsp_symbol = function(name, icon)
-  local hl = "DiagnosticSign" .. name
-  vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-end
-
 local lsp_client_setup = function()
-  lsp_symbol("Error", "󰅙")
-  lsp_symbol("Info", "󰋼")
-  lsp_symbol("Hint", "󰌵")
-  lsp_symbol("Warn", "")
-
   vim.diagnostic.config({
     float = {
       border = "single",
@@ -18,34 +8,27 @@ local lsp_client_setup = function()
       prefix = "",
       -- severity = { min = vim.diagnostic.severity.ERROR },
     },
-    signs = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "󰅙",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "󰋼",
+        [vim.diagnostic.severity.HINT] = "󰌵",
+      },
+      linehl = {
+        [vim.diagnostic.severity.ERROR] = "Error",
+        [vim.diagnostic.severity.WARN] = "Warn",
+        [vim.diagnostic.severity.INFO] = "Info",
+        [vim.diagnostic.severity.HINT] = "Hint",
+      },
+    },
     underline = true,
     update_in_insert = false,
   })
-
-  vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "single",
-    })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = "single",
-    })
 end
 
-local on_init_common = function(client, _)
-  if client.supports_method("textDocument/semanticTokens") then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
-end
-
-local on_attach_common = function(client, bufnr)
+local on_attach_common = function(_, bufnr)
   require("core.utils").load_mappings("nvim_lspconfig", { buffer = bufnr })
-
-  if client.server_capabilities.signatureHelpProvider then
-    require("ui.lsp.signature").setup(client)
-  end
 end
 
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_completion
@@ -70,7 +53,6 @@ capabilities_common.textDocument.completion.completionItem = {
 }
 
 local lua_server_on_init = function(client)
-  on_init_common(client)
   if client.workspace_folders then
     local path = client.workspace_folders[1].name
     if
@@ -85,7 +67,8 @@ end
 -- Lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local lua_ls_setup = function()
-  require("lspconfig").lua_ls.setup({
+  -- require("lspconfig").lua_ls.setup({
+  vim.lsp.config("lua_ls", {
     on_init = lua_server_on_init,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
@@ -108,13 +91,13 @@ local lua_ls_setup = function()
       },
     },
   })
+  vim.lsp.enable("lua_ls")
 end
 
 -- pyright
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pyright
 local pyright_setup = function()
   require("lspconfig").pyright.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })
@@ -124,7 +107,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
 local ts_ls_setup = function()
   require("lspconfig").ts_ls.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })
@@ -134,7 +116,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#tailwindcss
 local tailwindcss_setup = function()
   require("lspconfig").tailwindcss.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })
@@ -144,7 +125,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#clangd
 local clangd_setup = function()
   require("lspconfig").clangd.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })
@@ -154,7 +134,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#neocmake
 local neocmake_setup = function()
   require("lspconfig").neocmake.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })
@@ -164,7 +143,6 @@ end
 -- https://rust-analyzer.github.io/manual.html#configuration
 local rust_analyzer_setup = function()
   require("lspconfig").rust_analyzer.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
     settings = {
@@ -189,7 +167,6 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#taplo
 local taplo_setup = function()
   require("lspconfig").taplo.setup({
-    on_init = on_init_common,
     on_attach = on_attach_common,
     capabilities = capabilities_common,
   })

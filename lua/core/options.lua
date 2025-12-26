@@ -11,19 +11,9 @@ g.theme = utils.get_theme("onedark")
 g.transparency = false
 g.colorcolumn = "80"
 g.base46_cache = fn.stdpath("data") .. "/MyNvim/base46/"
-g.terminal_direction = "horizontal" -- or vertical
 
 -- gui
 o.termguicolors = true
-
--- neovide
-if g.neovide then
-  utils.set_launch_dir(fn.expand("$HOME"))
-  o.guifont = "SauceCodePro Nerd Font:h13"
-  g.neovide_scroll_animation_length = 0.1
-  g.neovide_cursor_animation_length = 0.08
-  g.neovide_cursor_trail_size = 0.16
-end
 
 o.laststatus = 3
 o.showcmd = false
@@ -42,9 +32,7 @@ o.softtabstop = 2
 opt.fillchars = { eob = " " }
 o.mouse = "a"
 
--- Numbers
 -- o.number = false
--- o.numberwidth = 2
 -- o.ruler = false
 
 -- disable nvim intro

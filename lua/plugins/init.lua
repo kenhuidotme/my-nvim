@@ -18,14 +18,12 @@ local plugins = {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
-    init = function()
-      require("core.utils").lazy_load("nvim-treesitter")
-    end,
+    lazy = false,
     config = function()
       dofile(vim.g.base46_cache .. "syntax")
       dofile(vim.g.base46_cache .. "nvim_treesitter")
       local opts = require("plugins.configs.nvim_treesitter")
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter").setup(opts)
     end,
   },
 
@@ -83,8 +81,8 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
     init = function()
-      require("core.utils").lazy_load("nvim-lspconfig")
       require("plugins.configs.nvim_lspconfig").init()
     end,
     config = function()
@@ -129,7 +127,7 @@ local plugins = {
         end,
       },
       {
-        -- "saadparwaiz1/cmp_luasnip",
+        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
@@ -168,14 +166,7 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      -- {
-      --   "nvim-telescope/telescope-fzf-native.nvim",
-      --   build = {
-      --     "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release",
-      --     "cmake --build build --config Release",
-      --     "cmake --install build --prefix build",
-      --   },
-      -- },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-ui-select.nvim",
     },
     -- lazy = false,
@@ -188,6 +179,41 @@ local plugins = {
       require("plugins.configs.telescope_nvim").setup()
     end,
   },
+
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = { "Copilot" },
+  --   event = { "InsertEnter" },
+  --   opts = {
+  --     suggestion = { enable = false },
+  --     panel = { enable = false },
+  --     filetypes = {
+  --       markdown = true,
+  --     },
+  --   },
+  -- },
+  --
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
+  --
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   cmd = {
+  --     "CodeCompanion",
+  --     "CodeCompanionChat",
+  --     "CodeCompanionCmd",
+  --     "CodeCompanionActions",
+  --   },
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  -- },
 }
 
 local opts = require("plugins.configs.lazy_nvim")

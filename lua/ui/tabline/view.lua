@@ -81,7 +81,7 @@ local style_buffer = function(buf)
 
   filename = "%" .. buf .. "@TlGoToBuf@" .. add_file_style(filename, buf)
 
-  local modified = vim.api.nvim_buf_get_option(buf, "modified")
+  local modified = vim.api.nvim_get_option_value("modified", { buf = buf })
 
   if buf == vim.api.nvim_get_current_buf() then
     return modified
