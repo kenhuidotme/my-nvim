@@ -111,6 +111,7 @@ local opts = {
   },
   sources = cmp.config.sources({
     { name = "copilot" },
+    { name = "codecompanion" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "nvim_lua" },

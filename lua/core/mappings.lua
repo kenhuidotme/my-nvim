@@ -81,6 +81,12 @@ M.common = {
     ["<C-x>"] = { "<Cmd>sp<CR>", "Window split" },
     ["<C-y>"] = { "<Cmd>vsp<CR>", "Window vertical split" },
 
+    -- window move
+    ["<S-h>"] = { "<C-w>H", "Window move to left edge" },
+    ["<S-l>"] = { "<C-w>L", "Window move to right edge" },
+    ["<S-j>"] = { "<C-w>J", "Window move to down edge" },
+    ["<S-k>"] = { "<C-w>K", "Window move to top edge" },
+
     -- new tab
     ["<S-t>"] = { "<Cmd>tabnew<CR>", "Tab new" },
 
@@ -91,12 +97,6 @@ M.common = {
 
   t = {
     ["<C-q>"] = { escape_terminal_cmd(), "Terminal escape" },
-
-    -- switch between windows within terminal mode
-    ["<C-h>"] = { escape_terminal_cmd("<C-w>h"), "Window jump left" },
-    ["<C-l>"] = { escape_terminal_cmd("<C-w>l"), "Window jump right" },
-    ["<C-j>"] = { escape_terminal_cmd("<C-w>j"), "Window jump down" },
-    ["<C-k>"] = { escape_terminal_cmd("<C-w>k"), "Window jump up" },
   },
 
   v = {
