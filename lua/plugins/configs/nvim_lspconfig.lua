@@ -67,7 +67,6 @@ end
 -- Lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 local lua_ls_setup = function()
-  -- require("lspconfig").lua_ls.setup({
   vim.lsp.config("lua_ls", {
     on_init = lua_server_on_init,
     on_attach = on_attach_common,
@@ -89,6 +88,19 @@ local lua_ls_setup = function()
           },
         },
       },
+    },
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = {
+      ".emmyrc.json",
+      ".luarc.json",
+      ".luarc.jsonc",
+      ".luacheckrc",
+      ".stylua.toml",
+      "stylua.toml",
+      "selene.toml",
+      "selene.yml",
+      ".git",
     },
   })
   vim.lsp.enable("lua_ls")
@@ -173,7 +185,7 @@ local taplo_setup = function()
 end
 
 local lsp_server_setup = function()
-  lua_ls_setup()
+  -- lua_ls_setup()
   -- pyright_setup()
   -- ts_ls_setup()
   -- tailwindcss_setup()
