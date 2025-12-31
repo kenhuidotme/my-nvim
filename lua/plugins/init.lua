@@ -74,7 +74,10 @@ local plugins = {
     ft = { "markdown", "codecompanion" },
     opts = {
       enabled = false,
-      code = { language = false },
+      code = {
+        border = "thick",
+        language = false,
+      },
       render_modes = { "n", "no", "c", "t", "i", "v" },
     },
   },
@@ -241,6 +244,17 @@ local plugins = {
       border = "rounded",
     },
   },
+
+  -- {
+  --   "isovector/cornelis",
+  --   name = "cornelis",
+  --   ft = { "agda" },
+  --   build = "stack install",
+  --   dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
+  --   init = function()
+  --     require("core.utils").load_mappings("cornelis")
+  --   end,
+  -- },
 }
 
 local opts = require("plugins.configs.lazy_nvim")

@@ -1,8 +1,4 @@
-Neovim configuration for myself / yourself.
-
-Polishing details in daily use.
-
-<p/>
+Neovim configuration for myself.
 
 # Features
 
@@ -19,10 +15,6 @@ Polishing details in daily use.
 
 - [Neovim v0.11.x](https://github.com/neovim/neovim/releases)
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-  <!-- - [Cmake](https://cmake.org/) -->
-  <!-- - A clipboard tool is necessary for the integration with the system clipboard -->
-  <!-- - Optional Requirements: -->
-  <!--   - [ripgrep](https://github.com/BurntSushi/ripgrep) Telescope live grep (`<leader>`fg) -->
 
 # Install
 
@@ -153,7 +145,7 @@ rm -Force ~\AppData\Local\nvim-data
 | `<leader>`db | LSP diagnostic for current buffer   |
 | `<leader>`da | LSP diagnostic for all open buffers |
 | `<leader>`ra | LSP rename                          |
-| `<leader>`ca | LSP code action                     |
+| `<leader>`ac | LSP code action                     |
 | `<leader>`wl | LSP workspace list                  |
 | `<leader>`wa | LSP workspace add                   |
 | `<leader>`wr | LSP workspace remove                |

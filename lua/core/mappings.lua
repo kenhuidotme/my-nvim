@@ -24,7 +24,7 @@ M.common = {
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- colorcolumn
-    ["<leader>cc"] = {
+    ["<leader>tc"] = {
       function()
         require("core.utils").toggle_colorcolumn()
       end,
@@ -211,7 +211,7 @@ M.comment_nvim = {
 
 M.highlight_colors = {
   n = {
-    ["<leader>ct"] = {
+    ["<leader>hc"] = {
       function()
         require("nvim-highlight-colors").toggle()
       end,
@@ -318,7 +318,7 @@ M.nvim_lspconfig = {
       "LSP rename",
     },
 
-    ["<leader>ca"] = {
+    ["<leader>ac"] = {
       function()
         vim.lsp.buf.code_action()
       end,
@@ -497,6 +497,59 @@ M.gitsigns_nvim = {
         require("gitsigns").toggle_deleted()
       end,
       "Git hunk deleted",
+    },
+  },
+}
+
+M.cornelis = {
+  n = {
+    ["<leader>cl"] = {
+      "<Cmd>CornelisLoad<CR>",
+      "Cornelis load and type-check buffer",
+    },
+    ["<leader>cg"] = {
+      "<Cmd>CornelisGoals<CR>",
+      "Cornelis show all goals",
+    },
+    ["<leader>cs"] = {
+      "<Cmd>CornelisSolve<CR>",
+      "Cornelis solve constraints",
+    },
+    ["<leader>cd"] = {
+      "<Cmd>CornelisGoToDefinition<CR>",
+      "Cornelis jump to definition",
+    },
+    ["<leader>cb"] = {
+      "<Cmd>CornelisPrevGoal<CR>",
+      "Cornelis jump to previous goal",
+    },
+    ["<leader>cf"] = {
+      "<Cmd>CornelisNextGoal<CR>",
+      "Cornelis jump to next goal",
+    },
+    ["<leader>cr"] = {
+      "<Cmd>CornelisRefine<CR>",
+      "Cornelis refine goal",
+    },
+    ["<leader>ca"] = {
+      "<Cmd>CornelisAuto<CR>",
+      "Cornelis automatic proof search",
+    },
+    ["<leader>c,"] = {
+      "<Cmd>CornelisTypeContext<CR>",
+      "Cornelis show goal type and context",
+    },
+    ["<leader>cc"] = {
+      "<Cmd>CornelisMakeCase<CR>",
+      "Cornelis case split",
+    },
+    ["<leader>cn"] = {
+      "<Cmd>CornelisNormalize<CR>",
+      "Cornelis compute normal of hole contents",
+    },
+    ["<leader>ch"] = {
+      "<Cmd>CornelisHelperFunc<CR>",
+      "Cornelis copy inferred type to register ",
     },
   },
 }
