@@ -21,6 +21,7 @@ M.common = {
   },
 
   n = {
+    ["<S-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- colorcolumn
@@ -503,53 +504,55 @@ M.gitsigns_nvim = {
 
 M.cornelis = {
   n = {
+    -- C-c C-l
     ["<leader>cl"] = {
       "<Cmd>CornelisLoad<CR>",
       "Cornelis load and type-check buffer",
     },
-    ["<leader>cg"] = {
-      "<Cmd>CornelisGoals<CR>",
-      "Cornelis show all goals",
-    },
-    ["<leader>cs"] = {
-      "<Cmd>CornelisSolve<CR>",
-      "Cornelis solve constraints",
-    },
-    ["<leader>cd"] = {
-      "<Cmd>CornelisGoToDefinition<CR>",
-      "Cornelis jump to definition",
-    },
-    ["<leader>cb"] = {
-      "<Cmd>CornelisPrevGoal<CR>",
-      "Cornelis jump to previous goal",
-    },
+    -- C-c C-f
     ["<leader>cf"] = {
       "<Cmd>CornelisNextGoal<CR>",
       "Cornelis jump to next goal",
     },
+    -- C-c C-b
+    ["<leader>cb"] = {
+      "<Cmd>CornelisPrevGoal<CR>",
+      "Cornelis jump to previous goal",
+    },
+    -- C-c C-SPC
+    ["<leader>cg"] = {
+      "<Cmd>CornelisGive<CR>",
+      "Cornelis fill goal with hole contents",
+    },
+    -- C-c C-r
     ["<leader>cr"] = {
       "<Cmd>CornelisRefine<CR>",
       "Cornelis refine goal",
     },
+    -- C-c C-a
     ["<leader>ca"] = {
       "<Cmd>CornelisAuto<CR>",
       "Cornelis automatic proof search",
     },
-    ["<leader>c,"] = {
-      "<Cmd>CornelisTypeContext<CR>",
-      "Cornelis show goal type and context",
-    },
+    -- C-c C-c
     ["<leader>cc"] = {
       "<Cmd>CornelisMakeCase<CR>",
       "Cornelis case split",
     },
+    -- C-c C-,
+    ["<leader>c,"] = {
+      "<Cmd>CornelisTypeContext<CR>",
+      "Cornelis show goal type and context",
+    },
+    -- C-c C-d
+    ["<leader>cd"] = {
+      "<Cmd>CornelisTypeInfer<CR>",
+      "Cornelis show inferred type of hole contents",
+    },
+    -- C-c C-n
     ["<leader>cn"] = {
       "<Cmd>CornelisNormalize<CR>",
       "Cornelis compute normal of hole contents",
-    },
-    ["<leader>ch"] = {
-      "<Cmd>CornelisHelperFunc<CR>",
-      "Cornelis copy inferred type to register ",
     },
   },
 }
