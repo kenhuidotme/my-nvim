@@ -524,6 +524,11 @@ M.cornelis = {
       "<Cmd>CornelisGive<CR>",
       "Cornelis fill goal with hole contents",
     },
+    -- M-.
+    ["<leader>c."] = {
+      "<Cmd>CornelisGoToDefinition<CR>",
+      "Cornelis jump to definition of name at cursor",
+    },
     -- C-c C-r
     ["<leader>cr"] = {
       "<Cmd>CornelisRefine<CR>",
