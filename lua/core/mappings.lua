@@ -21,7 +21,6 @@ M.common = {
   },
 
   n = {
-    ["<S-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- colorcolumn

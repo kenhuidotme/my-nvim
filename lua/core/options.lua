@@ -7,7 +7,7 @@ local api = vim.api
 local utils = require("core.utils")
 
 -- globals
-g.theme = utils.get_theme("onedark")
+g.theme = utils.get_theme("vscode_dark")
 g.transparency = false
 g.colorcolumn = "80"
 g.base46_cache = fn.stdpath("data") .. "/MyNvim/base46/"

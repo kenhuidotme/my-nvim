@@ -225,36 +225,15 @@ local plugins = {
   },
 
   {
-    "kkrampis/codex.nvim",
-    cmd = { "Codex", "CodexToggle" },
-    keys = {
-      {
-        "<C-f>",
-        function()
-          require("codex").toggle()
-        end,
-        desc = "Toggle Codex CLI float",
-        mode = { "n" },
-      },
-    },
-    opts = {
-      keymaps = {
-        quit = "<C-f>",
-      },
-      border = "rounded",
-    },
+    -- "isovector/cornelis",
+    -- name = "cornelis",
+    -- ft = { "agda" },
+    -- build = "stack install",
+    -- dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
+    -- init = function()
+    --   require("core.utils").load_mappings("cornelis")
+    -- end,
   },
-
-  -- {
-  --   "isovector/cornelis",
-  --   name = "cornelis",
-  --   ft = { "agda" },
-  --   build = "stack install",
-  --   dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
-  --   init = function()
-  --     require("core.utils").load_mappings("cornelis")
-  --   end,
-  -- },
 }
 
 local opts = require("plugins.configs.lazy_nvim")
