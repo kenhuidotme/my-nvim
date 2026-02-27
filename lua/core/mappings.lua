@@ -21,7 +21,6 @@ M.common = {
   },
 
   n = {
-    ["<S-s>"] = { "<Cmd>w<CR>", "Save file" },
     ["<Esc>"] = { "<Cmd>noh<CR>", "Clear highlights" },
 
     -- colorcolumn
@@ -520,7 +519,7 @@ M.cornelis = {
       "Cornelis jump to previous goal",
     },
     -- C-c C-SPC
-    ["<leader>cg"] = {
+    ["<leader>c<space>"] = {
       "<Cmd>CornelisGive<CR>",
       "Cornelis fill goal with hole contents",
     },

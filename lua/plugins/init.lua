@@ -71,7 +71,7 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings("render_markdown")
     end,
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "markdown.agda", "codecompanion" },
     opts = {
       enabled = false,
       code = {
@@ -187,6 +187,7 @@ local plugins = {
         cmd = { "Copilot" },
         config = function()
           require("copilot").setup({
+            filetypes = { markdown = true },
             suggestion = { enabled = false }, -- Disable default ghost text
             panel = { enabled = false }, -- Disable default panel
           })
@@ -222,27 +223,6 @@ local plugins = {
       local opts = require("plugins.configs.nvim_cmp")
       require("cmp").setup(opts)
     end,
-  },
-
-  {
-    "kkrampis/codex.nvim",
-    cmd = { "Codex", "CodexToggle" },
-    keys = {
-      {
-        "<C-f>",
-        function()
-          require("codex").toggle()
-        end,
-        desc = "Toggle Codex CLI float",
-        mode = { "n" },
-      },
-    },
-    opts = {
-      keymaps = {
-        quit = "<C-f>",
-      },
-      border = "rounded",
-    },
   },
 
   -- {
