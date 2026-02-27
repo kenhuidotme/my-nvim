@@ -519,7 +519,7 @@ M.cornelis = {
       "Cornelis jump to previous goal",
     },
     -- C-c C-SPC
-    ["<leader>cg"] = {
+    ["<leader>c<space>"] = {
       "<Cmd>CornelisGive<CR>",
       "Cornelis fill goal with hole contents",
     },

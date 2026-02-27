@@ -71,7 +71,7 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings("render_markdown")
     end,
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "markdown.agda", "codecompanion" },
     opts = {
       enabled = false,
       code = {
@@ -187,6 +187,7 @@ local plugins = {
         cmd = { "Copilot" },
         config = function()
           require("copilot").setup({
+            filetypes = { markdown = true },
             suggestion = { enabled = false }, -- Disable default ghost text
             panel = { enabled = false }, -- Disable default panel
           })
@@ -224,16 +225,16 @@ local plugins = {
     end,
   },
 
-  {
-    -- "isovector/cornelis",
-    -- name = "cornelis",
-    -- ft = { "agda" },
-    -- build = "stack install",
-    -- dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
-    -- init = function()
-    --   require("core.utils").load_mappings("cornelis")
-    -- end,
-  },
+  -- {
+  --   "isovector/cornelis",
+  --   name = "cornelis",
+  --   ft = { "agda" },
+  --   build = "stack install",
+  --   dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
+  --   init = function()
+  --     require("core.utils").load_mappings("cornelis")
+  --   end,
+  -- },
 }
 
 local opts = require("plugins.configs.lazy_nvim")
