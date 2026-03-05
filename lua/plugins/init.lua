@@ -225,16 +225,18 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "isovector/cornelis",
-  --   name = "cornelis",
-  --   ft = { "agda" },
-  --   build = "stack install",
-  --   dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
-  --   init = function()
-  --     require("core.utils").load_mappings("cornelis")
-  --   end,
-  -- },
+  {
+    "isovector/cornelis",
+    name = "cornelis",
+    ft = { "agda" },
+    debug = true,
+    build = "stack install",
+    dependencies = { "neovimhaskell/nvim-hs.vim", "kana/vim-textobj-user" },
+    init = function()
+      vim.g.cornelis_debug = true
+      require("core.utils").load_mappings("cornelis")
+    end,
+  },
 }
 
 local opts = require("plugins.configs.lazy_nvim")

@@ -7,7 +7,7 @@ local prettier_supported = {
   "json",
   "jsonc",
   "less",
-  "markdown",
+  -- "markdown",
   "scss",
   "typescript",
   "typescriptreact",

@@ -518,13 +518,8 @@ M.cornelis = {
       "<Cmd>CornelisPrevGoal<CR>",
       "Cornelis jump to previous goal",
     },
-    -- C-c C-SPC
-    ["<leader>c<space>"] = {
-      "<Cmd>CornelisGive<CR>",
-      "Cornelis fill goal with hole contents",
-    },
-    -- M-.
-    ["<leader>c."] = {
+    -- C-c C-g / i.e. M-.
+    ["<leader>cg"] = {
       "<Cmd>CornelisGoToDefinition<CR>",
       "Cornelis jump to definition of name at cursor",
     },
@@ -552,6 +547,11 @@ M.cornelis = {
     ["<leader>cd"] = {
       "<Cmd>CornelisTypeInfer<CR>",
       "Cornelis show inferred type of hole contents",
+    },
+    -- C-c C-.
+    ["<leader>c."] = {
+      "<Cmd>CornelisTypeContextInfer<CR>",
+      "Cornelis show goal type, context, and inferred type of hole contents",
     },
     -- C-c C-n
     ["<leader>cn"] = {
