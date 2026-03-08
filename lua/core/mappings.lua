@@ -558,6 +558,11 @@ M.cornelis = {
       "<Cmd>CornelisNormalize<CR>",
       "Cornelis compute normal of hole contents",
     },
+    -- C-c C-w
+    ["<leader>cw"] = {
+      "<Cmd>CornelisWhyInScope<CR>",
+      "Cornelis show why given name is in scope",
+    },
   },
 }
 
