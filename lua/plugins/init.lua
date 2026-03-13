@@ -182,25 +182,25 @@ local plugins = {
       },
 
       -- GitHub Copilot integration
-      {
-        "zbirenbaum/copilot.lua",
-        cmd = { "Copilot" },
-        config = function()
-          require("copilot").setup({
-            filetypes = { markdown = true },
-            suggestion = { enabled = false }, -- Disable default ghost text
-            panel = { enabled = false }, -- Disable default panel
-          })
-        end,
-      },
+      -- {
+      --   "zbirenbaum/copilot.lua",
+      --   cmd = { "Copilot" },
+      --   config = function()
+      --     require("copilot").setup({
+      --       filetypes = { markdown = true },
+      --       suggestion = { enabled = false }, -- Disable default ghost text
+      --       panel = { enabled = false }, -- Disable default panel
+      --     })
+      --   end,
+      -- },
 
       -- nvim-cmp source for GitHub Copilot
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
+      -- {
+      --   "zbirenbaum/copilot-cmp",
+      --   config = function()
+      --     require("copilot_cmp").setup()
+      --   end,
+      -- },
 
       {
         -- nvim-cmp source for LuaSnip
