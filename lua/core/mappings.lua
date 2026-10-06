@@ -209,17 +209,6 @@ M.comment_nvim = {
   },
 }
 
-M.highlight_colors = {
-  n = {
-    ["<leader>hc"] = {
-      function()
-        require("nvim-highlight-colors").toggle()
-      end,
-      "Highlight colors toggle",
-    },
-  },
-}
-
 M.render_markdown = {
   n = {
     ["<leader>md"] = {
