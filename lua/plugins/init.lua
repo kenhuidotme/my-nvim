@@ -215,17 +215,22 @@ local plugins = {
   --     require("core.utils").load_mappings("cornelis")
   --   end,
   -- },
-  --
+
   -- {
   --   "Julian/lean.nvim",
   --   event = { "BufReadPre *.lean", "BufNewFile *.lean" },
-  --   opts = {
-  --     mappings = true, -- enables built-in keybindings
-  --     abbreviations = {
-  --       builtin = true, -- enables unicode math symbol input
-  --     },
-  --   },
-  --   config = function() end, -- avoid lazy call setup()
+  --   config = function()
+  --     vim.g.maplocalleader = " "
+  --     vim.g.lean_config = {
+  --       mappings = true, -- enables built-in keybindings
+  --       abbreviations = {
+  --         builtin = true, -- enables unicode math symbol input
+  --       },
+  --       infoview = {
+  --         orientation = "vertical",
+  --       },
+  --     }
+  --   end,
   -- },
 }
 
