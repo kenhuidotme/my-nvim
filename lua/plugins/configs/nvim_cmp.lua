@@ -136,11 +136,11 @@ cmp.setup.cmdline(":", {
 })
 
 -- Configuration for '/' and '?' search command-line
-cmp.setup.cmdline({ "/", "?" }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = "buffer" }, -- Source for words in the current buffer
-  },
-})
+-- cmp.setup.cmdline({ "/", "?" }, {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = "buffer" }, -- Source for words in the current buffer
+--   },
+-- })
 
 return opts

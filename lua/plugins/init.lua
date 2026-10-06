@@ -14,20 +14,6 @@ local plugins = {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    event = { "BufReadPost", "BufNewFile" },
-    build = ":TSUpdate",
-    lazy = false,
-    config = function()
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "nvim_treesitter")
-      local opts = require("plugins.configs.nvim_treesitter")
-      require("nvim-treesitter").setup(opts)
-    end,
-  },
-
-  {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
     ft = { "gitcommit", "diff" },
@@ -50,21 +36,8 @@ local plugins = {
   },
 
   {
-    "brenoprata10/nvim-highlight-colors",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "HighlightColors" },
-    init = function()
-      require("core.utils").load_mappings("highlight_colors")
-    end,
-    config = function()
-      require("nvim-highlight-colors").setup()
-    end,
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
     cmd = { "RenderMarkdown" },
@@ -74,11 +47,16 @@ local plugins = {
     ft = { "markdown", "markdown.agda", "codecompanion" },
     opts = {
       enabled = false,
+      anti_conceal = {
+        enabled = false,
+      },
+      heading = {
+        enabled = false,
+      },
       code = {
         border = "thick",
         language = false,
       },
-      render_modes = { "n", "no", "c", "t", "i", "v" },
     },
   },
 
@@ -235,6 +213,23 @@ local plugins = {
   --   init = function()
   --     vim.g.cornelis_debug = true
   --     require("core.utils").load_mappings("cornelis")
+  --   end,
+  -- },
+
+  -- {
+  --   "Julian/lean.nvim",
+  --   event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+  --   config = function()
+  --     vim.g.maplocalleader = " "
+  --     vim.g.lean_config = {
+  --       mappings = true, -- enables built-in keybindings
+  --       abbreviations = {
+  --         builtin = true, -- enables unicode math symbol input
+  --       },
+  --       infoview = {
+  --         orientation = "vertical",
+  --       },
+  --     }
   --   end,
   -- },
 }
